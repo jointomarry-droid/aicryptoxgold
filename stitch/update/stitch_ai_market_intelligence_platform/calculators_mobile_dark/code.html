@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Investment Calculator - Neural Rates</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration (Provided) -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#4a473e",
+                        "on-tertiary": "#353029",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container-highest": "#343439",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#e9c400",
+                        "secondary-container": "#474746",
+                        "tertiary": "#ffffff",
+                        "on-secondary": "#303030",
+                        "surface-container": "#1e1f24",
+                        "primary": "#ffffff",
+                        "on-secondary-container": "#b6b5b4",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "surface-variant": "#343439",
+                        "surface-bright": "#38393d",
+                        "inverse-primary": "#705d00",
+                        "surface-dim": "#121317",
+                        "background": "#121317",
+                        "primary-fixed-dim": "#e9c400",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#cec5bb",
+                        "surface-container-low": "#1a1b20",
+                        "outline": "#999077",
+                        "on-background": "#e3e2e7",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-primary": "#3a3000",
+                        "surface": "#121317",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "on-primary-fixed": "#221b00",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffe16d",
+                        "inverse-on-surface": "#2f3035",
+                        "on-tertiary-container": "#6a635b",
+                        "on-primary-container": "#776300",
+                        "primary-container": "#ffe16d",
+                        "surface-container-lowest": "#0d0e12",
+                        "on-surface-variant": "#ccc6bb",
+                        "surface-container-high": "#292a2e",
+                        "on-primary-fixed-variant": "#544600",
+                        "error": "#ffb4ab",
+                        "secondary": "#c8c6c5",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "tertiary-fixed": "#ebe1d6",
+                        "inverse-surface": "#e3e2e7",
+                        "on-surface": "#e3e2e7",
+                        "tertiary-container": "#ebe1d6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin-desktop": "40px",
+                        "base-unit": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope", "sans-serif"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "data-mono": ["JetBrains Mono", "monospace"],
+                        "display-lg-mobile": ["Manrope", "sans-serif"],
+                        "display-lg": ["Manrope", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Base styles to enforce font families */
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom styling for the range slider to match theme */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: theme('colors.primary');
+            cursor: pointer;
+            margin-top: -10px;
+            box-shadow: 0 0 10px rgba(233, 196, 0, 0.4);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: theme('colors.outline-variant');
+            border-radius: 2px;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        /* Glow effect for results */
+        .results-glow {
+            box-shadow: inset 0 0 40px rgba(255, 225, 109, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 pt-16 antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface-container-high dark:bg-surface-container-high border-b border-outline-variant flat no shadows">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-primary-fixed-dim">
+            NEURAL RATES
+        </div>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="w-full max-w-container-max mx-auto px-margin-mobile pt-6 flex flex-col gap-6 md:px-margin-desktop md:pt-12">
+<!-- Page Header -->
+<div class="flex flex-col gap-2">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary">Projection</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Simulate AI-driven asset returns</p>
+</div>
+<!-- Asset Class Tabs -->
+<div class="flex gap-2 p-1 bg-surface-container-low rounded-xl border border-outline-variant w-full overflow-x-auto no-scrollbar">
+<button class="flex-1 py-2 px-4 rounded-lg bg-secondary-container text-on-secondary font-label-caps text-label-caps transition-all text-center">
+                Crypto
+            </button>
+<button class="flex-1 py-2 px-4 rounded-lg text-on-surface-variant hover:text-primary font-label-caps text-label-caps transition-all text-center">
+                Gold
+            </button>
+<button class="flex-1 py-2 px-4 rounded-lg text-on-surface-variant hover:text-primary font-label-caps text-label-caps transition-all text-center">
+                Silver
+            </button>
+</div>
+<!-- Input Section Card -->
+<section class="bg-surface-container rounded-xl p-6 border border-outline-variant flex flex-col gap-6">
+<!-- Asset Selection (Dropdown mock) -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Select Asset</label>
+<div class="flex items-center justify-between bg-surface-container-lowest border border-outline-variant rounded-lg p-3 hover:border-outline transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">currency_bitcoin</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Bitcoin (BTC)</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Investment Amount -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Initial Investment</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-data-mono text-data-mono text-on-surface-variant">$</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-3 pl-8 pr-4 font-data-mono text-data-mono text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" inputmode="numeric" type="text" value="10,000"/>
+</div>
+</div>
+<!-- Holding Period Slider -->
+<div class="flex flex-col gap-4 mt-2">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Holding Period</label>
+<span class="font-data-mono text-data-mono text-primary" id="period-display">12 Months</span>
+</div>
+<div class="w-full relative py-2">
+<input class="w-full" id="period-slider" max="60" min="1" type="range" value="12"/>
+<div class="flex justify-between mt-2 px-1">
+<span class="font-label-caps text-[10px] text-outline">1M</span>
+<span class="font-label-caps text-[10px] text-outline">5Y</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Results Panel -->
+<section class="bg-surface-container-highest rounded-xl p-6 border border-outline border-opacity-50 relative overflow-hidden results-glow mt-2">
+<!-- Decorative background element -->
+<div class="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary opacity-10 rounded-full blur-3xl"></div>
+<div class="flex flex-col gap-6 relative z-10">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Projected Outcome</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-mono text-display-lg-mobile md:text-display-lg text-primary tracking-tight">$14,250.00</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-outline-variant border-opacity-50">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Expected ROI</span>
+<span class="font-data-mono text-body-md text-primary-container">+42.50%</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">AI Confidence</span>
+<div class="flex items-center gap-1 text-secondary-fixed-dim">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="font-data-mono text-body-md">High</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface-container dark:bg-surface-container border-t border-outline-variant flat no shadows md:hidden">
+<!-- Inactive Tab: Markets -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1">analytics</span>
+<span class="font-label-caps text-[10px]">Markets</span>
+</button>
+<!-- Inactive Tab: News -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1">newspaper</span>
+<span class="font-label-caps text-[10px]">News</span>
+</button>
+<!-- Active Tab: Calculators -->
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-full px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">calculate</span>
+<span class="font-label-caps text-[10px] font-bold">Calculators</span>
+</button>
+<!-- Inactive Tab: Portfolio -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1">account_balance_wallet</span>
+<span class="font-label-caps text-[10px]">Portfolio</span>
+</button>
+</nav>
+<!-- Desktop Sidebar Placeholder (Hidden on mobile per rules) -->
+<div class="hidden md:flex fixed inset-y-0 left-0 z-[60] flex-col p-6 h-full w-80 rounded-r-xl bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant shadow-lg" style="display: none;">
+<!-- Content not needed for this primarily mobile task, but structure acknowledged -->
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        const slider = document.getElementById('period-slider');
+        const display = document.getElementById('period-display');
+
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            display.textContent = `${val} Month${val > 1 ? 's' : ''}`;
+        });
+    </script>
+</body></html>

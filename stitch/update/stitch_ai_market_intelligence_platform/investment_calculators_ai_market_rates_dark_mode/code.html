@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Market Rates - Investment Calculators</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#ebe1d6",
+                      "secondary": "#c8c6c5",
+                      "surface-container": "#1e1f24",
+                      "tertiary-fixed-dim": "#cec5bb",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "surface-bright": "#38393d",
+                      "on-error": "#690005",
+                      "tertiary-fixed": "#ebe1d6",
+                      "on-tertiary-container": "#6a635b",
+                      "outline": "#999077",
+                      "surface-container-lowest": "#0d0e12",
+                      "on-primary": "#3a3000",
+                      "on-secondary-fixed": "#1b1c1b",
+                      "inverse-primary": "#705d00",
+                      "on-background": "#e3e2e7",
+                      "on-secondary-fixed-variant": "#474746",
+                      "surface-dim": "#121317",
+                      "on-primary-fixed-variant": "#544600",
+                      "secondary-container": "#474746",
+                      "outline-variant": "#4a473e",
+                      "inverse-surface": "#e3e2e7",
+                      "on-surface": "#e3e2e7",
+                      "on-tertiary-fixed-variant": "#4b463e",
+                      "primary-fixed-dim": "#e9c400",
+                      "tertiary": "#ffffff",
+                      "primary-container": "#ffe16d",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-high": "#292a2e",
+                      "on-tertiary": "#353029",
+                      "on-primary-container": "#776300",
+                      "surface": "#121317",
+                      "secondary-fixed": "#e4e2e1",
+                      "on-tertiary-fixed": "#1f1b15",
+                      "on-secondary-container": "#b6b5b4",
+                      "background": "#121317",
+                      "primary": "#ffffff",
+                      "surface-container-low": "#1a1b20",
+                      "primary-fixed": "#ffe16d",
+                      "error": "#ffb4ab",
+                      "surface-container-highest": "#343439",
+                      "error-container": "#93000a",
+                      "on-secondary": "#303030",
+                      "on-surface-variant": "#ccc6bb",
+                      "inverse-on-surface": "#2f3035",
+                      "on-primary-fixed": "#221b00",
+                      "surface-variant": "#343439",
+                      "surface-tint": "#e9c400"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "container-max": "1440px",
+                      "unit": "4px",
+                      "base-unit": "4px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "display-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(30, 31, 36, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(233, 196, 0, 0.2);
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface-container dark:bg-surface-container-high sticky top-0 w-full z-50 shadow-md">
+<div class="bg-surface-container/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center justify-between px-margin-desktop max-w-container-max mx-auto h-16">
+<!-- Brand Logo -->
+<div class="font-headline-md text-headline-md font-bold text-primary-fixed-dim dark:text-primary-fixed">
+                    AI Market Rates
+                </div>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex space-x-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Crypto</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Gold</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Silver</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">AI Insights</a>
+<a class="font-body-md text-body-md text-primary-fixed-dim border-b-2 border-primary-fixed-dim pb-1 hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Calculators</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center space-x-4">
+<button class="text-primary-fixed-dim dark:text-primary-fixed hover:text-primary-fixed transition-colors duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+</button>
+<button class="text-primary-fixed-dim dark:text-primary-fixed hover:text-primary-fixed transition-colors duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<!-- Header Section -->
+<div class="mb-12">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">
+                Investment Calculators
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Leverage institutional-grade foresight and predictive modeling. Calculate potential ROI across crypto, gold, and silver assets with precision tools.
+            </p>
+</div>
+<!-- Calculator & Context Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Calculator Area -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Tab Controls -->
+<div class="flex space-x-2 bg-surface-container p-1 rounded-lg border border-outline-variant w-max">
+<button class="px-6 py-2 rounded font-label-caps text-label-caps bg-primary-container text-on-primary-container shadow-sm transition-all duration-200">
+                        CRYPTO PROFIT
+                    </button>
+<button class="px-6 py-2 rounded font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200">
+                        GOLD INVESTMENT
+                    </button>
+<button class="px-6 py-2 rounded font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200">
+                        SILVER INVESTMENT
+                    </button>
+</div>
+<!-- Glassmorphic Calculator Card -->
+<div class="glass-panel rounded-xl p-8 relative overflow-hidden">
+<!-- Subtle background glow -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container opacity-5 rounded-full blur-3xl pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+<!-- Inputs Column -->
+<div class="space-y-6">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Asset Selection</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 font-data-mono text-data-mono text-on-surface focus:border-primary-fixed-dim focus:ring-0 appearance-none">
+<option>Bitcoin (BTC)</option>
+<option>Ethereum (ETH)</option>
+<option>Solana (SOL)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Investment Amount ($)</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 font-data-mono text-data-mono text-on-surface focus:border-primary-fixed-dim focus:ring-0" type="text" value="10,000.00"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Entry Price ($)</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 font-data-mono text-data-mono text-on-surface focus:border-primary-fixed-dim focus:ring-0" type="text" value="64,230.50"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Target Price ($)</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 font-data-mono text-data-mono text-primary-fixed-dim focus:border-primary-fixed-dim focus:ring-0" type="text" value="85,000.00"/>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Holding Period (Months)</label>
+<input class="w-full accent-primary-fixed-dim" max="60" min="1" type="range" value="12"/>
+<div class="flex justify-between mt-2 font-data-mono text-[12px] text-on-surface-variant">
+<span>1m</span>
+<span>12m</span>
+<span>60m</span>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-headline-md text-[16px] py-3 rounded-lg hover:bg-primary-fixed transition-colors shadow-sm">
+                                Calculate Projection
+                            </button>
+</div>
+<!-- Results Panel -->
+<div class="bg-surface-container-lowest/50 border border-outline-variant rounded-lg p-6 flex flex-col justify-between">
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-6 border-b border-outline-variant pb-2">Projection Results</h3>
+<div class="space-y-6">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-1">PROJECTED OUTCOME</p>
+<p class="font-data-mono text-[32px] font-bold text-on-surface leading-tight">$13,233.58</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded border border-outline-variant/50">
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-1">NET PROFIT</p>
+<p class="font-data-mono text-[20px] text-[#4ade80]">+$3,233.58</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded border border-outline-variant/50">
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-1">ROI %</p>
+<p class="font-data-mono text-[20px] text-primary-fixed-dim">+32.33%</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant border-dashed">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-caps text-[10px]">AI CONFIDENCE SCORE</span>
+<span class="font-data-mono text-[14px] text-primary-fixed-dim">87.4%</span>
+</div>
+<div class="w-full bg-surface-container h-2 mt-2 rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full rounded-full" style="width: 87.4%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Context -->
+<div class="lg:col-span-4">
+<div class="bg-surface-container border border-outline-variant rounded-xl p-6 h-full">
+<h2 class="font-headline-md text-[20px] text-on-surface mb-6 flex items-center">
+<span class="material-symbols-outlined mr-2 text-primary-fixed-dim">monitoring</span>
+                        Live Context
+                    </h2>
+<div class="space-y-4">
+<!-- Market Rate Card 1 -->
+<div class="bg-surface-container-highest p-4 rounded-lg flex justify-between items-center border border-transparent hover:border-outline-variant transition-colors">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">BTC/USD</p>
+<p class="font-headline-md text-[16px] text-on-surface">Bitcoin</p>
+</div>
+<div class="text-right">
+<p class="font-data-mono text-data-mono text-on-surface">$64,230.50</p>
+<p class="font-data-mono text-[12px] text-[#4ade80]">+2.4%</p>
+</div>
+</div>
+<!-- Market Rate Card 2 -->
+<div class="bg-surface-container-highest p-4 rounded-lg flex justify-between items-center border border-transparent hover:border-outline-variant transition-colors">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">ETH/USD</p>
+<p class="font-headline-md text-[16px] text-on-surface">Ethereum</p>
+</div>
+<div class="text-right">
+<p class="font-data-mono text-data-mono text-on-surface">$3,450.20</p>
+<p class="font-data-mono text-[12px] text-[#4ade80]">+1.1%</p>
+</div>
+</div>
+<!-- Market Rate Card 3 -->
+<div class="bg-surface-container-highest p-4 rounded-lg flex justify-between items-center border border-transparent hover:border-outline-variant transition-colors">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">XAU/USD</p>
+<p class="font-headline-md text-[16px] text-on-surface">Gold Ounce</p>
+</div>
+<div class="text-right">
+<p class="font-data-mono text-data-mono text-on-surface">$2,340.80</p>
+<p class="font-data-mono text-[12px] text-error">-0.5%</p>
+</div>
+</div>
+<!-- AI Insight Snippet -->
+<div class="mt-8 pt-6 border-t border-outline-variant">
+<p class="font-label-caps text-label-caps text-primary-fixed-dim mb-2 flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1">auto_awesome</span>
+                                MARKET SENTIMENT
+                            </p>
+<p class="font-body-md text-[14px] text-on-surface-variant leading-relaxed">
+                                Institutional accumulation of BTC continues to rise against retail distribution. Predictive models suggest high volatility in the upcoming 48 hours.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full mt-auto border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="font-label-caps text-label-caps text-on-surface col-span-1">
+                AI Market Rates
+                <div class="font-body-md text-body-md text-secondary dark:text-secondary-fixed mt-2 lowercase text-sm">
+                    © 2024 AI Market Rates. Institutional Intelligence. All rights reserved.
+                </div>
+</div>
+<div class="md:col-span-3 flex flex-wrap gap-x-8 gap-y-4 md:justify-end items-start">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Regulatory Disclosure</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Account Settings &amp; Security - Aureus</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline-variant": "#4a473e",
+                        "on-error": "#690005",
+                        "surface-variant": "#343439",
+                        "surface-tint": "#e9c400",
+                        "surface": "#121317",
+                        "on-surface-variant": "#d0c6ab",
+                        "background": "#121317",
+                        "on-background": "#e3e2e7",
+                        "tertiary-fixed": "#ebe1d6",
+                        "surface-container-lowest": "#0d0e12",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#ffe16d",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "tertiary-fixed-dim": "#cec5bb",
+                        "primary-container": "#ffe16d",
+                        "on-primary": "#3a3000",
+                        "surface-container-low": "#1a1b20",
+                        "on-secondary": "#303030",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#474746",
+                        "inverse-on-surface": "#2f3035",
+                        "on-tertiary-container": "#6a635b",
+                        "secondary-fixed": "#e4e2e1",
+                        "surface-container-high": "#292a2e",
+                        "on-primary-container": "#776300",
+                        "tertiary-container": "#ebe1d6",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#343439",
+                        "on-surface": "#e3e2e7",
+                        "inverse-surface": "#e3e2e7",
+                        "on-secondary-container": "#b6b5b4",
+                        "primary-fixed-dim": "#e9c400",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "surface-container": "#1e1f24",
+                        "secondary": "#c8c6c5",
+                        "outline": "#999077",
+                        "on-primary-fixed": "#221b00",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "surface-bright": "#38393d",
+                        "on-primary-fixed-variant": "#544600",
+                        "tertiary": "#ffffff",
+                        "primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-primary": "#705d00",
+                        "surface-dim": "#121317",
+                        "on-tertiary": "#353029",
+                        "secondary-fixed-dim": "#c8c6c5"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "unit": "4px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "base-unit": "4px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px"
+                    },
+                    fontFamily: {
+                        "data-mono": ["JetBrains Mono"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "display-lg-mobile": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Manrope"]
+                    },
+                    fontSize: {
+                        "data-mono": ["14px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "500" }],
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "display-lg-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(30, 31, 36, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(74, 71, 62, 0.3);
+        }
+        
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(255, 225, 109, 0.1);
+        }
+        
+        /* Custom Scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121317;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #343439;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #474746;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Rendered but SideNav is primary layout anchor here, TopNav can be a thin header) -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md dark:bg-surface/80 border-b border-outline-variant/30 flex justify-between items-center px-margin-desktop w-full mx-auto h-20 transition-all duration-300 hidden md:flex">
+<div class="flex items-center gap-8">
+<h1 class="font-display-lg text-display-lg tracking-tighter text-primary-fixed dark:text-primary-fixed">AUREUS</h1>
+<!-- Nav hidden as per SideNav prominence in prompt -->
+</div>
+<div class="flex items-center gap-6">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-on-surface focus:outline-none focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed transition-colors font-body-md text-body-md" placeholder="Search..." type="text"/>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label-caps text-label-caps hover:bg-primary-fixed transition-colors duration-200">Trade</button>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary-fixed transition-colors duration-200"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-primary-fixed"><span class="material-symbols-outlined">settings</span></button>
+<img alt="Investor profile avatar" class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a corporate executive in a dark tailored suit, conveying a serious, institutional tone. The lighting is dramatic and cinematic, with deep shadows and subtle warm edge lighting, perfect for a high-end financial terminal dark mode UI avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9B7JXCP5rT0QBUBparGBGg91e3mzlM9ZexXe-0fQY3I0c_aMtjvocxlerlPSAFBYqo06mFfnz1q4KYGhZsyxlnAQj-CTPcivVw-sdY4uwBsRk5Qa18VuXvVL86MOfkdkoY6o1iSWIqZXZSbdqCB842xNBZu5X6714o-qp3fVD-T--yfHef2JIAr0cgGqD6NOiNX4Bg-KLyUNzG6M9hNQf3L514eHF3NlQBs5mSRlUSNP1JrqlXc9jWR5bJgJRp3MXxo1DyIwwR1w"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant/20 docked left-0 h-full w-64 py-gutter px-4 pt-28 flex-shrink-0 z-40 relative">
+<div class="flex flex-col gap-8 h-full">
+<nav class="flex-1 space-y-2">
+<!-- Highlight Profile as it's an Account Settings page -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed bg-surface-variant font-bold transition-all duration-200 translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">security</span>
+<span class="font-label-caps text-label-caps">Security</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">api</span>
+<span class="font-label-caps text-label-caps">API Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">notifications</span>
+<span class="font-label-caps text-label-caps">Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">workspace_premium</span>
+<span class="font-label-caps text-label-caps">Subscription</span>
+</a>
+</nav>
+<div class="mt-auto space-y-4">
+<button class="w-full bg-surface-container-high border border-outline-variant text-on-surface py-3 rounded-lg font-label-caps text-label-caps hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">logout</span> Sign Out
+                </button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto pt-20 md:pt-28 px-margin-mobile md:px-margin-desktop pb-12 relative w-full h-full">
+<!-- Decorative Background Element -->
+<div class="absolute top-0 right-0 w-1/2 h-96 bg-primary-fixed/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="max-w-container-max mx-auto space-y-gutter relative z-10">
+<!-- Page Header -->
+<div class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface">Account Settings</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Manage your institutional profile, security protocols, and API access.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Profile Overview (Spans 1 column) -->
+<div class="glass-panel rounded-xl p-6 lg:col-span-1 flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-fixed opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between border-b border-outline-variant/50 pb-4">
+<h3 class="font-label-caps text-label-caps text-on-surface tracking-widest text-primary-fixed">Profile Overview</h3>
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+</div>
+<div class="flex flex-col items-center text-center gap-4">
+<div class="relative">
+<img alt="Executive Avatar" class="w-24 h-24 rounded-full border-2 border-primary-fixed object-cover p-1" data-alt="Close up portrait of a stern financial executive in a dark luxury setting. The lighting highlights sharp facial features against a pitch black background, creating an intense, professional atmosphere suitable for a premium dark mode dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC5l7UeJ8ZnkIx6USEHlpA11SZ0AVN9xrpWHN3JVmtMNHaB4BclgWQqjuLmSjtDYd-omRoY6QyL10-2EPmG2jpDMPOcllV-yCexrNlPxjXO3Ks5muc6J78xAvEyFplOSXxbLuQGkkvSJdEMb-EOdfuJS-OnBw4vk81ITtdktaiT1PrzMgCbmICbyd3BN4AfJhHCrOHB_ledAihEHgAogPqkNxD0gI9DgLf8haB5o2zJIlAEILDViiL0HK-YAFfKaHzVbfYA3BRfCU"/>
+<button class="absolute bottom-0 right-0 bg-surface-variant p-1.5 rounded-full border border-outline-variant text-on-surface hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-xs">photo_camera</span>
+</button>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface text-lg">Alexander Sterling</h4>
+<p class="font-data-mono text-data-mono text-primary-fixed mt-1">ID: AUR-8921-X</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-2">Managing Director, Quant Strategies</p>
+</div>
+</div>
+<div class="space-y-4 mt-4">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Email Address</label>
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-3 font-data-mono text-data-mono text-on-surface flex justify-between items-center">
+<span>a.sterling@aureus-capital.com</span>
+<span class="material-symbols-outlined text-primary-fixed text-sm">verified</span>
+</div>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Phone Number</label>
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-3 font-data-mono text-data-mono text-on-surface">
+                                +1 (555) 019-2834
+                            </div>
+</div>
+</div>
+</div>
+<!-- Security & API (Spans 2 columns) -->
+<div class="lg:col-span-2 space-y-gutter flex flex-col">
+<!-- Security Management -->
+<div class="glass-panel rounded-xl p-6 flex-1 relative group">
+<div class="flex items-center justify-between border-b border-outline-variant/50 pb-4 mb-6">
+<h3 class="font-label-caps text-label-caps text-on-surface tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-sm">shield_locked</span>
+                                Security Management
+                            </h3>
+<div class="px-3 py-1 bg-primary-container/20 border border-primary-fixed/30 rounded-full flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-primary-fixed text-[10px]">2FA Active</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Password Change -->
+<div class="space-y-4">
+<h4 class="font-body-md text-body-md text-on-surface font-medium">Update Credentials</h4>
+<div class="space-y-3">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded p-3 text-on-surface font-data-mono text-data-mono focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed focus:outline-none transition-colors" placeholder="Current Password" type="password"/>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded p-3 text-on-surface font-data-mono text-data-mono focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed focus:outline-none transition-colors" placeholder="New Password" type="password"/>
+<button class="w-full bg-surface-variant border border-outline-variant hover:border-primary-fixed text-on-surface py-2 rounded font-label-caps text-label-caps transition-all duration-200">Update Password</button>
+</div>
+</div>
+<!-- Active Sessions -->
+<div class="space-y-4">
+<h4 class="font-body-md text-body-md text-on-surface font-medium">Recent Activity</h4>
+<div class="space-y-2">
+<div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/50 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface text-xs">macOS • Chrome</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-[10px]">192.168.1.1 (New York, US)</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary-fixed text-[10px]">Current</span>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/50 flex justify-between items-center opacity-70">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface text-xs">iOS • Safari</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-[10px]">10.0.0.45 (London, UK)</span>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-[10px]">2h ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- API Management -->
+<div class="glass-panel rounded-xl p-6 relative">
+<div class="flex items-center justify-between border-b border-outline-variant/50 pb-4 mb-6">
+<h3 class="font-label-caps text-label-caps text-on-surface tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-sm">code</span>
+                                API Access
+                            </h3>
+<button class="text-primary-fixed font-label-caps text-label-caps hover:text-surface-tint transition-colors">Generate New Key</button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-high border-b border-outline-variant">
+<tr>
+<th class="p-3 font-label-caps text-label-caps text-on-surface-variant font-normal">Key Name</th>
+<th class="p-3 font-label-caps text-label-caps text-on-surface-variant font-normal">Permissions</th>
+<th class="p-3 font-label-caps text-label-caps text-on-surface-variant font-normal">Last Used</th>
+<th class="p-3 font-label-caps text-label-caps text-on-surface-variant font-normal text-right">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant/30 hover:bg-surface-variant/30 transition-colors">
+<td class="p-3 font-data-mono text-data-mono text-on-surface text-xs">AlgoTrading_Prod_01</td>
+<td class="p-3">
+<span class="px-2 py-0.5 bg-secondary-container/50 rounded text-[10px] font-label-caps text-label-caps text-on-surface">Read/Write</span>
+</td>
+<td class="p-3 font-data-mono text-data-mono text-on-surface-variant text-xs">12 mins ago</td>
+<td class="p-3 text-right">
+<button class="text-error hover:text-on-error transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/30 transition-colors">
+<td class="p-3 font-data-mono text-data-mono text-on-surface text-xs">DataFeed_Analytics</td>
+<td class="p-3">
+<span class="px-2 py-0.5 bg-surface-container-highest rounded text-[10px] font-label-caps text-label-caps text-on-surface-variant">Read Only</span>
+</td>
+<td class="p-3 font-data-mono text-data-mono text-on-surface-variant text-xs">1 day ago</td>
+<td class="p-3 text-right">
+<button class="text-error hover:text-on-error transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Subscription Tier (Spans 3 cols on bottom) -->
+<div class="lg:col-span-3 glass-panel rounded-xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 gold-glow border-primary-fixed/20 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container/5 to-transparent pointer-events-none"></div>
+<div class="relative z-10 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary-container">diamond</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed text-xl">Institutional Tier</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Unlimited API calls, dedicated node, 24/7 SLA support.</p>
+</div>
+</div>
+<div class="relative z-10 flex flex-col items-end">
+<span class="font-data-mono text-data-mono text-on-surface text-sm">Next billing date: 01 Nov 2024</span>
+<button class="mt-2 border border-primary-fixed text-primary-fixed px-4 py-2 rounded font-label-caps text-label-caps hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors">Manage Billing</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

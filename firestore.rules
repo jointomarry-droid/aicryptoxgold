@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Phase 1: Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Primitive Helpers
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isSignedIn() { return request.auth != null; }
+
+    function isValidPriceAlert(data) {
+      return data.keys().hasAll(['userId', 'asset', 'targetPrice', 'condition', 'createdAt']) && 
+             data.keys().size() == 5 &&
+             data.userId == request.auth.uid &&
+             data.asset is string && data.asset.size() <= 20 &&
+             data.targetPrice is number &&
+             data.condition in ['above', 'below'] &&
+             data.createdAt is string;
+    }
+
+    match /users/{userId}/alerts/{alertId} {
+      allow read: if isSignedIn() && request.auth.uid == userId;
+      allow list: if isSignedIn() && request.auth.uid == userId;
+      allow create: if isSignedIn() && 
+                    request.auth.uid == userId && 
+                    isValidId(userId) && 
+                    isValidId(alertId) &&
+                    isValidPriceAlert(incoming());
+      allow update: if isSignedIn() && 
+                    request.auth.uid == userId && 
+                    isValidId(alertId) &&
+                    isValidPriceAlert(incoming()) &&
+                    incoming().userId == existing().userId &&
+                    incoming().createdAt == existing().createdAt &&
+                    incoming().diff(existing()).affectedKeys().hasOnly(['asset', 'targetPrice', 'condition']);
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+  }
+}

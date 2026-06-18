@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Market Rates - Institutional Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ffffff",
+                        "on-surface-variant": "#d0c6ab",
+                        "tertiary-container": "#ebe1d6",
+                        "surface-container-highest": "#343439",
+                        "on-primary-fixed": "#221b00",
+                        "on-secondary-fixed-variant": "#474746",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "secondary-container": "#474746",
+                        "on-secondary": "#303030",
+                        "error-container": "#93000a",
+                        "secondary": "#c8c6c5",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "inverse-primary": "#705d00",
+                        "outline-variant": "#4a473e",
+                        "on-primary-fixed-variant": "#544600",
+                        "primary-fixed": "#ffe16d",
+                        "primary-container": "#ffe16d",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#38393d",
+                        "inverse-surface": "#e3e2e7",
+                        "surface-container-lowest": "#0d0e12",
+                        "on-tertiary": "#353029",
+                        "surface-dim": "#121317",
+                        "on-secondary-container": "#b6b5b4",
+                        "primary-fixed-dim": "#e9c400",
+                        "on-tertiary-container": "#6a635b",
+                        "on-error": "#690005",
+                        "surface-tint": "#e9c400",
+                        "on-primary-container": "#776300",
+                        "on-background": "#e3e2e7",
+                        "outline": "#999077",
+                        "tertiary-fixed-dim": "#cec5bb",
+                        "inverse-on-surface": "#2f3035",
+                        "surface-container": "#1e1f24",
+                        "primary": "#ffffff",
+                        "surface-container-high": "#292a2e",
+                        "on-surface": "#e3e2e7",
+                        "surface": "#121317",
+                        "surface-variant": "#343439",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1a1b20",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "secondary-fixed": "#e4e2e1",
+                        "tertiary-fixed": "#ebe1d6",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "background": "#121317",
+                        "on-primary": "#3a3000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base-unit": "4px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Manrope"],
+                        "data-mono": ["JetBrains Mono"],
+                        "label-caps": ["Inter"],
+                        "display-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+            background-color: var(--tw-colors-surface-container-low);
+            border-bottom: 1px solid var(--tw-colors-outline-variant);
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            box-sizing: content-box;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-name: ticker;
+            animation-duration: 30s;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            color: var(--tw-colors-on-surface);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md">
+<!-- TopNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container-high font-body-md text-body-md sticky top-0 w-full z-50 bg-surface-container/80 backdrop-blur-md border-b border-outline-variant shadow-md">
+<div class="flex items-center justify-between px-margin-desktop max-w-container-max mx-auto h-16">
+<!-- Brand -->
+<div class="font-headline-md text-headline-md font-bold text-primary-fixed-dim dark:text-primary-fixed cursor-pointer active:scale-95">
+                AI Market Rates
+            </div>
+<!-- Navigation Links (Desktop) -->
+<div class="hidden md:flex space-x-8">
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Crypto</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Gold</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Silver</a>
+<a class="text-primary-fixed-dim border-b-2 border-primary-fixed-dim pb-1 hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">AI Insights</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Calculators</a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-primary-fixed-dim dark:text-primary-fixed cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+<span class="material-symbols-outlined text-primary-fixed-dim dark:text-primary-fixed cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</div>
+</div>
+</nav>
+<!-- Live Market Ticker -->
+<div class="ticker-wrap h-10 flex items-center font-data-mono text-data-mono">
+<div class="ticker">
+<span class="ticker-item">BTC <span class="text-primary-fixed-dim">▲ $64,230.50 (+2.4%)</span></span>
+<span class="ticker-item">ETH <span class="text-primary-fixed-dim">▲ $3,450.20 (+1.8%)</span></span>
+<span class="ticker-item">XAU <span class="text-error">▼ $2,340.10 (-0.5%)</span></span>
+<span class="ticker-item">XAG <span class="text-primary-fixed-dim">▲ $28.45 (+1.2%)</span></span>
+<span class="ticker-item">NVDA <span class="text-primary-fixed-dim">▲ $1,240.80 (+4.1%)</span></span>
+<span class="ticker-item">AI-IDX <span class="text-primary-fixed-dim">▲ 14,520.10 (+3.2%)</span></span>
+</div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Primary Feed (Left 8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Hero Article -->
+<article class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant group cursor-pointer hover:border-primary-fixed-dim transition-colors duration-300">
+<div class="relative h-64 md:h-96 w-full bg-surface-container-high overflow-hidden">
+<img alt="Financial chart visualization" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="A macro photography shot of an advanced digital terminal displaying complex financial charts and trading algorithms. The glowing gold and amber lines contrast sharply against a deep midnight black background, reflecting a sophisticated, high-tech institutional trading floor aesthetic. The lighting is moody and cinematic, emphasizing the high-stakes environment of AI-driven economics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7DDSwtj9bRzHTHSCevHQMLh08j7-5bCfiIxSsKbsqayPMOtbSwuXBUk24GTeczjY79csXVefdUJFuATdB89E3a8wdUImwIgpXf6rr_sv9ROmNOWi1tM66G4o9seybvYqzz5pAJ7VQcMoH__GIrFxEpEDqwd0QhiR7qH3AwiximCrxXBRcEGfQYhNto8TooLt0MLybFOTi_-y5ZmxkAbnomaRTgd1s3ub9XXABDU4sQATxztwYtzCJKNwam7zfHB8prVxl6K2Sl_E"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 backdrop-blur-sm bg-opacity-90">
+<span class="material-symbols-outlined text-sm">trending_up</span> Strong Bullish
+                        </span>
+<span class="bg-surface-container-high/80 text-on-surface backdrop-blur-md border border-outline-variant px-3 py-1 rounded-full font-data-mono text-data-mono flex items-center gap-1">
+                            Pred: 92.4%
+                        </span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-caps text-label-caps">
+<span>MACRO ANALYSIS</span>
+<span>•</span>
+<span>10 MIN AGO</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Quantum Neural Nets Predict Imminent Breakout in Core Algorithmic Assets</h1>
+<p class="text-on-surface-variant font-body-md text-body-md line-clamp-2">
+                        Our proprietary AI models have detected an unprecedented convergence in sentiment indicators across dark pools. The confidence interval suggests a high-probability volatility expansion within the next 48 hours, driven by institutional rebalancing.
+                    </p>
+<div class="mt-2 flex items-center gap-4">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant">AI CONFIDENCE</span>
+<div class="flex items-center gap-2 mt-1">
+<div class="h-2 w-32 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed-dim w-[92%]"></div>
+</div>
+<span class="font-data-mono text-data-mono text-primary-fixed-dim">High</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- News Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Card 1 -->
+<article class="bg-surface-container rounded-xl p-5 border border-outline-variant hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim">ALGORITHMIC TRADING</span>
+<span class="bg-surface-container-high text-error border border-error/30 px-2 py-0.5 rounded font-label-caps text-label-caps flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_down</span> Bearish
+                        </span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2 group-hover:text-primary-fixed-dim transition-colors">Liquidity Drain Detected in Layer 2 Sub-Networks</h3>
+<p class="text-on-surface-variant font-body-md text-body-md text-sm line-clamp-3 mb-4">
+                        Automated sentinels have flagged anomalous withdrawal patterns across major bridges. The resulting friction is elevating spread costs significantly.
+                    </p>
+<div class="flex justify-between items-center mt-auto border-t border-outline-variant pt-3">
+<span class="font-data-mono text-data-mono text-xs text-on-surface-variant">Scheduled: 14:00 UTC</span>
+<span class="material-symbols-outlined text-primary-fixed-dim">arrow_forward</span>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container rounded-xl p-5 border border-outline-variant hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim">AI INSIGHTS</span>
+<span class="bg-surface-container-high text-primary-fixed-dim border border-primary-fixed-dim/30 px-2 py-0.5 rounded font-label-caps text-label-caps flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> Bullish
+                        </span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2 group-hover:text-primary-fixed-dim transition-colors">Compute Infrastructure Assets Rally on Demand Forecasts</h3>
+<p class="text-on-surface-variant font-body-md text-body-md text-sm line-clamp-3 mb-4">
+                        Revised projections for global compute utilization have triggered a massive influx of smart money into silicon and infrastructure tokens.
+                    </p>
+<div class="flex justify-between items-center mt-auto border-t border-outline-variant pt-3">
+<span class="font-data-mono text-data-mono text-xs text-on-surface-variant">Live Analysis</span>
+<span class="material-symbols-outlined text-primary-fixed-dim">arrow_forward</span>
+</div>
+</article>
+</div>
+<!-- Load More Button -->
+<div class="flex justify-center mt-4">
+<button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-outline-variant via-primary-fixed-dim to-outline-variant group-hover:from-primary-fixed group-hover:to-outline-variant hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-primary-fixed-dim/30">
+<span class="relative px-8 py-3 bg-surface-container-high rounded-md group-hover:bg-opacity-0 transition-all ease-in duration-75 text-on-surface font-label-caps text-label-caps">
+                      LOAD MORE INTELLIGENCE
+                  </span>
+</button>
+</div>
+</div>
+<!-- Sidebar (Right 4 Cols) -->
+<aside class="lg:col-span-4 flex flex-col gap-6">
+<!-- AI Heatmap Widget -->
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-4 border-b border-outline-variant bg-surface-container-high flex justify-between items-center">
+<h3 class="font-label-caps text-label-caps text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">grid_view</span> AI Heatmap
+                    </h3>
+<span class="font-data-mono text-data-mono text-xs text-primary-fixed-dim flex items-center"><span class="w-2 h-2 rounded-full bg-primary-fixed-dim mr-1 animate-pulse"></span>LIVE</span>
+</div>
+<div class="p-4 grid grid-cols-2 gap-2">
+<div class="bg-primary-container/10 border border-primary-fixed-dim/20 p-3 rounded flex flex-col justify-center items-center">
+<span class="font-data-mono text-data-mono text-on-surface text-sm">BTC</span>
+<span class="font-data-mono text-data-mono text-primary-fixed-dim font-bold">+2.4%</span>
+</div>
+<div class="bg-error/10 border border-error/20 p-3 rounded flex flex-col justify-center items-center">
+<span class="font-data-mono text-data-mono text-on-surface text-sm">ETH</span>
+<span class="font-data-mono text-data-mono text-error font-bold">-0.8%</span>
+</div>
+<div class="bg-primary-container/20 border border-primary-fixed-dim/40 p-3 rounded flex flex-col justify-center items-center col-span-2">
+<span class="font-data-mono text-data-mono text-on-surface text-sm">COMPUTE-IDX</span>
+<span class="font-data-mono text-data-mono text-primary-fixed-dim font-bold text-lg">+5.2%</span>
+</div>
+</div>
+</div>
+<!-- Terminal Briefing Signup -->
+<div class="bg-surface-container-high rounded-xl border border-outline-variant p-5 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-fixed-dim/5 to-transparent z-0"></div>
+<div class="relative z-10 flex flex-col gap-3">
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg">Terminal Briefing</h3>
+<p class="font-body-md text-body-md text-sm text-on-surface-variant">Get institutional-grade market synthesis delivered directly to your inbox before the NY open.</p>
+<form class="flex flex-col gap-2 mt-2">
+<input class="bg-surface-container-low border border-outline-variant rounded-md px-3 py-2 text-on-surface font-body-md text-sm focus:border-primary-fixed-dim focus:ring-1 focus:ring-primary-fixed-dim outline-none w-full" placeholder="Email Address" type="email"/>
+<button class="bg-primary-container text-on-primary-container font-label-caps text-label-caps py-2 rounded-md hover:bg-primary-fixed transition-colors" type="button">SUBSCRIBE</button>
+</form>
+</div>
+</div>
+<!-- Trending Protocols -->
+<div class="bg-surface-container rounded-xl border border-outline-variant">
+<div class="p-4 border-b border-outline-variant bg-surface-container-high">
+<h3 class="font-label-caps text-label-caps text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">show_chart</span> Trending Protocols
+                    </h3>
+</div>
+<div class="flex flex-col">
+<div class="p-3 border-b border-outline-variant flex justify-between items-center hover:bg-surface-container-high cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-on-surface-variant text-xs w-4">01</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-sm font-semibold text-on-surface">NeuralLink Token</span>
+<span class="font-data-mono text-data-mono text-xs text-on-surface-variant">NLT</span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-sm text-primary-fixed-dim">+14.2%</span>
+</div>
+<div class="p-3 border-b border-outline-variant flex justify-between items-center hover:bg-surface-container-high cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-on-surface-variant text-xs w-4">02</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-sm font-semibold text-on-surface">Quantum Nexus</span>
+<span class="font-data-mono text-data-mono text-xs text-on-surface-variant">QNX</span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-sm text-primary-fixed-dim">+9.8%</span>
+</div>
+<div class="p-3 flex justify-between items-center hover:bg-surface-container-high cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-on-surface-variant text-xs w-4">03</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-sm font-semibold text-on-surface">SynthData Network</span>
+<span class="font-data-mono text-data-mono text-xs text-on-surface-variant">SDN</span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-sm text-error">-2.1%</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest font-body-md text-body-md w-full mt-auto border-t border-outline-variant flat no shadows">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="font-label-caps text-label-caps text-on-surface md:col-span-1">
+                AI Market Rates
+            </div>
+<div class="md:col-span-3 flex flex-wrap gap-8 justify-start md:justify-end">
+<a class="text-on-secondary-container hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors cursor-pointer" href="#">Regulatory Disclosure</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors cursor-pointer" href="#">Contact Support</a>
+</div>
+<div class="md:col-span-4 mt-8 pt-8 border-t border-outline-variant text-secondary dark:text-secondary-fixed text-sm">
+                © 2024 AI Market Rates. Institutional Intelligence. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

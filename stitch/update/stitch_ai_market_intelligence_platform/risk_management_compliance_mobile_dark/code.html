@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Risk Management &amp; Compliance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#121317",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "primary": "#ffffff",
+                        "background": "#121317",
+                        "tertiary-fixed-dim": "#cec5bb",
+                        "inverse-on-surface": "#2f3035",
+                        "surface-bright": "#38393d",
+                        "outline-variant": "#4a473e",
+                        "on-surface-variant": "#d0c6ab",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "inverse-surface": "#e3e2e7",
+                        "on-secondary": "#303030",
+                        "on-primary-container": "#776300",
+                        "surface-container": "#1e1f24",
+                        "surface-container-low": "#1a1b20",
+                        "tertiary-container": "#ebe1d6",
+                        "tertiary": "#ffffff",
+                        "surface-dim": "#121317",
+                        "primary-container": "#ffe16d",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#343439",
+                        "secondary-container": "#474746",
+                        "surface-container-lowest": "#0d0e12",
+                        "on-surface": "#e3e2e7",
+                        "secondary-fixed": "#e4e2e1",
+                        "primary-fixed": "#ffe16d",
+                        "on-primary-fixed": "#221b00",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#ebe1d6",
+                        "on-background": "#e3e2e7",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "outline": "#999077",
+                        "inverse-primary": "#705d00",
+                        "surface-variant": "#343439",
+                        "on-secondary-container": "#b6b5b4",
+                        "secondary": "#c8c6c5",
+                        "on-tertiary-container": "#6a635b",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#544600",
+                        "surface-container-high": "#292a2e",
+                        "surface-tint": "#e9c400",
+                        "on-primary": "#3a3000",
+                        "primary-fixed-dim": "#e9c400",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#353029"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "base-unit": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #121317; /* Absolute black / surface */
+            color: #e3e2e7; /* on-background */
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .data-value {
+            font-family: 'JetBrains Mono', monospace;
+            color: #ffe16d; /* primary-container / gold */
+        }
+        .glass-panel {
+            background: rgba(30, 31, 36, 0.6); /* surface-container with opacity */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(74, 71, 62, 0.5); /* outline-variant */
+        }
+        /* Custom Scrollbar for dense areas if needed */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121317;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a473e;
+            border-radius: 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background flex flex-col min-h-screen">
+<!-- TopAppBar JSON Executed -->
+<header class="fixed top-0 w-full bg-surface dark:bg-surface border-b border-outline-variant flex justify-between items-center h-16 px-margin-mobile z-50">
+<div class="flex items-center gap-4">
+<button class="text-primary hover:bg-surface-container-highest transition-colors active:opacity-80 transition-opacity p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary">Risk Terminal</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-surface-container-low border border-outline hover:bg-surface-container transition-colors rounded px-3 py-1.5 flex items-center gap-1.5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">summarize</span>
+<span class="font-label-caps text-label-caps text-on-surface">Audit Report</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<!-- Fallback Avatar -->
+<div class="w-full h-full flex items-center justify-center text-on-surface-variant font-label-caps text-label-caps">MG</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (Pushed down by TopAppBar, up by BottomNavBar) -->
+<main class="flex-grow pt-20 pb-24 px-margin-mobile flex flex-col gap-6 max-w-container-max mx-auto w-full">
+<!-- Header -->
+<div class="flex flex-col gap-1 mt-2">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary">Global Risk Operations</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time systemic oversight and compliance monitoring.</p>
+</div>
+<!-- Section 1: Portfolio VaR -->
+<section class="glass-panel rounded-xl p-5 flex flex-col gap-4 relative overflow-hidden">
+<!-- Decorative gradient orb -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-container rounded-full opacity-5 blur-2xl pointer-events-none"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Portfolio VaR (95% CI)</span>
+<span class="font-data-mono text-display-lg-mobile data-value mt-1">$4.28M</span>
+</div>
+<div class="bg-error-container/20 border border-error-container rounded px-2 py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-error text-sm" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+<span class="font-data-mono text-data-mono text-error">-0.45%</span>
+</div>
+</div>
+<!-- Simulated Sparkline Chart -->
+<div class="h-16 w-full flex items-end gap-1 mt-2 z-10">
+<div class="w-full h-1/3 bg-surface-container-high rounded-t"></div>
+<div class="w-full h-1/2 bg-surface-container-high rounded-t"></div>
+<div class="w-full h-2/5 bg-surface-container-high rounded-t"></div>
+<div class="w-full h-3/5 bg-surface-container-high rounded-t"></div>
+<div class="w-full h-1/2 bg-surface-container-high rounded-t"></div>
+<div class="w-full h-3/4 bg-surface-container-high rounded-t"></div>
+<div class="w-full h-2/3 bg-surface-container-high rounded-t"></div>
+<div class="w-full h-full bg-primary-container/40 border-t-2 border-primary-container rounded-t relative">
+<!-- Current value marker -->
+<div class="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-primary-container shadow-[0_0_10px_rgba(255,225,109,0.5)]"></div>
+</div>
+</div>
+</section>
+<!-- Section 2 & 3: Flex container for Gauge and Limits -->
+<div class="flex flex-col gap-6">
+<!-- Section 2: Systemic Risk Gauge -->
+<section class="glass-panel rounded-xl p-5 flex flex-col items-center justify-center gap-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase self-start w-full text-center">Systemic Risk Gauge</span>
+<!-- Simple CSS Gauge -->
+<div class="relative w-32 h-16 overflow-hidden mt-2">
+<!-- Background arc -->
+<div class="absolute top-0 left-0 w-32 h-32 rounded-full border-[12px] border-surface-container-high box-border"></div>
+<!-- Active arc (Low - Green/Goldish) -->
+<div class="absolute top-0 left-0 w-32 h-32 rounded-full border-[12px] border-primary-container box-border" style="clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%); transform: rotate(-120deg);"></div>
+<!-- Needle -->
+<div class="absolute bottom-0 left-1/2 w-1 h-14 bg-on-surface origin-bottom transform -translate-x-1/2 rotate-[-45deg] rounded-t-full"></div>
+<div class="absolute bottom-[-4px] left-1/2 w-3 h-3 bg-primary-container rounded-full transform -translate-x-1/2"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary leading-none">12</span>
+<span class="font-label-caps text-label-caps text-primary-container mt-1">LOW</span>
+</div>
+</section>
+<!-- Section 3: Regulatory Limits -->
+<section class="glass-panel rounded-xl p-5 flex flex-col gap-5">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Regulatory Limits</span>
+<div class="flex flex-col gap-4">
+<!-- Limit 1 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface">Single Asset Cap</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant">42/50%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 84%;"></div>
+</div>
+</div>
+<!-- Limit 2 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface">Leverage Limit</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant">2.8/3.0x</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 93%;"></div> <!-- High warning -->
+</div>
+</div>
+<!-- Limit 3 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface">Sector Concentration</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant">65/80%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed-dim rounded-full" style="width: 81%;"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Section 4: Asset Exposure -->
+<section class="flex flex-col gap-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase px-1">Asset Exposure</span>
+<!-- Horizontal scroll container -->
+<div class="flex gap-3 overflow-x-auto pb-2 snap-x hide-scrollbar">
+<!-- Card 1 -->
+<div class="min-w-[120px] glass-panel rounded-lg p-4 flex flex-col gap-2 snap-start border-l-2 border-l-primary-container">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-primary-container" style="font-variation-settings: 'FILL' 1;">currency_bitcoin</span>
+</div>
+<span class="font-body-md text-body-md font-bold text-on-surface">BTC</span>
+</div>
+<span class="font-data-mono text-headline-md text-primary mt-1">42%</span>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[120px] glass-panel rounded-lg p-4 flex flex-col gap-2 snap-start border-l-2 border-l-secondary-fixed-dim">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-secondary-fixed-dim" style="font-variation-settings: 'FILL' 1;">diamond</span>
+</div>
+<span class="font-body-md text-body-md font-bold text-on-surface">ETH</span>
+</div>
+<span class="font-data-mono text-headline-md text-primary mt-1">28%</span>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[120px] glass-panel rounded-lg p-4 flex flex-col gap-2 snap-start border-l-2 border-l-tertiary-fixed-dim">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+</div>
+<span class="font-body-md text-body-md font-bold text-on-surface">Gold</span>
+</div>
+<span class="font-data-mono text-headline-md text-primary mt-1">20%</span>
+</div>
+<!-- Card 4 -->
+<div class="min-w-[120px] glass-panel rounded-lg p-4 flex flex-col gap-2 snap-start border-l-2 border-l-outline">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-outline" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+</div>
+<span class="font-body-md text-body-md font-bold text-on-surface">Silver</span>
+</div>
+<span class="font-data-mono text-headline-md text-primary mt-1">10%</span>
+</div>
+</div>
+</section>
+<!-- Section 5: Condensed Audit Log -->
+<section class="glass-panel rounded-xl flex flex-col overflow-hidden">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Audit Log</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm cursor-pointer hover:text-primary">filter_list</span>
+</div>
+<div class="flex flex-col">
+<!-- Log Row 1 -->
+<div class="flex items-center justify-between p-3 border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface text-xs">LIMIT_BREACH</span>
+<span class="font-body-md text-label-caps text-on-surface-variant text-[10px]">LVRG &gt; 2.8x</span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-xs">14:02:11</span>
+</div>
+<!-- Log Row 2 -->
+<div class="flex items-center justify-between p-3 border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface text-xs">REBAL_EXEC</span>
+<span class="font-body-md text-label-caps text-on-surface-variant text-[10px]">ETH/USD -5%</span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-xs">13:45:00</span>
+</div>
+<!-- Log Row 3 -->
+<div class="flex items-center justify-between p-3 hover:bg-surface-container-highest transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></div>
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface text-xs">SYS_CHK_OK</span>
+<span class="font-body-md text-label-caps text-on-surface-variant text-[10px]">All nodes sync</span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-xs">12:00:05</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar JSON Executed -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-surface-container border-t border-outline-variant px-2 pb-safe z-50 md:hidden">
+<!-- Tab 1: Markets (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-transform w-16" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">monitoring</span>
+<span class="font-label-caps text-[10px] leading-none">Markets</span>
+</a>
+<!-- Tab 2: News (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-transform w-16" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">newspaper</span>
+<span class="font-label-caps text-[10px] leading-none">News</span>
+</a>
+<!-- Tab 3: Tools (Active - Represents Risk/Ops Dashboard) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-95 transition-transform min-w-[64px]" href="#">
+<span class="material-symbols-outlined mb-0.5" style="font-variation-settings: 'FILL' 1;">construction</span>
+<span class="font-label-caps text-[10px] leading-none">Tools</span>
+</a>
+<!-- Tab 4: Portfolio (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-transform w-16" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">account_balance_wallet</span>
+<span class="font-label-caps text-[10px] leading-none">Portfolio</span>
+</a>
+</nav>
+</body></html>

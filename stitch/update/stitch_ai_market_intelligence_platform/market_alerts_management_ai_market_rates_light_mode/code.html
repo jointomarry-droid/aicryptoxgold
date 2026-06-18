@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aureus Terminal - Market Alerts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary": "#5b5c60",
+                    "tertiary-fixed": "#e3e2e7",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d9dadb",
+                    "on-background": "#191c1d",
+                    "inverse-surface": "#2e3132",
+                    "primary-fixed-dim": "#f7bd48",
+                    "secondary": "#705d00",
+                    "surface-container": "#edeeef",
+                    "surface-container-low": "#f3f4f5",
+                    "tertiary-fixed-dim": "#c7c6cb",
+                    "on-surface-variant": "#4f4535",
+                    "on-secondary-fixed": "#221b00",
+                    "on-secondary-container": "#6e5c00",
+                    "inverse-primary": "#f7bd48",
+                    "surface-variant": "#e1e3e4",
+                    "outline": "#817563",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-primary-fixed-variant": "#5d4200",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#7b5800",
+                    "on-tertiary-fixed-variant": "#46464b",
+                    "on-surface": "#191c1d",
+                    "primary-container": "#986d00",
+                    "on-tertiary-container": "#fefcff",
+                    "on-primary-fixed": "#271900",
+                    "inverse-on-surface": "#f0f1f2",
+                    "tertiary-container": "#747479",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#fffbff",
+                    "primary-fixed": "#ffdea6",
+                    "surface-container-high": "#e7e8e9",
+                    "outline-variant": "#d3c4af",
+                    "secondary-fixed": "#ffe16d",
+                    "surface-bright": "#f8f9fa",
+                    "on-secondary-fixed-variant": "#544600",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#1a1b20",
+                    "error-container": "#ffdad6",
+                    "surface": "#f8f9fa",
+                    "secondary-fixed-dim": "#e9c400",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f8f9fa",
+                    "primary": "#785600",
+                    "secondary-container": "#fcd400"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin": "32px",
+                    "sm": "12px",
+                    "md": "24px",
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "xl": "80px",
+                    "lg": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": [
+                            "manrope"
+                    ],
+                    "display-lg-mobile": [
+                            "manrope"
+                    ],
+                    "label-sm": [
+                            "jetbrainsMono"
+                    ],
+                    "body-md": [
+                            "inter"
+                    ],
+                    "body-lg": [
+                            "inter"
+                    ],
+                    "display-lg": [
+                            "manrope"
+                    ]
+            },
+            "fontSize": {
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid theme('colors.surface-container-high');
+            border-top: 1px solid theme('colors.primary-fixed-dim');
+        }
+        
+        .flat-card {
+            background-color: theme('colors.surface');
+            border: 1px solid theme('colors.surface-container-high');
+        }
+
+        .gold-shadow {
+            box-shadow: 0 4px 20px -2px rgba(184, 134, 11, 0.15);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.surface-variant');
+            border-radius: theme('borderRadius.full');
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.outline-variant');
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden md:flex flex-col h-full py-lg px-sm h-screen w-64 fixed left-0 top-0 border-r border-surface-container-high dark:border-on-tertiary-fixed-variant bg-surface dark:bg-surface-dim z-40">
+<div class="mb-lg px-sm">
+<div class="flex items-center gap-sm mb-xs">
+<div class="w-8 h-8 rounded-DEFAULT bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">assured_workload</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">Global Risk</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim ml-[44px]">Institutional Access</p>
+</div>
+<div class="flex-1 overflow-y-auto pr-2">
+<ul class="space-y-sm">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-primary dark:text-primary-fixed-dim font-bold hover:bg-surface-container-low dark:hover:bg-tertiary-container/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-body-md text-body-md">Asset Classes</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">rule</span>
+<span class="font-body-md text-body-md">Regulatory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-body-md text-body-md">Audit Log</span>
+</a>
+</li>
+</ul>
+<div class="mt-lg pt-lg border-t border-surface-container-high px-sm">
+<button class="w-full bg-transparent border border-primary text-primary font-body-md text-body-md py-sm rounded-DEFAULT hover:bg-primary/5 transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    New Analysis
+                </button>
+</div>
+</div>
+<div class="mt-auto pt-md">
+<ul class="space-y-xs">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Sign Out</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 relative min-h-screen bg-surface-bright">
+<!-- TopNavBar (from JSON) -->
+<header class="w-full sticky top-0 z-50 border-t-[0.5px] border-secondary dark:border-secondary-fixed shadow-sm bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-xs w-full max-w-[1200px] mx-auto">
+<div class="flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim hidden md:block">Aureus Terminal</span>
+<div class="flex items-center bg-surface-container-low rounded-DEFAULT px-md py-xs border border-surface-container-high focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-tertiary mr-2 text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface placeholder:text-tertiary w-64" placeholder="Search assets, ISIN, tickers..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 ease-in-out px-2 py-1" href="#">Portfolio</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 transition-colors duration-300 ease-in-out px-2" href="#">Risk</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 ease-in-out px-2 py-1" href="#">Compliance</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 ease-in-out px-2 py-1" href="#">Audit</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="text-tertiary hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-tertiary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden cursor-pointer">
+<img alt="Chief Risk Officer Profile" class="w-full h-full object-cover" data-alt="Professional headshot of a sophisticated male executive in his 40s wearing a tailored dark navy suit and crisp white shirt. He has short salt-and-pepper hair and a confident, approachable expression. The background is a slightly blurred, bright modern office with glass partitions, reflecting a premium corporate environment. High-key lighting emphasizes a clean, authoritative aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA19YuaxND6-EBPoO2GbUxTSpD0pJzWNeXEXMBaoeKyA0Misg4Oz4C9djbzvg7yhvJTo3sJT_CY0PYuBUpJOY6ZWwvVtdy2XqX2Zl7Wk9_jSFL03f3zvwEQYZFTf86JEiIJnvJPFezM69fRCmDp7Oq_oDvXy29ZFd2-YqozlV_7AMM6FIQK-UFf1QQ-9gZvx38ZjejlFvLsK5pYnusk4lcOVsfwwkUj3LqyYHCook2hsRcsfyv5fQNOpYJdqw1g92pMJsm_dw5IqY"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter lg:p-lg w-full max-w-[1200px] mx-auto">
+<div class="mb-lg flex justify-between items-end">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-xs">Market Alerts</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Monitor thresholds, volatility spikes, and AI-detected sentiment shifts.</p>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-tertiary block mb-1 uppercase tracking-wider">System Status</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#B8860B]"></span>
+<span class="font-body-md text-body-md text-on-surface">Monitoring Active</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter">
+<!-- Create Alert Panel (Left) -->
+<div class="xl:col-span-4 flex flex-col gap-md">
+<div class="glass-panel rounded-xl p-md">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-md">Configure Alert</h2>
+<form class="space-y-md">
+<!-- Asset Selection -->
+<div>
+<label class="font-label-sm text-label-sm text-tertiary uppercase mb-2 block">Target Asset / Index</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-tertiary text-[20px]">search</span>
+<input class="w-full bg-surface border border-surface-container-high rounded-DEFAULT py-2 pl-10 pr-3 font-label-sm text-label-sm text-on-surface focus:border-primary focus:ring-0 transition-colors" placeholder="e.g., AAPL, SPX, EURUSD" type="text"/>
+</div>
+</div>
+<!-- Trigger Type -->
+<div>
+<label class="font-label-sm text-label-sm text-tertiary uppercase mb-2 block">Trigger Condition</label>
+<div class="grid grid-cols-3 gap-2">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="trigger" type="radio"/>
+<div class="text-center py-2 border border-surface-container-high rounded-DEFAULT peer-checked:border-primary peer-checked:bg-primary/5 transition-colors">
+<span class="font-label-sm text-label-sm text-on-surface">Price</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="trigger" type="radio"/>
+<div class="text-center py-2 border border-surface-container-high rounded-DEFAULT peer-checked:border-primary peer-checked:bg-primary/5 transition-colors">
+<span class="font-label-sm text-label-sm text-on-surface">Volatility</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="trigger" type="radio"/>
+<div class="text-center py-2 border border-surface-container-high rounded-DEFAULT peer-checked:border-primary peer-checked:bg-primary/5 transition-colors">
+<span class="font-label-sm text-label-sm text-on-surface">AI Trend</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Parameters -->
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="font-label-sm text-label-sm text-tertiary uppercase mb-2 block">Operator</label>
+<select class="w-full bg-surface border border-surface-container-high rounded-DEFAULT py-2 px-3 font-label-sm text-label-sm text-on-surface focus:border-primary focus:ring-0">
+<option>Crosses Above</option>
+<option>Crosses Below</option>
+<option>Deviates By %</option>
+</select>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-tertiary uppercase mb-2 block">Value</label>
+<input class="w-full bg-surface border border-surface-container-high rounded-DEFAULT py-2 px-3 font-label-sm text-label-sm text-on-surface text-right focus:border-primary focus:ring-0" placeholder="0.00" type="text"/>
+</div>
+</div>
+<!-- Delivery -->
+<div>
+<label class="font-label-sm text-label-sm text-tertiary uppercase mb-2 block">Delivery Method</label>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="rounded-sm border-surface-container-high text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Terminal</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded-sm border-surface-container-high text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Email</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded-sm border-surface-container-high text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">SMS</span>
+</label>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-body-md text-body-md py-3 rounded-DEFAULT hover:bg-primary-container transition-colors gold-shadow mt-md flex justify-center items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]">add_alert</span>
+                                Deploy Alert
+                            </button>
+</form>
+</div>
+</div>
+<!-- Active Alerts List (Right) -->
+<div class="xl:col-span-8 flex flex-col gap-md">
+<!-- Stats Row -->
+<div class="grid grid-cols-3 gap-md">
+<div class="flat-card rounded-lg p-md">
+<span class="font-label-sm text-label-sm text-tertiary uppercase block mb-1">Active Rules</span>
+<span class="font-headline-md text-headline-md text-on-surface">24</span>
+</div>
+<div class="flat-card rounded-lg p-md">
+<span class="font-label-sm text-label-sm text-tertiary uppercase block mb-1">Triggered (24h)</span>
+<span class="font-headline-md text-headline-md text-on-surface">3</span>
+</div>
+<div class="flat-card rounded-lg p-md">
+<span class="font-label-sm text-label-sm text-tertiary uppercase block mb-1">System Load</span>
+<span class="font-headline-md text-headline-md text-on-surface">Low</span>
+</div>
+</div>
+<!-- Alerts Table -->
+<div class="flat-card rounded-xl overflow-hidden flex-1">
+<div class="px-md py-sm border-b border-surface-container-high bg-surface-bright flex justify-between items-center">
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Monitored Assets</h3>
+<button class="text-tertiary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-container-high bg-surface">
+<th class="px-md py-sm font-label-sm text-label-sm text-tertiary uppercase font-normal">Asset</th>
+<th class="px-md py-sm font-label-sm text-label-sm text-tertiary uppercase font-normal">Condition</th>
+<th class="px-md py-sm font-label-sm text-label-sm text-tertiary uppercase font-normal text-right">Current Value</th>
+<th class="px-md py-sm font-label-sm text-label-sm text-tertiary uppercase font-normal text-right">Distance</th>
+<th class="px-md py-sm font-label-sm text-label-sm text-tertiary uppercase font-normal text-center">Status</th>
+<th class="px-md py-sm w-10"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-surface-container-high hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-sm">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container border border-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">show_chart</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface font-semibold">US10Y</span>
+<span class="block font-label-sm text-label-sm text-tertiary text-[10px]">Treasury Yield</span>
+</div>
+</div>
+</td>
+<td class="px-md py-sm">
+<span class="font-label-sm text-label-sm text-on-surface">Yield &gt; 4.50%</span>
+</td>
+<td class="px-md py-sm text-right font-label-sm text-label-sm text-on-surface">
+                                            4.42%
+                                        </td>
+<td class="px-md py-sm text-right font-label-sm text-label-sm">
+<span class="text-on-surface-variant">-0.08%</span>
+</td>
+<td class="px-md py-sm text-center">
+<span class="inline-block px-2 py-1 rounded-DEFAULT bg-surface-container text-on-surface font-label-sm text-[10px] uppercase tracking-wider border border-surface-container-high">Active</span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-tertiary opacity-0 group-hover:opacity-100 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-surface-container-high hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-sm">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container border border-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">psychology</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface font-semibold">NVDA</span>
+<span class="block font-label-sm text-label-sm text-tertiary text-[10px]">AI Sentiment</span>
+</div>
+</div>
+</td>
+<td class="px-md py-sm">
+<span class="font-label-sm text-label-sm text-on-surface">Sentiment &lt; Neutral</span>
+</td>
+<td class="px-md py-sm text-right font-label-sm text-label-sm text-on-surface">
+                                            Bullish (82)
+                                        </td>
+<td class="px-md py-sm text-right font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Far</span>
+</td>
+<td class="px-md py-sm text-center">
+<span class="inline-block px-2 py-1 rounded-DEFAULT bg-surface-container text-on-surface font-label-sm text-[10px] uppercase tracking-wider border border-surface-container-high">Active</span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-tertiary opacity-0 group-hover:opacity-100 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-sm">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container border border-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-[#B8860B]">warning</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface font-semibold">VIX</span>
+<span class="block font-label-sm text-label-sm text-tertiary text-[10px]">Volatility Index</span>
+</div>
+</div>
+</td>
+<td class="px-md py-sm">
+<span class="font-label-sm text-label-sm text-on-surface">Spike &gt; 15% (1h)</span>
+</td>
+<td class="px-md py-sm text-right font-label-sm text-label-sm text-on-surface">
+                                            14.2
+                                        </td>
+<td class="px-md py-sm text-right font-label-sm text-label-sm">
+<span class="text-[#B8860B]">Near</span>
+</td>
+<td class="px-md py-sm text-center">
+<span class="inline-block px-2 py-1 rounded-DEFAULT bg-primary/10 text-primary font-label-sm text-[10px] uppercase tracking-wider border border-primary/20">Watching</span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-tertiary opacity-0 group-hover:opacity-100 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

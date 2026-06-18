@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us - AI Market Rates</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffffff",
+                        "surface-container": "#1e1f24",
+                        "on-secondary": "#303030",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-secondary-container": "#b6b5b4",
+                        "surface-variant": "#343439",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "surface-bright": "#38393d",
+                        "surface-dim": "#121317",
+                        "inverse-primary": "#705d00",
+                        "background": "#121317",
+                        "primary-fixed-dim": "#e9c400",
+                        "outline-variant": "#4a473e",
+                        "on-tertiary": "#353029",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container-highest": "#343439",
+                        "surface-tint": "#e9c400",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffffff",
+                        "secondary-container": "#474746",
+                        "error": "#ffb4ab",
+                        "secondary": "#c8c6c5",
+                        "tertiary-fixed": "#ebe1d6",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "inverse-surface": "#e3e2e7",
+                        "on-surface": "#e3e2e7",
+                        "tertiary-container": "#ebe1d6",
+                        "tertiary-fixed-dim": "#cec5bb",
+                        "surface-container-low": "#1a1b20",
+                        "error-container": "#93000a",
+                        "outline": "#999077",
+                        "on-background": "#e3e2e7",
+                        "on-primary": "#3a3000",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-error": "#690005",
+                        "surface": "#121317",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "on-primary-fixed": "#221b00",
+                        "on-tertiary-container": "#6a635b",
+                        "on-primary-container": "#776300",
+                        "primary-fixed": "#ffe16d",
+                        "inverse-on-surface": "#2f3035",
+                        "surface-container-lowest": "#0d0e12",
+                        "on-surface-variant": "#ccc6bb",
+                        "primary-container": "#ffe16d",
+                        "surface-container-high": "#292a2e",
+                        "on-primary-fixed-variant": "#544600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "margin-desktop": "40px",
+                        "base-unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "data-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .input-glow:focus {
+            box-shadow: 0 4px 6px -1px rgba(233, 196, 0, 0.1), 0 2px 4px -1px rgba(233, 196, 0, 0.06);
+        }
+        .glass-panel {
+            background: rgba(30, 31, 36, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(74, 71, 62, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md antialiased selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-surface-container/80 backdrop-blur-md border-b border-outline-variant shadow-md transition-all duration-300">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary-fixed-dim flex items-center gap-2 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">stacked_line_chart</span>
+                AI Market Rates
+            </div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95 font-body-md text-body-md" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95 font-body-md text-body-md" href="#">Crypto</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95 font-body-md text-body-md" href="#">Gold</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95 font-body-md text-body-md" href="#">Silver</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95 font-body-md text-body-md" href="#">AI Insights</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95 font-body-md text-body-md" href="#">Calculators</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="md:hidden text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col relative overflow-hidden">
+<!-- Abstract Background Decoration -->
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-30">
+<div class="absolute top-[-10%] right-[-5%] w-[40rem] h-[40rem] rounded-full bg-primary-fixed-dim/5 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[30rem] h-[30rem] rounded-full bg-surface-variant/20 blur-[100px]"></div>
+</div>
+<!-- Section 1: Hero -->
+<section class="relative z-10 pt-24 pb-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full text-center">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6">
+                Connect with the <span class="text-primary-fixed-dim">Terminal Team</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                Secure, direct channels for institutional clients, press inquiries, and dedicated API support.
+            </p>
+</section>
+<!-- Section 2: Split Layout (Form & Offices) -->
+<section class="relative z-10 py-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left: Contact Form -->
+<div class="lg:col-span-7 glass-panel rounded-xl p-8 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-fixed-dim opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-8">Secure Transmission</h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="relative">
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Name</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary-fixed-dim focus:ring-0 text-on-surface font-body-md text-body-md px-0 py-2 transition-colors input-glow placeholder:text-on-secondary-container" placeholder="Full Name" type="text"/>
+</div>
+<div class="relative">
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Institutional Email</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary-fixed-dim focus:ring-0 text-on-surface font-body-md text-body-md px-0 py-2 transition-colors input-glow placeholder:text-on-secondary-container" placeholder="name@firm.com" type="email"/>
+</div>
+</div>
+<div class="relative">
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Subject</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary-fixed-dim focus:ring-0 text-on-surface font-body-md text-body-md px-0 py-2 transition-colors input-glow placeholder:text-on-secondary-container" placeholder="Inquiry Topic" type="text"/>
+</div>
+<div class="relative">
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Message</label>
+<textarea class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary-fixed-dim focus:ring-0 text-on-surface font-body-md text-body-md px-0 py-2 transition-colors input-glow resize-none placeholder:text-on-secondary-container" placeholder="Enter your secure message..." rows="4"></textarea>
+</div>
+<div class="pt-4">
+<button class="w-full md:w-auto px-8 py-3 bg-primary-container hover:bg-primary-fixed text-on-primary-container font-label-caps text-label-caps rounded-DEFAULT transition-all active:scale-95 flex items-center justify-center gap-2" type="submit">
+                                Transmit Data
+                                <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Right: Global Offices -->
+<div class="lg:col-span-5 space-y-gutter">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-6 uppercase tracking-widest pl-2 border-l-2 border-outline">Global Infrastructure</h2>
+<!-- Office Card 1 -->
+<div class="bg-surface-container rounded-lg p-6 border border-outline-variant hover:border-primary-fixed-dim/50 transition-colors flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary-fixed-dim shrink-0">
+<span class="material-symbols-outlined">location_city</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-medium mb-1">London HQ</h3>
+<p class="font-data-mono text-data-mono text-on-secondary-container mb-2">LND-01 Node</p>
+<p class="font-body-md text-body-md text-on-surface-variant">1 Canada Square<br/>Canary Wharf, London E14 5AB</p>
+</div>
+</div>
+<!-- Office Card 2 -->
+<div class="bg-surface-container rounded-lg p-6 border border-outline-variant hover:border-primary-fixed-dim/50 transition-colors flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary-fixed-dim shrink-0">
+<span class="material-symbols-outlined">domain</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-medium mb-1">New York</h3>
+<p class="font-data-mono text-data-mono text-on-secondary-container mb-2">NYC-02 Node</p>
+<p class="font-body-md text-body-md text-on-surface-variant">11 Wall Street<br/>New York, NY 10005</p>
+</div>
+</div>
+<!-- Office Card 3 -->
+<div class="bg-surface-container rounded-lg p-6 border border-outline-variant hover:border-primary-fixed-dim/50 transition-colors flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary-fixed-dim shrink-0">
+<span class="material-symbols-outlined">public</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-medium mb-1">Singapore</h3>
+<p class="font-data-mono text-data-mono text-on-secondary-container mb-2">SGP-03 Node</p>
+<p class="font-body-md text-body-md text-on-surface-variant">10 Collyer Quay<br/>Ocean Financial Centre, 049315</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Support Channels Bento Grid -->
+<section class="relative z-10 py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Support Card 1 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-8 hover:bg-surface-container transition-colors group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-fixed-dim/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-[32px] text-primary-fixed-dim mb-6 block" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Technical API Support</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Direct access to our engineering team for integration assistance and endpoint optimization.</p>
+<a class="font-label-caps text-label-caps text-primary-fixed-dim flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+                        Open Ticket <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Support Card 2 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-8 hover:bg-surface-container transition-colors group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-fixed-dim/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-[32px] text-primary-fixed-dim mb-6 block" style="font-variation-settings: 'FILL' 1;">handshake</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Institutional Sales</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Discuss bespoke data feeds, enterprise licensing, and high-frequency trading node access.</p>
+<a class="font-label-caps text-label-caps text-primary-fixed-dim flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+                        Schedule Call <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Support Card 3 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-8 hover:bg-surface-container transition-colors group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-fixed-dim/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-[32px] text-primary-fixed-dim mb-6 block" style="font-variation-settings: 'FILL' 1;">mic</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Press Inquiries</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Media kits, executive interviews, and official commentary on market movements and AI trends.</p>
+<a class="font-label-caps text-label-caps text-primary-fixed-dim flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+                        View Media Kit <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-label-caps text-label-caps text-on-surface mb-4">AI Market Rates</div>
+<p class="font-body-md text-body-md text-on-secondary-container">© 2024 AI Market Rates. Institutional Intelligence. All rights reserved.</p>
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-x-8 gap-y-4 md:justify-end items-start pt-2 md:pt-0">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Regulatory Disclosure</a>
+<a class="font-body-md text-body-md text-primary-fixed-dim hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple interaction for input field active states
+        document.querySelectorAll('input, textarea').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.parentElement.querySelector('label').classList.add('text-primary-fixed-dim');
+            });
+            element.addEventListener('blur', function() {
+                if(!this.value) {
+                    this.parentElement.querySelector('label').classList.remove('text-primary-fixed-dim');
+                }
+            });
+        });
+    </script>
+</body></html>

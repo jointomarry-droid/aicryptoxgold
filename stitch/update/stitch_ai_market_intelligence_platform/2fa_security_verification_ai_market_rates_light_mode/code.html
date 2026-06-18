@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Two-Step Verification - Aureus</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Manrope:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#7b5800",
+                      "surface-container-high": "#e7e8e9",
+                      "on-secondary-container": "#6e5c00",
+                      "background": "#f8f9fa",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#f7bd48",
+                      "tertiary": "#5b5c60",
+                      "surface-container-low": "#f3f4f5",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-variant": "#e1e3e4",
+                      "surface-dim": "#d9dadb",
+                      "secondary": "#705d00",
+                      "on-tertiary-fixed-variant": "#46464b",
+                      "on-primary-fixed-variant": "#5d4200",
+                      "surface-bright": "#f8f9fa",
+                      "on-background": "#191c1d",
+                      "secondary-container": "#fcd400",
+                      "inverse-surface": "#2e3132",
+                      "on-secondary-fixed": "#221b00",
+                      "primary-fixed": "#ffdea6",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#e9c400",
+                      "on-surface-variant": "#4f4535",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#747479",
+                      "on-secondary": "#ffffff",
+                      "surface": "#f8f9fa",
+                      "on-tertiary-container": "#fefcff",
+                      "on-primary-container": "#fffbff",
+                      "primary": "#785600",
+                      "tertiary-fixed-dim": "#c7c6cb",
+                      "inverse-primary": "#f7bd48",
+                      "surface-container": "#edeeef",
+                      "on-surface": "#191c1d",
+                      "secondary-fixed": "#ffe16d",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#271900",
+                      "outline": "#817563",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-tertiary-fixed": "#1a1b20",
+                      "primary-container": "#986d00",
+                      "inverse-on-surface": "#f0f1f2",
+                      "outline-variant": "#d3c4af",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#e3e2e7",
+                      "on-secondary-fixed-variant": "#544600"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sm": "12px",
+                      "xs": "4px",
+                      "base": "8px",
+                      "md": "24px",
+                      "margin": "32px",
+                      "xl": "80px",
+                      "gutter": "24px",
+                      "lg": "48px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "jetbrainsMono"
+                      ],
+                      "headline-md": [
+                              "manrope"
+                      ],
+                      "display-lg-mobile": [
+                              "manrope"
+                      ],
+                      "body-md": [
+                              "inter"
+                      ],
+                      "display-lg": [
+                              "manrope"
+                      ],
+                      "body-lg": [
+                              "inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .grid-bg {
+            background-image: linear-gradient(to right, #e1e3e4 1px, transparent 1px),
+                              linear-gradient(to bottom, #e1e3e4 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        /* White Glassmorphism effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid #B8860B; /* Gold accent border */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Gold glow for active buttons */
+        .btn-glow {
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
+        }
+
+        .digit-input {
+            width: 3.5rem;
+            height: 4rem;
+            text-align: center;
+            font-size: 1.5rem;
+            border: 1px solid #F1F3F5;
+            background-color: #FFFFFF;
+            transition: all 0.2s ease-in-out;
+            outline: none;
+        }
+
+        .digit-input:focus {
+            border-color: #B8860B;
+            box-shadow: 0 0 0 2px rgba(184, 134, 11, 0.1);
+        }
+        
+        .digit-input::-webkit-outer-spin-button,
+        .digit-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased relative overflow-hidden">
+<!-- Subtle Grid Background -->
+<div class="absolute inset-0 grid-bg opacity-30 z-0 pointer-events-none"></div>
+<!-- Navigation Shell (TopAppBar) - Suppressed as per instructions for transactional/linear screens -->
+<main class="flex-grow flex items-center justify-center relative z-10 px-margin-desktop px-4 py-lg">
+<div class="glass-panel rounded-xl w-full max-w-md p-lg flex flex-col items-center border border-outline-variant/30">
+<!-- Brand Logo Mark (Simplified for this context) -->
+<div class="mb-gutter text-primary flex justify-center items-center">
+<span class="material-symbols-outlined text-[48px] font-light">
+                    shield_person
+                 </span>
+</div>
+<!-- Headers -->
+<div class="text-center mb-margin">
+<h1 class="font-headline-md text-headline-md text-on-surface mb-base">Two-Step Verification</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Verification required for institutional access.</p>
+</div>
+<!-- Notification/Instruction Context -->
+<div class="bg-surface-container-low rounded p-base mb-gutter w-full border border-surface-variant flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-container shrink-0 mt-xs">
+                    info
+                </span>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">
+                    Enter the 6-digit code from your authenticator app or security token.
+                </p>
+</div>
+<!-- Input Area -->
+<form class="w-full flex flex-col items-center">
+<div class="flex justify-between w-full gap-xs mb-margin" id="otp-container">
+<input aria-label="Digit 1" class="digit-input rounded-DEFAULT font-label-sm font-bold text-on-surface" maxlength="1" placeholder="•" type="number"/>
+<input aria-label="Digit 2" class="digit-input rounded-DEFAULT font-label-sm font-bold text-on-surface" maxlength="1" placeholder="•" type="number"/>
+<input aria-label="Digit 3" class="digit-input rounded-DEFAULT font-label-sm font-bold text-on-surface" maxlength="1" placeholder="•" type="number"/>
+<input aria-label="Digit 4" class="digit-input rounded-DEFAULT font-label-sm font-bold text-on-surface" maxlength="1" placeholder="•" type="number"/>
+<input aria-label="Digit 5" class="digit-input rounded-DEFAULT font-label-sm font-bold text-on-surface" maxlength="1" placeholder="•" type="number"/>
+<input aria-label="Digit 6" class="digit-input rounded-DEFAULT font-label-sm font-bold text-on-surface" maxlength="1" placeholder="•" type="number"/>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-[#B8860B] hover:bg-[#986d00] text-on-primary font-body-md font-medium py-md px-lg rounded-DEFAULT transition-colors duration-200 btn-glow flex justify-center items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[20px]">
+                        lock_open
+                    </span>
+                    Authenticate
+                </button>
+</form>
+<!-- Secondary Actions -->
+<div class="mt-gutter flex flex-col items-center gap-sm w-full">
+<button class="text-primary hover:text-primary-container font-body-md text-sm transition-colors bg-transparent border-0 underline decoration-primary/30 underline-offset-4" type="button">
+                    Try another way
+                </button>
+<div class="w-full border-t border-outline-variant/30 my-xs"></div>
+<button class="text-tertiary hover:text-on-surface font-body-md text-sm transition-colors bg-transparent border-0 flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">
+                        support_agent
+                    </span>
+                    Contact Support
+                </button>
+</div>
+</div>
+</main>
+<script>
+        // Simple script to handle OTP input focus and advancement
+        const inputs = document.querySelectorAll('.digit-input');
+        
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length > 1) {
+                    e.target.value = e.target.value.slice(0, 1); // Keep only first digit
+                }
+                if (e.target.value !== '' && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+            
+            // Allow paste
+            input.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text/plain').replace(/\D/g, '').slice(0, 6);
+                for (let i = 0; i < pastedData.length; i++) {
+                    if (inputs[i]) {
+                        inputs[i].value = pastedData[i];
+                    }
+                }
+                if (pastedData.length > 0) {
+                    inputs[Math.min(pastedData.length, inputs.length - 1)].focus();
+                }
+            });
+        });
+    </script>
+</body></html>

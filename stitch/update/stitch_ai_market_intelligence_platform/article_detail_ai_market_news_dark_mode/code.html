@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quantum AI Models Predict Institutional Capital Flight - AI Market Rates</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#ffffff",
+                    "on-surface-variant": "#d0c6ab",
+                    "tertiary-container": "#ebe1d6",
+                    "surface-container-highest": "#343439",
+                    "on-primary-fixed": "#221b00",
+                    "on-secondary-fixed-variant": "#474746",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "secondary-container": "#474746",
+                    "on-secondary": "#303030",
+                    "error-container": "#93000a",
+                    "secondary": "#c8c6c5",
+                    "on-secondary-fixed": "#1b1c1b",
+                    "inverse-primary": "#705d00",
+                    "outline-variant": "#4a473e",
+                    "on-primary-fixed-variant": "#544600",
+                    "primary-fixed": "#ffe16d",
+                    "primary-container": "#ffe16d",
+                    "error": "#ffb4ab",
+                    "surface-bright": "#38393d",
+                    "inverse-surface": "#e3e2e7",
+                    "surface-container-lowest": "#0d0e12",
+                    "on-tertiary": "#353029",
+                    "surface-dim": "#121317",
+                    "on-secondary-container": "#b6b5b4",
+                    "primary-fixed-dim": "#e9c400",
+                    "on-tertiary-container": "#6a635b",
+                    "on-error": "#690005",
+                    "surface-tint": "#e9c400",
+                    "on-primary-container": "#776300",
+                    "on-background": "#e3e2e7",
+                    "outline": "#999077",
+                    "tertiary-fixed-dim": "#cec5bb",
+                    "inverse-on-surface": "#2f3035",
+                    "surface-container": "#1e1f24",
+                    "primary": "#ffffff",
+                    "surface-container-high": "#292a2e",
+                    "on-surface": "#e3e2e7",
+                    "surface": "#121317",
+                    "surface-variant": "#343439",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#1a1b20",
+                    "on-tertiary-fixed": "#1f1b15",
+                    "secondary-fixed": "#e4e2e1",
+                    "tertiary-fixed": "#ebe1d6",
+                    "on-tertiary-fixed-variant": "#4b463e",
+                    "background": "#121317",
+                    "on-primary": "#3a3000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "base-unit": "4px",
+                    "container-max": "1440px",
+                    "unit": "4px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Manrope"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Manrope"],
+                    "data-mono": ["JetBrains Mono"],
+                    "label-caps": ["Inter"],
+                    "display-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-surface'); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<header class="bg-surface-container/80 backdrop-blur-md border-b border-outline-variant sticky top-0 w-full z-50 shadow-md">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary-fixed-dim dark:text-primary-fixed">
+                AI Market Rates
+            </div>
+<nav class="hidden md:flex gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Crypto</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Gold</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Silver</a>
+<a class="font-body-md text-body-md text-primary-fixed-dim border-b-2 border-primary-fixed-dim pb-1 cursor-pointer active:scale-95" href="#">AI Insights</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200 cursor-pointer active:scale-95" href="#">Calculators</a>
+</nav>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary-fixed-dim transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+</button>
+<button class="hover:text-primary-fixed-dim transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-8">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 font-body-md text-body-md text-on-surface-variant mb-8">
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">News</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-on-surface">Macro Analysis</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Main Article Area -->
+<article class="lg:col-span-8 space-y-8">
+<!-- Header -->
+<header>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface leading-tight">
+                        Quantum AI Models Predict Institutional Capital Flight into Tier-1 Crypto Assets
+                    </h1>
+<div class="flex flex-wrap items-center gap-6 mt-6 pt-6 border-t border-outline-variant font-data-mono text-data-mono text-on-surface-variant">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-[16px]">psychiatry</span>
+</div>
+<span class="text-on-surface">Aureus Intelligence Team</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Oct 24, 2024</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>6 min read</span>
+</div>
+</div>
+</header>
+<!-- Featured Image -->
+<div class="w-full aspect-[16/9] rounded-xl overflow-hidden border border-outline-variant relative bg-surface-container-low">
+<img alt="Abstract representation of blockchain and financial data streams" class="w-full h-full object-cover" data-alt="A sophisticated, high-end visualization of abstract data streams converging into a glowing, crystalline structure representing cryptocurrency. The scene is set against a deep, dark terminal-like background, illuminated by striking gold and intense yellow light rays piercing through the darkness. Holographic numbers and algorithmic charts float elegantly in the negative space. The overall aesthetic is highly technical, premium, and indicative of institutional financial intelligence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXyuohKCjGXCFGYyDyeRV7nl88xbBxaHRFn0stzLv88yqoDDW0GzqkaFq3RtRosM1dQaQ9iZzeBa-vg0y1aEmC12LkMHLgESr43SKqbOH4XCJWNtI2rBaWvVJU8trw9OP6kTNQBlbWNvh4KOH06qDdtv4cBJIOb3RCeavHb7ghrmIuYo_UzqsCN_BIntuoTw7rwuUusx1n_KjRJpeApWKaY6xzmr28LHJ0JEQk0ct_CazbAdcpG2qv0mW6spdWGqsYE4QG0xxcHxk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+</div>
+<!-- Editorial Content -->
+<div class="font-body-lg text-body-lg text-on-surface space-y-6 leading-relaxed">
+<p class="text-xl text-on-surface-variant font-medium">
+                        Proprietary macro-economic models trained on decades of global liquidity cycles indicate an unprecedented divergence. Traditional safe-haven assets are facing systemic outflows, while algorithmic indicators signal a massive accumulation phase in primary digital commodities.
+                    </p>
+<p>
+                        The shifting landscape of global finance is no longer dictated merely by central bank rhetoric. According to our latest <span class="font-data-mono text-data-mono bg-surface-container px-1 py-0.5 rounded text-primary-fixed-dim">Quantum-V4</span> analysis, institutional allocators are executing a synchronized strategy previously unseen in historical data sets. The focal point of this capital rotation centers specifically on Bitcoin and select Layer-1 architectures boasting high network finality.
+                    </p>
+<!-- Aureus AI Sentiment Analysis Widget -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-6 my-8 shadow-lg shadow-black/20">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed">auto_awesome</span>
+<h3 class="font-label-caps text-label-caps text-on-surface tracking-widest uppercase">Aureus AI Sentiment Analysis</h3>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-xs">Updated Live</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-t border-outline-variant pt-4">
+<div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mb-1">Current Vector</div>
+<div class="font-headline-md text-headline-md text-primary-fixed-dim flex items-center gap-2">
+                                    Strong Bullish
+                                    <span class="material-symbols-outlined text-primary-fixed">trending_up</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-data-mono text-data-mono text-on-surface-variant mb-1">Confidence Score</div>
+<div class="font-display-lg-mobile text-display-lg-mobile text-on-surface">
+                                    94.2%
+                                </div>
+</div>
+</div>
+</div>
+<p>
+                        The catalyst for this shift appears strictly quantitative. When adjusting for the M2 money supply expansion projections over the next 24 months, the inflation-adjusted yield of sovereign debt enters a deeply negative territory. Institutions are being mathematically compelled to seek asymmetric upside to hedge against localized currency debasement.
+                    </p>
+<!-- Integrated Data Card -->
+<div class="float-none md:float-right md:w-80 md:ml-8 mb-6 bg-surface-container border border-outline-variant rounded-lg p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></span>
+                                    Bitcoin (BTC)
+                                </h4>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-xs">Spot Rate / USD</span>
+</div>
+</div>
+<div class="font-display-lg-mobile text-display-lg-mobile text-on-surface my-2">
+                            $67,492.10
+                        </div>
+<div class="flex items-center gap-2 font-data-mono text-data-mono text-primary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+<span>+4.28% (24h)</span>
+</div>
+<!-- Sparkline Placeholder (Stylized using CSS gradients) -->
+<div class="h-12 w-full mt-4 bg-[linear-gradient(to_right,rgba(233,196,0,0.1),rgba(233,196,0,0.4))] rounded overflow-hidden relative border-b border-primary-fixed-dim">
+<div class="absolute bottom-0 left-0 w-full h-[2px] bg-primary-fixed-dim" style="clip-path: polygon(0 100%, 10% 80%, 20% 90%, 30% 60%, 40% 70%, 50% 40%, 60% 50%, 70% 20%, 80% 30%, 90% 10%, 100% 0, 100% 100%);"></div>
+</div>
+</div>
+<p>
+                        "The velocity of incoming bids at major OTC desks is staggering," notes the automated briefing from our liquidity trackers. Unlike retail-driven cycles of the past, these purchases are characterized by large block trades executed steadily over weeks to minimize slippage, a hallmark of sovereign wealth and pension fund accumulation.
+                    </p>
+<p>
+                        Our forward-looking models suggest that if the current rate of accumulation holds, available liquid supply on public exchanges will drop below the critical threshold required to maintain current price stability within 45 trading days.
+                    </p>
+</div>
+</article>
+<!-- Sidebar -->
+<aside class="lg:col-span-4 space-y-8 mt-12 lg:mt-0">
+<!-- Live Indices Mini-Ticker -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-6">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">monitoring</span>
+                        Live Indices
+                    </h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-outline-variant pb-3 last:border-0 last:pb-0">
+<span class="font-body-md text-body-md text-on-surface">DXY Index</span>
+<div class="text-right">
+<div class="font-data-mono text-data-mono text-on-surface">104.25</div>
+<div class="font-data-mono text-data-mono text-error text-xs">-0.15%</div>
+</div>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant pb-3 last:border-0 last:pb-0">
+<span class="font-body-md text-body-md text-on-surface">Gold (XAU)</span>
+<div class="text-right">
+<div class="font-data-mono text-data-mono text-on-surface">2,384.50</div>
+<div class="font-data-mono text-data-mono text-primary-fixed-dim text-xs">+1.2%</div>
+</div>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant pb-3 last:border-0 last:pb-0">
+<span class="font-body-md text-body-md text-on-surface">Global Liquidity</span>
+<div class="text-right">
+<div class="font-data-mono text-data-mono text-on-surface">174.2T</div>
+<div class="font-data-mono text-data-mono text-primary-fixed-dim text-xs">+0.8%</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Terminal Briefing Signup -->
+<div class="bg-surface-container-high border-l-4 border-primary-fixed rounded-xl p-6 relative overflow-hidden">
+<!-- Subtle background accent -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed/5 rounded-full blur-2xl -mr-16 -mt-16"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 relative z-10">Terminal Briefing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 relative z-10">
+                        Receive daily institutional-grade macro analysis directly to your inbox.
+                    </p>
+<form class="space-y-3 relative z-10">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed outline-none transition-all" placeholder="Corporate Email Address" type="email"/>
+<button class="w-full bg-primary-container text-on-primary-container font-body-md text-body-md font-semibold py-3 rounded-lg hover:bg-primary-fixed transition-colors active:scale-95" type="button">
+                            Subscribe Now
+                        </button>
+</form>
+</div>
+<!-- Related Intelligence -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-6">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-4">Related Intelligence</h3>
+<div class="space-y-5">
+<a class="group block border-b border-outline-variant pb-5 last:border-0 last:pb-0" href="#">
+<div class="font-data-mono text-data-mono text-primary-fixed-dim text-xs mb-1 group-hover:text-primary-fixed transition-colors">Macro • 2 days ago</div>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                                Central Bank Digital Currencies: The Hidden Threat to Privacy Protocols
+                            </h4>
+</a>
+<a class="group block border-b border-outline-variant pb-5 last:border-0 last:pb-0" href="#">
+<div class="font-data-mono text-data-mono text-primary-fixed-dim text-xs mb-1 group-hover:text-primary-fixed transition-colors">Equities • 5 days ago</div>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                                AI Sector Volatility Sparks Rotation into Traditional Commodities
+                            </h4>
+</a>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto border-t border-outline-variant bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="md:col-span-2">
+<div class="font-label-caps text-label-caps text-on-surface mb-4">
+                    AI MARKET RATES
+                </div>
+<p class="font-body-md text-body-md text-secondary dark:text-secondary-fixed max-w-sm">
+                    © 2024 AI Market Rates. Institutional Intelligence. All rights reserved.
+                </p>
+</div>
+<div class="flex flex-col space-y-4">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col space-y-4">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Regulatory Disclosure</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Investment Calculator - AI Market Rates</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#986d00",
+                    "tertiary-container": "#747479",
+                    "primary-fixed-dim": "#f7bd48",
+                    "on-tertiary-fixed-variant": "#46464b",
+                    "tertiary": "#5b5c60",
+                    "secondary": "#705d00",
+                    "outline-variant": "#d3c4af",
+                    "inverse-surface": "#2e3132",
+                    "on-surface": "#191c1d",
+                    "secondary-container": "#fcd400",
+                    "on-tertiary-fixed": "#1a1b20",
+                    "on-secondary-container": "#6e5c00",
+                    "background": "#f8f9fa",
+                    "primary": "#785600",
+                    "surface-bright": "#f8f9fa",
+                    "surface": "#f8f9fa",
+                    "secondary-fixed": "#ffe16d",
+                    "tertiary-fixed": "#e3e2e7",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#e9c400",
+                    "on-primary-container": "#fffbff",
+                    "tertiary-fixed-dim": "#c7c6cb",
+                    "surface-container-high": "#e7e8e9",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#ffdea6",
+                    "outline": "#817563",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f3f4f5",
+                    "on-tertiary-container": "#fefcff",
+                    "surface-container": "#edeeef",
+                    "surface-tint": "#7b5800",
+                    "on-secondary-fixed-variant": "#544600",
+                    "on-primary-fixed-variant": "#5d4200",
+                    "surface-dim": "#d9dadb",
+                    "on-surface-variant": "#4f4535",
+                    "surface-variant": "#e1e3e4",
+                    "inverse-primary": "#f7bd48",
+                    "on-background": "#191c1d",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#221b00",
+                    "on-primary-fixed": "#271900"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "xl": "80px",
+                    "lg": "48px",
+                    "md": "24px",
+                    "margin": "32px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "JetBrains Mono"
+                    ],
+                    "display-lg": [
+                            "Manrope"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Manrope"
+                    ],
+                    "display-lg-mobile": [
+                            "Manrope"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid rgba(184, 134, 11, 0.2); /* Thin gold border */
+        }
+        
+        .gold-shadow {
+            box-shadow: 0 8px 32px rgba(184, 134, 11, 0.08);
+        }
+        
+        .gold-glow:hover {
+            box-shadow: 0 0 20px rgba(184, 134, 11, 0.15);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e1e3e4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d3c4af;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-surface-variant/30 shadow-sm transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-margin py-base max-w-[1200px] mx-auto">
+<!-- Brand -->
+<a class="font-display-lg text-display-lg font-bold text-primary flex items-center gap-2 group" href="#">
+<span class="material-symbols-outlined text-[32px] group-hover:scale-110 transition-transform duration-300">finance</span>
+                AI Market Rates
+            </a>
+<!-- Desktop Navigation -->
+<div class="hidden md:flex items-center gap-gutter">
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-lg" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-lg" href="#">Crypto</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-lg" href="#">Gold</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-lg" href="#">Silver</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-lg" href="#">AI Insights</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 px-3 py-2" href="#">Calculators</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4 text-primary">
+<button class="hover:bg-surface-container-low p-2 rounded-full transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="hover:bg-surface-container-low p-2 rounded-full transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-margin py-xl grid grid-cols-1 md:grid-cols-12 gap-gutter relative">
+<!-- Background Ambient Element (Aureus Light Void) -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden z-[-1]">
+<div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-primary-fixed/20 to-transparent rounded-full blur-[100px] opacity-40"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-gradient-to-tr from-surface-variant/40 to-transparent rounded-full blur-[80px] opacity-50"></div>
+</div>
+<!-- Header Section (Spans Full Width) -->
+<div class="md:col-span-12 mb-lg text-center md:text-left">
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface mb-2 tracking-tight">Investment Calculators</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Project potential returns with AI-assisted market models across premium asset classes.</p>
+</div>
+<!-- Calculator Canvas (Left Column) -->
+<div class="md:col-span-8 flex flex-col gap-lg">
+<!-- Tab Navigation -->
+<div class="flex border-b border-surface-variant gap-6 overflow-x-auto pb-[-1px]">
+<button class="font-headline-md text-[18px] pb-3 border-b-2 border-primary text-primary font-semibold transition-colors whitespace-nowrap">Crypto Profit</button>
+<button class="font-headline-md text-[18px] pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">Gold Investment</button>
+<button class="font-headline-md text-[18px] pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">Silver Investment</button>
+</div>
+<!-- Calculator Card -->
+<div class="glass-panel rounded-xl p-margin gold-shadow relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#B8860B] to-transparent opacity-50"></div>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Asset Selection -->
+<div class="col-span-1 md:col-span-2">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-widest">Select Asset</label>
+<div class="relative">
+<select class="w-full bg-surface-lowest border border-surface-variant rounded-lg py-3 px-4 appearance-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors font-body-md text-on-surface">
+<option>Bitcoin (BTC)</option>
+<option>Ethereum (ETH)</option>
+<option>Solana (SOL)</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-tertiary-container pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Investment Amount -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-widest">Investment Amount (USD)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary-container font-label-sm">$</span>
+<input class="w-full bg-surface-lowest border border-surface-variant rounded-lg py-3 pl-8 pr-4 focus:ring-1 focus:ring-primary focus:border-primary transition-colors font-label-sm text-on-surface placeholder:text-surface-dim" placeholder="10,000" type="number"/>
+</div>
+</div>
+<!-- Purchase Price -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-widest">Entry Price (USD)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary-container font-label-sm">$</span>
+<input class="w-full bg-surface-lowest border border-surface-variant rounded-lg py-3 pl-8 pr-4 focus:ring-1 focus:ring-primary focus:border-primary transition-colors font-label-sm text-on-surface placeholder:text-surface-dim" placeholder="65,000" type="number"/>
+</div>
+</div>
+<!-- Target Exit Price -->
+<div class="col-span-1 md:col-span-2 mt-4">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-widest flex justify-between">
+<span>Target Exit Price</span>
+<span class="text-primary font-body-md flex items-center gap-1 cursor-pointer hover:underline"><span class="material-symbols-outlined text-[16px]">smart_toy</span> AI Suggestion</span>
+</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary-container font-label-sm">$</span>
+<input class="w-full bg-surface-lowest border border-surface-variant rounded-lg py-3 pl-8 pr-4 focus:ring-1 focus:ring-primary focus:border-primary transition-colors font-label-sm text-on-surface placeholder:text-surface-dim" placeholder="85,000" type="number"/>
+</div>
+<div class="mt-2 flex gap-2">
+<button class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant transition-colors" type="button">+10%</button>
+<button class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant transition-colors" type="button">+25%</button>
+<button class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant transition-colors" type="button">+50%</button>
+</div>
+</div>
+<!-- Action Button -->
+<div class="col-span-1 md:col-span-2 mt-6">
+<button class="w-full bg-primary text-on-primary font-headline-md text-[18px] py-4 rounded-xl gold-glow transition-all duration-300 flex justify-center items-center gap-2" type="button">
+                            Calculate Return <span class="material-symbols-outlined">calculate</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Results Panel -->
+<div class="bg-surface-bright rounded-xl border border-surface-variant p-margin flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+<div class="absolute right-0 top-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none"></div>
+<div class="flex-1 w-full">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-1">Estimated Total Value</h3>
+<div class="font-display-lg text-display-lg text-on-surface">$13,076.92</div>
+</div>
+<div class="hidden md:block w-[1px] h-16 bg-surface-variant mx-4"></div>
+<div class="block md:hidden h-[1px] w-full bg-surface-variant my-2"></div>
+<div class="flex-1 w-full text-right md:text-left">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-1">Projected Gain</h3>
+<div class="font-headline-md text-headline-md text-secondary flex items-center justify-end md:justify-start gap-2">
+                        +$3,076.92 
+                        <span class="bg-[#f0f4ec] text-[#2e5e1b] px-2 py-0.5 rounded-sm font-label-sm text-[12px] flex items-center">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 30.77%
+                        </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar (Right Column) -->
+<aside class="md:col-span-4 flex flex-col gap-gutter">
+<!-- Market Snapshot Bento -->
+<div class="bg-surface-bright rounded-xl border border-surface-variant p-6 h-fit sticky top-[100px]">
+<h3 class="font-headline-md text-[20px] text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">monitoring</span> Market Snapshot
+                </h3>
+<div class="flex flex-col gap-4">
+<!-- BTC Item -->
+<div class="flex justify-between items-center pb-4 border-b border-surface-variant/50 group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-[#f2a900]/10 flex items-center justify-center text-[#f2a900]">
+<span class="material-symbols-outlined">currency_bitcoin</span>
+</div>
+<div>
+<div class="font-headline-md text-[16px] text-on-surface">BTC</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Bitcoin</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-[14px] text-on-surface">$64,230.50</div>
+<div class="font-label-sm text-[12px] text-[#2e5e1b] flex items-center justify-end gap-1"><span class="material-symbols-outlined text-[12px]">arrow_upward</span> 2.4%</div>
+</div>
+</div>
+<!-- Gold Item -->
+<div class="flex justify-between items-center pb-4 border-b border-surface-variant/50 group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">aod</span>
+</div>
+<div>
+<div class="font-headline-md text-[16px] text-on-surface">XAU</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Gold (Oz)</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-[14px] text-on-surface">$2,340.10</div>
+<div class="font-label-sm text-[12px] text-on-surface-variant flex items-center justify-end gap-1"><span class="material-symbols-outlined text-[12px]">arrow_right_alt</span> 0.0%</div>
+</div>
+</div>
+<!-- Silver Item -->
+<div class="flex justify-between items-center group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-dim/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<div>
+<div class="font-headline-md text-[16px] text-on-surface">XAG</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Silver (Oz)</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-[14px] text-on-surface">$29.55</div>
+<div class="font-label-sm text-[12px] text-[#93000a] flex items-center justify-end gap-1"><span class="material-symbols-outlined text-[12px]">arrow_downward</span> 1.2%</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border border-primary text-primary font-headline-md text-[14px] rounded-lg hover:bg-primary/5 transition-colors">
+                    View Full Terminal
+                </button>
+</div>
+<!-- Contextual Info Card -->
+<div class="glass-panel rounded-xl p-6 relative overflow-hidden">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-[28px]">info</span>
+<div>
+<h4 class="font-headline-md text-[16px] text-on-surface mb-2">Tax Implications</h4>
+<p class="font-body-md text-[14px] text-on-surface-variant leading-relaxed">Calculations do not account for regional capital gains taxes. Consult a financial advisor for post-tax estimations.</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest py-lg border-t border-surface-variant w-full mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md px-margin max-w-[1200px] mx-auto">
+<div>
+<a class="font-headline-md text-headline-md text-primary flex items-center gap-2 mb-2" href="#">
+<span class="material-symbols-outlined">finance</span> AI Market Rates
+                </a>
+<p class="font-label-sm text-label-sm text-on-surface mt-2 max-w-sm">
+                    © 2024 AI Market Rates. All rights reserved. Financial data provided for informational purposes only. Regulatory disclosures apply.
+                </p>
+</div>
+<div class="flex flex-col md:items-end justify-center">
+<div class="flex gap-4 flex-wrap">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface opacity-80 hover:opacity-100 hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface opacity-80 hover:opacity-100 hover:underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface opacity-80 hover:opacity-100 hover:underline transition-all" href="#">Risk Disclosure</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface opacity-80 hover:opacity-100 hover:underline transition-all" href="#">Contact Support</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

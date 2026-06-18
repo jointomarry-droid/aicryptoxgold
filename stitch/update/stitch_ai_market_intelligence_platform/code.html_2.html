@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUREUS AI - Portfolio Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#313030",
+                      "surface-container-high": "#292a2e",
+                      "outline-variant": "#4d4732",
+                      "on-primary-fixed": "#221b00",
+                      "tertiary-container": "#ffd486",
+                      "on-surface-variant": "#d0c6ab",
+                      "on-surface": "#e3e2e7",
+                      "primary-fixed": "#ffe16d",
+                      "on-error-container": "#ffdad6",
+                      "surface-bright": "#38393d",
+                      "on-tertiary-fixed": "#271900",
+                      "on-primary-container": "#705e00",
+                      "secondary-fixed": "#e5e2e1",
+                      "primary-container": "#ffd700",
+                      "outline": "#999077",
+                      "on-primary-fixed-variant": "#544600",
+                      "tertiary-fixed": "#ffdea6",
+                      "surface": "#121317",
+                      "surface-tint": "#e9c400",
+                      "error": "#ffb4ab",
+                      "surface-container-lowest": "#0d0e12",
+                      "on-tertiary-container": "#7c5900",
+                      "on-background": "#e3e2e7",
+                      "inverse-surface": "#e3e2e7",
+                      "surface-container-highest": "#343539",
+                      "on-error": "#690005",
+                      "tertiary-fixed-dim": "#f7bd48",
+                      "on-secondary-fixed-variant": "#474746",
+                      "primary-fixed-dim": "#e9c400",
+                      "surface-container": "#1e1f23",
+                      "inverse-primary": "#705d00",
+                      "secondary-container": "#474746",
+                      "background": "#121317",
+                      "error-container": "#93000a",
+                      "tertiary": "#fff5ea",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "surface-container-low": "#1a1b1f",
+                      "surface-dim": "#121317",
+                      "primary": "#fff6df",
+                      "surface-variant": "#343539",
+                      "secondary": "#c8c6c5",
+                      "on-tertiary": "#412d00",
+                      "inverse-on-surface": "#2f3034",
+                      "on-secondary-container": "#b7b5b4",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-tertiary-fixed-variant": "#5d4200",
+                      "on-primary": "#3a3000"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max": "1440px",
+                      "unit": "4px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": ["Manrope"],
+                      "data-mono": ["JetBrains Mono"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-md": ["Manrope"],
+                      "display-lg": ["Manrope"]
+              },
+              "fontSize": {
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .glass-card {
+            background-color: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            border-left: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .text-glow-bullish {
+            text-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+            color: #4ade80;
+        }
+        .text-glow-bearish {
+            text-shadow: 0 0 8px rgba(248, 113, 113, 0.5);
+            color: #f87171;
+        }
+        .chart-line {
+            stroke: #FFD700;
+            stroke-width: 2;
+            fill: none;
+            filter: drop-shadow(0px 2px 4px rgba(255, 215, 0, 0.3));
+        }
+        .chart-area {
+            fill: url(#chart-gradient);
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+<div class="flex items-center justify-between px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<div class="font-display-lg text-display-lg tracking-tighter text-primary-fixed bg-clip-text">AUREUS AI</div>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80" href="#">Markets</a>
+<a class="text-primary-fixed border-b-2 border-primary-fixed pb-1 hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80" href="#">Portfolio</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80" href="#">Analytics</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80" href="#">AI Insights</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+<img alt="Institutional User Profile" class="w-10 h-10 rounded-full border border-outline-variant/30" data-alt="A professional headshot of an institutional investor in a sharp suit, dark moody lighting with subtle gold rim light, luxury finance aesthetic, high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4X7zN5Ku6okzHcQYD1_IwcqUkbB5kC13AvPa4A9T2TjTwvGGYosgA7rt6CyELW2nYv9d5qdfhF8fJ6Gp0KoDsh-dOdgTkMChjTmvwSFODd3jNAIE-COSgpax0Cp6WEUB4CvT94etXsyjXYKgcHeQq43EybqKdeCteEHLb2clVBdfgWwDwXr21RwVSw4p6uW6cGjVclMxzvkQclxowzgixH87j9xocBUvF382H-KDwAhr1TQLBdjETCdpj-C35yE9u37RrkuzYOsgz"/>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-[88px] px-margin-desktop max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter mb-12">
+<!-- Sidebar -->
+<aside class="col-span-1 md:col-span-2 space-y-2 mt-6 hidden md:block">
+<div class="text-label-caps font-label-caps text-outline mb-4">PORTFOLIO MENU</div>
+<a class="flex items-center gap-3 py-2 px-3 rounded bg-surface-container-high text-primary-fixed border-l-2 border-primary-fixed" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-3 py-2 px-3 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Performance</span>
+</a>
+<a class="flex items-center gap-3 py-2 px-3 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>History</span>
+</a>
+<a class="flex items-center gap-3 py-2 px-3 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span>Alerts</span>
+</a>
+</aside>
+<!-- Dashboard Canvas -->
+<div class="col-span-1 md:col-span-10 space-y-6 mt-6">
+<!-- Top Row: Balance & Allocation -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Total Balance -->
+<div class="glass-card rounded-xl p-6 lg:col-span-2 flex flex-col justify-between">
+<div>
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-2">TOTAL NET WORTH (USD)</h2>
+<div class="flex items-end gap-4">
+<span class="font-display-lg text-display-lg text-on-surface tracking-tight">$12,450,890.00</span>
+<span class="font-data-mono text-data-mono text-glow-bullish mb-2 flex items-center">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span> 2.45%
+                            </span>
+</div>
+</div>
+<div class="h-32 mt-6 relative w-full">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 100">
+<defs>
+<lineargradient id="chart-gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#FFD700" stop-opacity="0.5"></stop>
+<stop offset="100%" stop-color="#121317" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path class="chart-area" d="M0,100 L0,50 Q100,30 200,60 T400,40 T600,70 T800,20 T1000,10 L1000,100 Z"></path>
+<path class="chart-line" d="M0,50 Q100,30 200,60 T400,40 T600,70 T800,20 T1000,10"></path>
+</svg>
+</div>
+</div>
+<!-- Asset Allocation -->
+<div class="glass-card rounded-xl p-6">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-6">ASSET ALLOCATION</h2>
+<div class="relative w-32 h-32 mx-auto mb-6">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<!-- BTC -->
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#f7931a" stroke-dasharray="45 55" stroke-dashoffset="0" stroke-width="4"></circle>
+<!-- ETH -->
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#627eea" stroke-dasharray="25 75" stroke-dashoffset="-45" stroke-width="4"></circle>
+<!-- Gold -->
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#FFD700" stroke-dasharray="20 80" stroke-dashoffset="-70" stroke-width="4"></circle>
+<!-- Silver -->
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#c0c0c0" stroke-dasharray="10 90" stroke-dashoffset="-90" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-headline-md text-headline-md">
+                            4
+                        </div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-data-mono text-data-mono text-xs"><span class="text-[#f7931a]">■ BTC</span><span>45%</span></div>
+<div class="flex justify-between font-data-mono text-data-mono text-xs"><span class="text-[#627eea]">■ ETH</span><span>25%</span></div>
+<div class="flex justify-between font-data-mono text-data-mono text-xs"><span class="text-[#FFD700]">■ XAU</span><span>20%</span></div>
+<div class="flex justify-between font-data-mono text-data-mono text-xs"><span class="text-[#c0c0c0]">■ XAG</span><span>10%</span></div>
+</div>
+</div>
+</div>
+<!-- Holdings Table -->
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md">Current Holdings</h2>
+<button class="px-4 py-2 bg-gradient-to-r from-primary-fixed to-primary-fixed-dim text-on-primary-fixed rounded font-label-caps text-label-caps shadow-[inset_0_1px_4px_rgba(255,255,255,0.3)]">TRADE ASSETS</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container/50 border-b border-outline-variant/20 font-label-caps text-label-caps text-outline">
+<tr>
+<th class="py-4 px-6 font-medium">Asset</th>
+<th class="py-4 px-6 font-medium text-right">Price</th>
+<th class="py-4 px-6 font-medium text-right">Balance</th>
+<th class="py-4 px-6 font-medium text-right">Value (USD)</th>
+<th class="py-4 px-6 font-medium text-right">24h Change</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono">
+<tr class="border-b border-outline-variant/10 hover:bg-surface-container-high/30 transition-colors">
+<td class="py-4 px-6 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#f7931a]/20 border border-[#f7931a] flex items-center justify-center text-[#f7931a]">B</div>
+<div>
+<div class="text-on-surface">Bitcoin</div>
+<div class="text-on-surface-variant text-xs">BTC</div>
+</div>
+</td>
+<td class="py-4 px-6 text-right text-on-surface">$64,230.50</td>
+<td class="py-4 px-6 text-right text-on-surface">87.2450</td>
+<td class="py-4 px-6 text-right text-on-surface">$5,603,249.97</td>
+<td class="py-4 px-6 text-right text-glow-bullish">+3.12%</td>
+</tr>
+<tr class="border-b border-outline-variant/10 hover:bg-surface-container-high/30 transition-colors">
+<td class="py-4 px-6 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#627eea]/20 border border-[#627eea] flex items-center justify-center text-[#627eea]">E</div>
+<div>
+<div class="text-on-surface">Ethereum</div>
+<div class="text-on-surface-variant text-xs">ETH</div>
+</div>
+</td>
+<td class="py-4 px-6 text-right text-on-surface">$3,450.20</td>
+<td class="py-4 px-6 text-right text-on-surface">902.1000</td>
+<td class="py-4 px-6 text-right text-on-surface">$3,112,425.42</td>
+<td class="py-4 px-6 text-right text-glow-bullish">+1.85%</td>
+</tr>
+<tr class="border-b border-outline-variant/10 hover:bg-surface-container-high/30 transition-colors">
+<td class="py-4 px-6 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#FFD700]/20 border border-[#FFD700] flex items-center justify-center text-[#FFD700]">Au</div>
+<div>
+<div class="text-on-surface">Spot Gold</div>
+<div class="text-on-surface-variant text-xs">XAU (oz)</div>
+</div>
+</td>
+<td class="py-4 px-6 text-right text-on-surface">$2,340.10</td>
+<td class="py-4 px-6 text-right text-on-surface">1064.1200</td>
+<td class="py-4 px-6 text-right text-on-surface">$2,490,147.21</td>
+<td class="py-4 px-6 text-right text-glow-bearish">-0.45%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-container-lowest border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-gutter mt-auto">
+<div class="font-headline-md text-headline-md text-primary-fixed">AUREUS AI</div>
+<div class="flex gap-6 font-label-caps text-label-caps text-outline">
+<a class="hover:text-primary-fixed transition-all duration-300" href="#">Privacy Policy</a>
+<a class="hover:text-primary-fixed transition-all duration-300" href="#">Terms of Service</a>
+<a class="hover:text-primary-fixed transition-all duration-300" href="#">SEC Disclosures</a>
+<a class="hover:text-primary-fixed transition-all duration-300" href="#">API Documentation</a>
+<a class="hover:text-primary-fixed transition-all duration-300" href="#">Support</a>
+</div>
+<div class="font-label-caps text-label-caps text-tertiary-fixed-dim">© 2024 AUREUS AI Institutional Intelligence. All rights reserved.</div>
+</footer>
+</body></html>

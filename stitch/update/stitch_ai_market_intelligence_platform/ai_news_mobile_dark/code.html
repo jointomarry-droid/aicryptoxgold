@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Neural Rates - Market News Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&amp;family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#4a473e",
+                        "on-tertiary": "#353029",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container-highest": "#343439",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#e9c400",
+                        "secondary-container": "#474746",
+                        "tertiary": "#ffffff",
+                        "on-secondary": "#303030",
+                        "surface-container": "#1e1f24",
+                        "primary": "#ffffff",
+                        "on-secondary-container": "#b6b5b4",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "surface-variant": "#343439",
+                        "surface-bright": "#38393d",
+                        "inverse-primary": "#705d00",
+                        "surface-dim": "#121317",
+                        "background": "#121317",
+                        "primary-fixed-dim": "#e9c400",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#cec5bb",
+                        "surface-container-low": "#1a1b20",
+                        "outline": "#999077",
+                        "on-background": "#e3e2e7",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-primary": "#3a3000",
+                        "surface": "#121317",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "on-primary-fixed": "#221b00",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffe16d",
+                        "inverse-on-surface": "#2f3035",
+                        "on-tertiary-container": "#6a635b",
+                        "on-primary-container": "#776300",
+                        "primary-container": "#ffe16d",
+                        "surface-container-lowest": "#0d0e12",
+                        "on-surface-variant": "#ccc6bb",
+                        "surface-container-high": "#292a2e",
+                        "on-primary-fixed-variant": "#544600",
+                        "error": "#ffb4ab",
+                        "secondary": "#c8c6c5",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "tertiary-fixed": "#ebe1d6",
+                        "inverse-surface": "#e3e2e7",
+                        "on-surface": "#e3e2e7",
+                        "tertiary-container": "#ebe1d6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin-desktop": "40px",
+                        "base-unit": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 font-body-md antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface-container-high dark:bg-surface-container-high border-b border-outline-variant transition-colors">
+<button class="p-2 -ml-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-primary-fixed-dim">
+            NEURAL RATES
+        </div>
+<button class="p-2 -mr-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<main class="pt-20 px-margin-mobile max-w-container-max mx-auto md:px-margin-desktop">
+<!-- Live Heatmap Carousel (Condensed) -->
+<section class="mb-8 overflow-hidden rounded-xl border border-outline-variant bg-surface-container-low">
+<div class="px-4 py-3 border-b border-outline-variant flex justify-between items-center">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Live AI Indices</h2>
+<span class="flex items-center gap-1 text-primary-fixed-dim font-data-mono text-data-mono text-xs">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+                    SYNCED
+                </span>
+</div>
+<div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-4 p-4">
+<!-- Heatmap Item 1 -->
+<div class="snap-start shrink-0 w-40 p-4 rounded-lg bg-surface-container border border-outline-variant flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface">GPT-4 Rate</span>
+<span class="material-symbols-outlined text-primary-fixed-dim text-sm">trending_up</span>
+</div>
+<div class="font-data-mono text-data-mono text-lg text-primary">$0.03/1K</div>
+<div class="text-xs text-primary-container font-data-mono">+2.4%</div>
+</div>
+<!-- Heatmap Item 2 -->
+<div class="snap-start shrink-0 w-40 p-4 rounded-lg bg-surface-container border border-outline-variant flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface">Claude 3</span>
+<span class="material-symbols-outlined text-error text-sm">trending_down</span>
+</div>
+<div class="font-data-mono text-data-mono text-lg text-primary">$0.015/1K</div>
+<div class="text-xs text-error font-data-mono">-1.2%</div>
+</div>
+<!-- Heatmap Item 3 -->
+<div class="snap-start shrink-0 w-40 p-4 rounded-lg bg-surface-container border border-outline-variant flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface">Gemini Pro</span>
+<span class="material-symbols-outlined text-primary-fixed-dim text-sm">trending_flat</span>
+</div>
+<div class="font-data-mono text-data-mono text-lg text-primary">$0.005/1K</div>
+<div class="text-xs text-on-surface-variant font-data-mono">0.0%</div>
+</div>
+<!-- Heatmap Item 4 -->
+<div class="snap-start shrink-0 w-40 p-4 rounded-lg bg-surface-container border border-outline-variant flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface">Llama 3 Compute</span>
+<span class="material-symbols-outlined text-primary-fixed-dim text-sm">trending_up</span>
+</div>
+<div class="font-data-mono text-data-mono text-lg text-primary">$1.20/hr</div>
+<div class="text-xs text-primary-container font-data-mono">+5.1%</div>
+</div>
+</div>
+</section>
+<!-- Vertical Feed -->
+<section class="flex flex-col gap-4">
+<h1 class="font-headline-md text-headline-md text-primary mb-2">Market Intelligence Feed</h1>
+<!-- Article Card 1 -->
+<article class="bg-surface-container rounded-xl border border-outline-variant p-4 flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/5 rounded-bl-full blur-2xl transition-all group-hover:bg-primary-container/10"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-container text-on-secondary font-label-caps text-label-caps text-[10px]">Compute Costs</span>
+<span class="inline-flex items-center px-2 py-1 rounded border border-outline-variant text-primary-fixed-dim font-data-mono text-xs">
+<span class="material-symbols-outlined text-[14px] mr-1">psychology</span>
+                            Conf: 94%
+                        </span>
+</div>
+<span class="text-xs text-on-surface-variant font-data-mono">2m ago</span>
+</div>
+<h3 class="font-headline-md text-lg text-primary z-10 leading-tight">GPU Cloud Spot Pricing Drops 15% Following New Hardware Announcements</h3>
+<p class="font-body-md text-body-md text-on-surface-variant z-10 line-clamp-2">
+                    Major cloud providers have adjusted spot instance pricing for high-end GPUs, signaling a potential shift in availability and market saturation. AI model training costs expected to decrease temporarily.
+                </p>
+<div class="flex justify-between items-center z-10 pt-2 border-t border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-surface-container-high flex justify-center items-center">
+<span class="material-symbols-outlined text-xs text-primary">robot</span>
+</span>
+<span class="font-label-caps text-label-caps text-[10px] text-on-surface">Auto-Analysis</span>
+</div>
+<div class="flex items-center gap-1 text-primary-container">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span class="font-label-caps text-label-caps text-[10px]">BEARISH</span>
+</div>
+</div>
+</article>
+<!-- Article Card 2 -->
+<article class="bg-surface-container rounded-xl border border-outline-variant p-4 flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-error-container/5 rounded-bl-full blur-2xl transition-all group-hover:bg-error-container/10"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-container text-on-secondary font-label-caps text-label-caps text-[10px]">API Regulation</span>
+<span class="inline-flex items-center px-2 py-1 rounded border border-outline-variant text-primary-fixed-dim font-data-mono text-xs">
+<span class="material-symbols-outlined text-[14px] mr-1">psychology</span>
+                            Conf: 88%
+                        </span>
+</div>
+<span class="text-xs text-on-surface-variant font-data-mono">15m ago</span>
+</div>
+<h3 class="font-headline-md text-lg text-primary z-10 leading-tight">EU Drafts New Compliance Framework for Tier 1 Foundation Models</h3>
+<p class="font-body-md text-body-md text-on-surface-variant z-10 line-clamp-2">
+                    Leaked documents suggest stricter reporting requirements for foundational models exceeding parameter thresholds. Anticipated compliance costs could drive up API rates for EU-based enterprise clients by Q3.
+                </p>
+<div class="flex justify-between items-center z-10 pt-2 border-t border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-surface-container-high flex justify-center items-center">
+<span class="material-symbols-outlined text-xs text-primary">gavel</span>
+</span>
+<span class="font-label-caps text-label-caps text-[10px] text-on-surface">Policy Watch</span>
+</div>
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span class="font-label-caps text-label-caps text-[10px]">HIGH RISK</span>
+</div>
+</div>
+</article>
+<!-- Ad/Promo Card (Glassmorphism) -->
+<div class="relative overflow-hidden rounded-xl border border-outline p-6 my-2 bg-gradient-to-br from-surface-container-highest to-surface-container shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary-container rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2 relative z-10">Upgrade to Pro Terminal</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 relative z-10">Get real-time latency metrics and sub-second rate updates across 50+ providers.</p>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded font-label-caps text-label-caps hover:bg-primary-fixed transition-colors relative z-10 shadow-sm active:scale-95 duration-100">Unlock Pro</button>
+</div>
+<!-- Article Card 3 -->
+<article class="bg-surface-container rounded-xl border border-outline-variant p-4 flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/5 rounded-bl-full blur-2xl transition-all group-hover:bg-primary-container/10"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-container text-on-secondary font-label-caps text-label-caps text-[10px]">Open Source</span>
+<span class="inline-flex items-center px-2 py-1 rounded border border-outline-variant text-primary-fixed-dim font-data-mono text-xs">
+<span class="material-symbols-outlined text-[14px] mr-1">psychology</span>
+                            Conf: 99%
+                        </span>
+</div>
+<span class="text-xs text-on-surface-variant font-data-mono">1h ago</span>
+</div>
+<h3 class="font-headline-md text-lg text-primary z-10 leading-tight">New MoE Model Surpasses GPT-3.5 Benchmarks at Half the Inference Cost</h3>
+<p class="font-body-md text-body-md text-on-surface-variant z-10 line-clamp-2">
+                    A newly released open-weight Mixture of Experts model demonstrates superior efficiency. Independent tests confirm API hosting providers are already integrating it, offering aggressive pricing tiers.
+                </p>
+<div class="flex justify-between items-center z-10 pt-2 border-t border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-surface-container-high flex justify-center items-center">
+<span class="material-symbols-outlined text-xs text-primary">robot</span>
+</span>
+<span class="font-label-caps text-label-caps text-[10px] text-on-surface">Auto-Analysis</span>
+</div>
+<div class="flex items-center gap-1 text-primary-container">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-label-caps text-label-caps text-[10px]">BULLISH</span>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface-container dark:bg-surface-container border-t border-outline-variant md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1">analytics</span>
+<span class="font-label-caps text-label-caps text-[10px]">Markets</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-full px-4 py-1 active:scale-90 duration-150 shadow-sm">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">newspaper</span>
+<span class="font-label-caps text-label-caps text-[10px]">News</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1">calculate</span>
+<span class="font-label-caps text-label-caps text-[10px]">Calculators</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps text-[10px]">Portfolio</span>
+</button>
+</nav>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

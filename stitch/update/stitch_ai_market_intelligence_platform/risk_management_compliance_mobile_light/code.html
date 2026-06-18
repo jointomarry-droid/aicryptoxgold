@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Risk &amp; Compliance Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9fa",
+                        "secondary-fixed": "#ffe16d",
+                        "on-tertiary-fixed": "#1a1b20",
+                        "primary": "#785600",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#221b00",
+                        "primary-fixed": "#ffdea6",
+                        "on-primary-fixed": "#271900",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-surface-variant": "#4f4535",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "tertiary-fixed": "#e3e2e7",
+                        "surface-bright": "#f8f9fa",
+                        "outline-variant": "#d3c4af",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#6e5c00",
+                        "secondary": "#705d00",
+                        "on-tertiary-container": "#fefcff",
+                        "on-primary-container": "#fffbff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#e9c400",
+                        "inverse-surface": "#2e3132",
+                        "outline": "#817563",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#f7bd48",
+                        "surface-variant": "#e1e3e4",
+                        "tertiary-container": "#747479",
+                        "surface-container": "#edeeef",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-dim": "#d9dadb",
+                        "surface-tint": "#7b5800",
+                        "primary-container": "#986d00",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary": "#5b5c60",
+                        "surface-container-highest": "#e1e3e4",
+                        "secondary-container": "#fcd400",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "primary-fixed-dim": "#f7bd48",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "sm": "12px",
+                        "lg": "48px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "margin": "32px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["manrope"],
+                        "body-lg": ["inter"],
+                        "headline-md": ["manrope"],
+                        "body-md": ["inter"],
+                        "label-sm": ["jetbrainsMono"],
+                        "display-lg": ["manrope"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f9fa; /* surface */
+            color: #191c1d; /* on-surface */
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Custom scrollbar for mobile sleekness */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d9dadb; /* surface-dim */
+            border-radius: 4px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid #F1F3F5;
+        }
+        .glass-overlay {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #191c1d, #4f4535);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .safe-pb {
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+        .progress-bar-fill {
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md antialiased pb-24 md:pb-0 overflow-x-hidden">
+<!-- Top App Bar (Mobile optimized) -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center h-16 px-4 md:px-margin shadow-sm transition-all duration-300" id="topAppBar">
+<div class="flex items-center gap-3">
+<button aria-label="Menu" class="p-2 -ml-2 rounded-full hover:bg-surface-container-highest transition-colors active:opacity-80 text-primary md:hidden">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<div class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-primary-container text-on-primary-container mr-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Risk Terminal</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary text-primary hover:bg-surface-container-lowest transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">summarize</span>
+<span>Generate Report</span>
+</button>
+<button aria-label="Settings" class="p-2 rounded-full hover:bg-surface-container-highest transition-colors active:opacity-80 text-on-surface-variant md:hidden">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-2 bg-surface-container-low flex-shrink-0">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate executive in a modern, brightly lit office environment, fitting a high-wealth professional aesthetic with soft lighting and clean background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7B3kft7c2-Vk5Z-KZvuT0ULwLe1_mB9240CvccIfD_goUK4ywdn37UMkhPFc_h7yxx6YpBUQvwXTKOyUjKQOxnqEQrynmfPL8lA1qaVgLSYVj0TNLxkRH-71AiesJAwWUhAuM7Am_qgaYWr47Dr6mtmbG6ifwhKgvrKtftc-7-FoqTNJ3q8Wrk_RqQFHJXh-xlVGB_Jv45pjTVX95xjo9wACG8VKqwYn9vcj24v2ig5PtMNnT_M6PFnAwwh39-VC4lRDZNAQVv0w"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="pt-20 px-4 md:px-8 max-w-7xl mx-auto flex flex-col gap-6 md:gap-8 min-h-screen">
+<!-- Page Header (Mobile) -->
+<div class="md:hidden flex flex-col gap-1 mb-2">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">Risk &amp; Compliance</h2>
+<p class="text-on-surface-variant text-sm">Portfolio Overview &amp; Limits</p>
+</div>
+<!-- Section 1: Portfolio VaR & Section 2: Systemic Risk -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+<!-- Portfolio VaR Card -->
+<section class="glass-card rounded-xl p-5 md:p-6 shadow-sm flex flex-col relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">show_chart</span>
+<h3 class="font-medium text-sm tracking-wide uppercase">Portfolio VaR (99%, 1D)</h3>
+</div>
+<button class="text-tertiary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 mb-6 relative z-10">
+<div class="flex items-baseline gap-3">
+<span class="font-headline-md text-headline-md md:text-display-lg-mobile font-bold text-on-surface tracking-tight">$1.24M</span>
+<span class="flex items-center text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px] mr-1">arrow_upward</span>
+                            0.8%
+                        </span>
+</div>
+<p class="text-xs text-on-surface-variant">vs $1.23M yesterday</p>
+</div>
+<!-- Minimalist Line Chart Representation -->
+<div class="h-24 w-full relative z-10 mt-auto flex items-end gap-1">
+<!-- Simulating a stylized chart -->
+<div class="w-1/6 bg-surface-container-high h-1/3 rounded-t-sm"></div>
+<div class="w-1/6 bg-surface-container-high h-2/5 rounded-t-sm"></div>
+<div class="w-1/6 bg-surface-container-high h-1/2 rounded-t-sm"></div>
+<div class="w-1/6 bg-surface-container-high h-3/5 rounded-t-sm"></div>
+<div class="w-1/6 bg-primary/40 h-4/5 rounded-t-sm"></div>
+<div class="w-1/6 bg-primary h-full rounded-t-sm relative">
+<div class="absolute -top-2 left-1/2 -translate-x-1/2 w-2 h-2 bg-surface rounded-full border-2 border-primary"></div>
+</div>
+</div>
+</section>
+<!-- Systemic Risk Gauge Card -->
+<section class="glass-card rounded-xl p-5 md:p-6 shadow-sm flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">speed</span>
+<h3 class="font-medium text-sm tracking-wide uppercase">Systemic Risk</h3>
+</div>
+<span class="px-2.5 py-1 rounded text-xs font-semibold bg-surface-container-high text-on-surface-variant border border-outline-variant/30">
+                        Global Model
+                    </span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center relative py-4">
+<!-- Gauge Graphic (CSS based) -->
+<div class="relative w-40 h-20 overflow-hidden mb-2">
+<!-- Arc background -->
+<div class="absolute top-0 left-0 w-40 h-40 rounded-full border-[16px] border-surface-container-highest"></div>
+<!-- Arc fill (Low Risk) -->
+<div class="absolute top-0 left-0 w-40 h-40 rounded-full border-[16px] border-transparent border-t-primary border-l-primary rotate-[45deg] origin-center opacity-80"></div>
+<!-- Needle -->
+<div class="absolute bottom-0 left-1/2 w-1 h-16 bg-on-surface origin-bottom -translate-x-1/2 rotate-[-50deg] rounded-full shadow-sm">
+<div class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-3 h-3 bg-on-surface rounded-full"></div>
+</div>
+</div>
+<div class="text-center mt-2 flex flex-col items-center">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Score 12</span>
+<span class="text-sm font-medium px-3 py-1 mt-1 rounded-full bg-surface-container text-on-surface-variant">Low Risk</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Section 3: Regulatory Limits -->
+<section class="glass-card rounded-xl p-5 md:p-6 shadow-sm">
+<div class="flex justify-between items-end mb-5">
+<h3 class="font-headline-md text-xl font-bold text-on-surface">Regulatory Limits</h3>
+<a class="text-sm font-medium text-primary hover:underline" href="#">View Policy</a>
+</div>
+<div class="flex flex-col gap-5">
+<!-- Limit Item 1 -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<span class="text-sm font-semibold text-on-surface">Liquidity Coverage Ratio (LCR)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">115% / 100% Min</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full progress-bar-fill w-[0%]" data-target-width="75%"></div>
+</div>
+</div>
+<!-- Limit Item 2 -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<span class="text-sm font-semibold text-on-surface">Net Stable Funding Ratio (NSFR)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">108% / 100% Min</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full opacity-80 progress-bar-fill w-[0%]" data-target-width="65%"></div>
+</div>
+</div>
+<!-- Limit Item 3 -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<span class="text-sm font-semibold text-on-surface">Concentration Limit (Single Issuer)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">8% / 10% Max</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container-high rounded-full overflow-hidden relative">
+<!-- Alert threshold marker -->
+<div class="absolute top-0 bottom-0 left-[80%] w-0.5 bg-error z-10"></div>
+<div class="h-full bg-on-surface-variant rounded-full progress-bar-fill w-[0%]" data-target-width="80%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Exposure Heatmap -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-xl font-bold text-on-surface">Exposure by Sector</h3>
+<div class="flex gap-1">
+<button class="p-1.5 bg-surface-container rounded text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">grid_view</span></button>
+<button class="p-1.5 hover:bg-surface-container rounded text-tertiary"><span class="material-symbols-outlined text-[18px]">view_list</span></button>
+</div>
+</div>
+<!-- Bento Grid style for Heatmap -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<!-- Financials (Highest Exposure) -->
+<div class="col-span-2 row-span-2 bg-primary text-on-primary rounded-xl p-4 flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent"></div>
+<div class="flex justify-between items-start z-10">
+<span class="font-semibold">Financials</span>
+<span class="material-symbols-outlined opacity-80 text-[20px]">account_balance</span>
+</div>
+<div class="z-10 mt-8">
+<div class="font-headline-md text-2xl font-bold">34.2%</div>
+<div class="text-xs opacity-80 mt-1">High Concentration</div>
+</div>
+</div>
+<!-- Technology -->
+<div class="bg-surface-container-highest text-on-surface rounded-xl p-3 flex flex-col justify-between border border-outline-variant/20 shadow-sm">
+<span class="font-semibold text-sm">Technology</span>
+<div class="mt-4">
+<div class="font-bold text-lg">21.5%</div>
+</div>
+</div>
+<!-- Healthcare -->
+<div class="bg-surface-container-high text-on-surface rounded-xl p-3 flex flex-col justify-between border border-outline-variant/20 shadow-sm">
+<span class="font-semibold text-sm">Healthcare</span>
+<div class="mt-4">
+<div class="font-bold text-lg">15.8%</div>
+</div>
+</div>
+<!-- Energy -->
+<div class="bg-surface-container text-on-surface rounded-xl p-3 flex flex-col justify-between border border-outline-variant/20 shadow-sm">
+<span class="font-semibold text-sm">Energy</span>
+<div class="mt-4">
+<div class="font-bold text-lg">12.1%</div>
+</div>
+</div>
+<!-- Industrials -->
+<div class="bg-surface text-on-surface rounded-xl p-3 flex flex-col justify-between border border-outline-variant shadow-sm">
+<span class="font-semibold text-sm">Industrials</span>
+<div class="mt-4">
+<div class="font-bold text-lg">9.4%</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Recent Activity Log -->
+<section class="glass-card rounded-xl p-0 overflow-hidden shadow-sm mb-6">
+<div class="p-5 border-b border-outline-variant/50 bg-surface-container-lowest/50 flex justify-between items-center">
+<h3 class="font-headline-md text-lg font-bold text-on-surface">Compliance Log</h3>
+<span class="text-xs font-medium px-2 py-1 bg-surface-container rounded text-on-surface-variant">Last 24h</span>
+</div>
+<div class="flex flex-col">
+<!-- Log Item 1 -->
+<div class="flex items-start gap-4 p-4 border-b border-outline-variant/30 hover:bg-surface-container-lowest transition-colors">
+<div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-on-surface truncate">Stress Test Executed</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Base scenario #4 completed successfully. All limits observed.</p>
+<p class="font-label-sm text-[10px] text-tertiary mt-1">10:42 AM</p>
+</div>
+</div>
+<!-- Log Item 2 -->
+<div class="flex items-start gap-4 p-4 border-b border-outline-variant/30 hover:bg-surface-container-lowest transition-colors">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-on-surface truncate">Duration Target Alert</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Portfolio duration (4.2y) approaching upper limit (4.5y).</p>
+<p class="font-label-sm text-[10px] text-tertiary mt-1">08:15 AM</p>
+</div>
+</div>
+<!-- Log Item 3 -->
+<div class="flex items-start gap-4 p-4 hover:bg-surface-container-lowest transition-colors">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-on-surface truncate">Daily Data Sync</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Market data feeds updated from primary sources.</p>
+<p class="font-label-sm text-[10px] text-tertiary mt-1">00:05 AM</p>
+</div>
+</div>
+</div>
+<a class="block w-full text-center py-3 text-sm font-medium text-primary hover:bg-surface-container-highest transition-colors border-t border-outline-variant/50" href="#">
+                View Full Log
+            </a>
+</section>
+</main>
+<!-- Bottom Nav Bar (Mobile only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-surface-container border-t border-outline-variant px-2 pb-safe md:hidden z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-95 w-16 group" href="#">
+<div class="w-12 h-8 flex items-center justify-center rounded-full group-hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[24px]">monitoring</span>
+</div>
+<span class="font-label-caps text-[10px] mt-1 font-medium tracking-wide">Markets</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-95 w-16 group" href="#">
+<div class="w-12 h-8 flex items-center justify-center rounded-full group-hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[24px]">newspaper</span>
+</div>
+<span class="font-label-caps text-[10px] mt-1 font-medium tracking-wide">News</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-95 w-16 group" href="#">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<span class="font-label-caps text-[10px] mt-1 font-bold tracking-wide text-primary">Risk</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-95 w-16 group" href="#">
+<div class="w-12 h-8 flex items-center justify-center rounded-full group-hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[24px]">account_balance_wallet</span>
+</div>
+<span class="font-label-caps text-[10px] mt-1 font-medium tracking-wide">Portfolio</span>
+</a>
+</nav>
+<!-- Side Navigation Drawer (Desktop only - simplified representation for layout context) -->
+<aside class="hidden xl:flex fixed inset-y-0 left-0 z-40 w-64 bg-surface border-r border-outline-variant flex-col pt-16">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Manager Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate executive in a modern, brightly lit office environment, fitting a high-wealth professional aesthetic with soft lighting and clean background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBIfL8pLvobifsiAFa43s2QiKsvwCrOiim3PlcddQDs8Dk0fThJsVD2dtd13_Rl878ndqcPvidd3_OskoISjQ2eXrDFVeV5dzE-Iy04X5pEHYjkEyFxroW30BXhRG2W_epuVLWzuMB8X7HAl2rnOwAW0q8CPcBDm7UoQGwU3Qx0LiV2R8JKoXREm7r4aFReUsc_nm04HW_Si2qsWRwLvnhvy3shC_gCfB85LRHEGRIpl_Opi_IRIfmXpMZNtRERg29hsnJsJRlN08"/>
+</div>
+<div>
+<h4 class="font-bold text-sm text-on-surface">Institutional Lead</h4>
+<p class="text-xs text-on-surface-variant">Risk &amp; Compliance Unit</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container font-bold transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-sm">Risk Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="text-sm font-medium">Compliance Log</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">psychology_alt</span>
+<span class="text-sm font-medium">Stress Testing</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="text-sm font-medium">Limit Management</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<div class="px-3 mt-4">
+<span class="font-label-sm text-xs text-tertiary">v4.2.0-stable</span>
+</div>
+</div>
+</aside>
+<script>
+        // Simple animation for progress bars on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.progress-bar-fill');
+                progressBars.forEach(bar => {
+                    const targetWidth = bar.getAttribute('data-target-width');
+                    if (targetWidth) {
+                        bar.style.width = targetWidth;
+                    }
+                });
+            }, 300);
+
+            // Hide shadow on top app bar when at top
+            const topAppBar = document.getElementById('topAppBar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    topAppBar.classList.add('shadow-md');
+                    topAppBar.classList.remove('shadow-sm');
+                    topAppBar.classList.add('bg-surface/90');
+                    topAppBar.classList.add('backdrop-blur-md');
+                } else {
+                    topAppBar.classList.remove('shadow-md');
+                    topAppBar.classList.add('shadow-sm');
+                    topAppBar.classList.remove('bg-surface/90');
+                    topAppBar.classList.remove('backdrop-blur-md');
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact - Neural Rates AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#f7bd48",
+                        "inverse-surface": "#2e3132",
+                        "surface-dim": "#d9dadb",
+                        "tertiary-container": "#747479",
+                        "primary-fixed-dim": "#f7bd48",
+                        "on-surface": "#191c1d",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-secondary-container": "#6e5c00",
+                        "secondary": "#705d00",
+                        "on-secondary": "#ffffff",
+                        "primary": "#785600",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-bright": "#f8f9fa",
+                        "tertiary-fixed": "#e3e2e7",
+                        "on-tertiary-fixed": "#1a1b20",
+                        "surface-variant": "#e1e3e4",
+                        "primary-container": "#986d00",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#7b5800",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdea6",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-container": "#fefcff",
+                        "on-primary-container": "#fffbff",
+                        "tertiary": "#5b5c60",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "secondary-container": "#fcd400",
+                        "on-surface-variant": "#4f4535",
+                        "outline": "#817563",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container": "#edeeef",
+                        "outline-variant": "#d3c4af",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-error": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "on-primary-fixed": "#271900",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ffe16d",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "margin": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["manrope"],
+                        "body-md": ["inter"],
+                        "display-lg-mobile": ["manrope"],
+                        "display-lg": ["manrope"],
+                        "body-lg": ["inter"],
+                        "label-sm": ["jetbrainsMono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 0.5px solid #B8860B;
+            border-left: 0.5px solid #F1F3F5;
+            border-right: 0.5px solid #F1F3F5;
+            border-bottom: 0.5px solid #F1F3F5;
+        }
+        .golden-glow:active {
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col pt-16 pb-24 md:pb-0 font-body-md text-body-md">
+<!-- TopAppBar (from JSON) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface-container-high border-b border-outline-variant md:hidden">
+<button class="text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">NEURAL RATES</span>
+<button class="text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-4 md:px-margin-mobile flex flex-col gap-lg mt-8">
+<!-- Header Section -->
+<section class="flex flex-col gap-sm items-center text-center">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-on-background">Contact Us</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">
+                Connect with our advisory team for inquiries regarding AI indices and institutional access.
+            </p>
+</section>
+<!-- Quick Actions -->
+<section class="grid grid-cols-2 gap-sm">
+<button class="glass-card flex flex-col items-center justify-center p-md rounded-xl golden-glow transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary mb-xs" data-icon="call">call</span>
+<span class="font-label-sm text-label-sm text-on-surface">Phone Support</span>
+</button>
+<button class="glass-card flex flex-col items-center justify-center p-md rounded-xl golden-glow transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary mb-xs" data-icon="mail">mail</span>
+<span class="font-label-sm text-label-sm text-on-surface">Email Inquiry</span>
+</button>
+</section>
+<!-- Inquiry Form -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-md">Direct Inquiry</h2>
+<form class="flex flex-col gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="name">Full Name</label>
+<input class="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT p-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" id="name" placeholder="John Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="email">Corporate Email</label>
+<input class="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT p-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" id="email" placeholder="john@company.com" type="email"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="message">Message</label>
+<textarea class="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT p-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" id="message" placeholder="How can we assist you?" rows="4"></textarea>
+</div>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm rounded-full py-sm px-gutter golden-glow transition-all active:scale-95 w-full mt-sm" type="button">
+                    Submit Inquiry
+                </button>
+</form>
+</section>
+<!-- Global Hubs -->
+<section class="flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-xs">Global Hubs</h3>
+<div class="flex flex-col gap-sm">
+<div class="bg-surface p-md rounded-lg border border-surface-variant flex justify-between items-center">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface text-lg">New York</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-xs">Wall Street District</p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+</div>
+<div class="bg-surface p-md rounded-lg border border-surface-variant flex justify-between items-center">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface text-lg">London</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-xs">Canary Wharf</p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+</div>
+<div class="bg-surface p-md rounded-lg border border-surface-variant flex justify-between items-center">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface text-lg">Singapore</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-xs">Marina Bay Financial Centre</p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (from JSON) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface-container border-t border-outline-variant md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps text-[10px]">Markets</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="newspaper">newspaper</span>
+<span class="font-label-caps text-label-caps text-[10px]">News</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="calculate">calculate</span>
+<span class="font-label-caps text-label-caps text-[10px]">Calculators</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps text-[10px]">Portfolio</span>
+</button>
+</nav>
+</body></html>

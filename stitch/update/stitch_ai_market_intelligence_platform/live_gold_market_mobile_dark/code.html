@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gold Market Detail - AI Market Rates</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#4a473e",
+                        "on-tertiary": "#353029",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container-highest": "#343439",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#e9c400",
+                        "secondary-container": "#474746",
+                        "tertiary": "#ffffff",
+                        "on-secondary": "#303030",
+                        "surface-container": "#1e1f24",
+                        "primary": "#ffffff",
+                        "on-secondary-container": "#b6b5b4",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "surface-variant": "#343439",
+                        "surface-bright": "#38393d",
+                        "inverse-primary": "#705d00",
+                        "surface-dim": "#121317",
+                        "background": "#121317",
+                        "primary-fixed-dim": "#e9c400",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#cec5bb",
+                        "surface-container-low": "#1a1b20",
+                        "outline": "#999077",
+                        "on-background": "#e3e2e7",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-primary": "#3a3000",
+                        "surface": "#121317",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "on-primary-fixed": "#221b00",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffe16d",
+                        "inverse-on-surface": "#2f3035",
+                        "on-tertiary-container": "#6a635b",
+                        "on-primary-container": "#776300",
+                        "primary-container": "#ffe16d",
+                        "surface-container-lowest": "#0d0e12",
+                        "on-surface-variant": "#ccc6bb",
+                        "surface-container-high": "#292a2e",
+                        "on-primary-fixed-variant": "#544600",
+                        "error": "#ffb4ab",
+                        "secondary": "#c8c6c5",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "tertiary-fixed": "#ebe1d6",
+                        "inverse-surface": "#e3e2e7",
+                        "on-surface": "#e3e2e7",
+                        "tertiary-container": "#ebe1d6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin-desktop": "40px",
+                        "base-unit": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col font-body-md text-body-md">
+<!-- Top Navigation (Mobile Simplified) -->
+<header class="sticky top-0 w-full z-50 bg-surface-container/80 backdrop-blur-md shadow-md h-16 flex items-center justify-between px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="menu">menu</span>
+<div class="font-headline-md text-headline-md font-bold text-primary-fixed-dim">AI Market Rates</div>
+</div>
+<div class="hidden md:flex items-center gap-gutter">
+<nav class="flex gap-gutter">
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200" href="#">Crypto</a>
+<a class="text-primary-fixed-dim border-b-2 border-primary-fixed-dim pb-1" href="#">Gold</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200" href="#">Silver</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200" href="#">AI Insights</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-200" href="#">Calculators</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary-fixed-dim transition-colors" data-icon="dark_mode">dark_mode</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary-fixed-dim transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col p-margin-mobile md:p-margin-desktop gap-gutter max-w-container-max mx-auto w-full">
+<!-- Header & Live Price -->
+<section class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary-fixed-dim">Gold (XAU)</h1>
+<div class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span> LIVE
+                </div>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="font-data-mono text-[32px] font-bold text-tertiary">$2,345.60</span>
+<span class="font-data-mono text-data-mono text-primary-fixed-dim flex items-center">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span> +12.40 (0.53%)
+                </span>
+</div>
+<p class="text-on-surface-variant text-sm">Last updated: Just now</p>
+</section>
+<!-- Chart Placeholder -->
+<section class="bg-surface-container rounded-xl p-4 border border-outline-variant flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">PRICE ACTION</span>
+<div class="flex gap-2">
+<button class="px-2 py-1 text-xs font-data-mono text-on-surface-variant hover:text-primary-fixed-dim">1H</button>
+<button class="px-2 py-1 text-xs font-data-mono bg-surface-container-high text-primary-fixed-dim rounded">1D</button>
+<button class="px-2 py-1 text-xs font-data-mono text-on-surface-variant hover:text-primary-fixed-dim">1W</button>
+<button class="px-2 py-1 text-xs font-data-mono text-on-surface-variant hover:text-primary-fixed-dim">1M</button>
+</div>
+</div>
+<div class="h-48 w-full bg-surface-container-low rounded-lg border border-outline-variant flex items-center justify-center relative overflow-hidden">
+<!-- Simplified visualization of a chart -->
+<div class="absolute bottom-0 left-0 w-full h-full flex items-end justify-around px-2 opacity-50">
+<div class="w-1 bg-error h-1/3"></div>
+<div class="w-1 bg-primary-fixed-dim h-1/2"></div>
+<div class="w-1 bg-primary-fixed-dim h-2/3"></div>
+<div class="w-1 bg-error h-1/2"></div>
+<div class="w-1 bg-primary-fixed-dim h-3/4"></div>
+<div class="w-1 bg-primary-fixed-dim h-full"></div>
+</div>
+<span class="text-on-surface-variant text-sm z-10 bg-surface-container/80 px-2 py-1 rounded backdrop-blur">Interactive Chart Area</span>
+</div>
+</section>
+<!-- AI Sentiment Card -->
+<section class="bg-surface-container-high rounded-xl p-4 border border-outline-variant flex flex-col gap-3 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed-dim/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="psychology">psychology</span>
+<h2 class="font-headline-md text-headline-md text-tertiary">AI Sentiment</h2>
+</div>
+<div class="flex items-end gap-4">
+<div class="text-4xl font-display-lg-mobile text-primary-fixed-dim">82%</div>
+<div class="text-on-surface-variant mb-1">Bullish</div>
+</div>
+<p class="text-on-surface-variant mt-2 text-sm">Algorithms detect high institutional accumulation paired with technical breakout patterns. Macro factors remain supportive.</p>
+<div class="w-full bg-surface-container-low h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary-fixed-dim h-full rounded-full" style="width: 82%"></div>
+</div>
+</section>
+<!-- Calculator (Simplified Mobile) -->
+<section class="bg-surface-container rounded-xl p-4 border border-outline-variant flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="calculate">calculate</span>
+<h2 class="font-label-caps text-label-caps text-on-surface">VALUE CALCULATOR</h2>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between bg-surface-container-low border border-outline-variant rounded-lg p-3 focus-within:border-primary-fixed-dim transition-colors">
+<input class="bg-transparent border-none text-tertiary font-data-mono text-data-mono focus:ring-0 w-24 p-0 outline-none" type="number" value="1"/>
+<span class="text-on-surface-variant font-label-caps text-label-caps">OUNCES (OZ)</span>
+</div>
+<div class="flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant rotate-90 md:rotate-0">sync_alt</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low border border-outline-variant rounded-lg p-3">
+<span class="text-primary-fixed-dim font-data-mono text-data-mono">$2,345.60</span>
+<span class="text-on-surface-variant font-label-caps text-label-caps">USD</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary-container text-on-primary-container rounded-lg font-label-caps text-label-caps mt-2 hover:bg-primary-fixed transition-colors">CALCULATE TRADE</button>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto border-t border-outline-variant bg-surface-container-lowest">
+<div class="flex flex-col gap-2 md:col-span-1">
+<span class="font-label-caps text-label-caps text-on-surface">AI Market Rates</span>
+<p class="text-sm text-secondary dark:text-secondary-fixed">© 2024 AI Market Rates. Institutional Intelligence. All rights reserved.</p>
+</div>
+<div class="flex flex-col gap-2">
+<a class="text-on-secondary-container hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="text-on-secondary-container hover:text-primary transition-colors" href="#">Regulatory Disclosure</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        // Simple interaction for the chart buttons
+        const chartButtons = document.querySelectorAll('button');
+        chartButtons.forEach(btn => {
+            if(btn.textContent === '1H' || btn.textContent === '1D' || btn.textContent === '1W' || btn.textContent === '1M') {
+                btn.addEventListener('click', () => {
+                    chartButtons.forEach(b => {
+                        if(b.textContent.match(/^1[HDWM]$/)) {
+                            b.classList.remove('bg-surface-container-high', 'text-primary-fixed-dim');
+                            b.classList.add('text-on-surface-variant');
+                        }
+                    });
+                    btn.classList.add('bg-surface-container-high', 'text-primary-fixed-dim');
+                    btn.classList.remove('text-on-surface-variant');
+                });
+            }
+        });
+    </script>
+</body></html>

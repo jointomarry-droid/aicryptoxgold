@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "PriceAlert": {
+      "title": "Price Alert",
+      "description": "User specific price alert for an asset",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The user ID who owns the alert"
+        },
+        "asset": {
+          "type": "string",
+          "description": "The asset symbol"
+        },
+        "targetPrice": {
+          "type": "number",
+          "description": "The target price for the alert"
+        },
+        "condition": {
+          "type": "string",
+          "enum": ["above", "below"],
+          "description": "The condition of the alert"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time the alert was created"
+        }
+      },
+      "required": ["userId", "asset", "targetPrice", "condition", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/alerts/{alertId}": {
+      "schema": {
+        "$ref": "#/entities/PriceAlert"
+      },
+      "description": "Store users' active price alerts"
+    }
+  }
+}

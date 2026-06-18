@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Performance Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#221b00",
+                        "on-primary-fixed": "#271900",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#191c1d",
+                        "surface-variant": "#e1e3e4",
+                        "inverse-primary": "#f7bd48",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "surface-dim": "#d9dadb",
+                        "on-surface-variant": "#4f4535",
+                        "surface-tint": "#7b5800",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-container": "#fefcff",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#817563",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffdea6",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-primary-container": "#fffbff",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#e3e2e7",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed": "#ffe16d",
+                        "primary": "#785600",
+                        "on-tertiary-fixed": "#1a1b20",
+                        "on-secondary-container": "#6e5c00",
+                        "background": "#f8f9fa",
+                        "secondary-container": "#fcd400",
+                        "on-surface": "#191c1d",
+                        "outline-variant": "#d3c4af",
+                        "inverse-surface": "#2e3132",
+                        "tertiary": "#5b5c60",
+                        "secondary": "#705d00",
+                        "tertiary-container": "#747479",
+                        "primary-fixed-dim": "#f7bd48",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "primary-container": "#986d00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "48px",
+                        "xl": "80px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "margin": "32px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["jetbrainsMono"],
+                        "display-lg": ["manrope"],
+                        "body-md": ["inter"],
+                        "headline-md": ["manrope"],
+                        "display-lg-mobile": ["manrope"],
+                        "body-lg": ["inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Glassmorphism utility classes */
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(184, 134, 11, 0.3); /* Subtle gold border #B8860B */
+        }
+        
+        .gold-glow {
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
+        }
+
+        /* Chart Canvas Size overrides */
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased pb-24 pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin h-16 bg-surface-container-high border-b border-outline-variant md:hidden">
+<button class="text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">
+            NEURAL RATES
+        </div>
+<button class="text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-4xl mx-auto px-4 sm:px-margin mt-8 flex flex-col gap-lg">
+<!-- Header Section -->
+<section class="flex flex-col gap-sm">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">Performance Analytics</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Review your AI-managed portfolio returns and asset health.</p>
+</section>
+<!-- Cumulative ROI Chart Card -->
+<section class="glass-card rounded-xl p-6 shadow-sm flex flex-col gap-md">
+<div class="flex justify-between items-center mb-2">
+<h2 class="font-headline-md text-headline-md text-on-surface">Cumulative ROI</h2>
+<!-- Period Selectors -->
+<div class="flex bg-surface-container-low rounded-full p-1 border border-outline-variant">
+<button class="px-3 py-1 font-label-sm text-label-sm rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors">1D</button>
+<button class="px-3 py-1 font-label-sm text-label-sm rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors">1W</button>
+<button class="px-3 py-1 font-label-sm text-label-sm rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors">1M</button>
+<button class="px-3 py-1 font-label-sm text-label-sm rounded-full bg-primary-container text-on-primary-container font-bold shadow-sm">YTD</button>
+<button class="px-3 py-1 font-label-sm text-label-sm rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors">ALL</button>
+</div>
+</div>
+<div class="flex items-end gap-sm mb-4">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary">+24.8%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-2 bg-surface-variant px-2 py-1 rounded">Outperforming Benchmark</span>
+</div>
+<!-- Chart Container -->
+<div class="chart-container">
+<canvas id="roiChart"></canvas>
+</div>
+</section>
+<!-- Key Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Metric: Total Return -->
+<div class="bg-surface rounded-xl p-5 border border-[#F1F3F5] flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+<span class="font-label-sm text-label-sm uppercase">Total Return</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface mt-1">+$14,250.00</div>
+<div class="font-label-sm text-label-sm text-primary">+8.2% this month</div>
+</div>
+<!-- Metric: Annualized ROI -->
+<div class="bg-surface rounded-xl p-5 border border-[#F1F3F5] flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="font-label-sm text-label-sm uppercase">Annualized ROI</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface mt-1">18.4%</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Projected 2024</div>
+</div>
+<!-- Metric: Sharpe Ratio -->
+<div class="bg-surface rounded-xl p-5 border border-[#F1F3F5] flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">balance</span>
+<span class="font-label-sm text-label-sm uppercase">Sharpe Ratio</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface mt-1">1.85</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Risk-adjusted excellent</div>
+</div>
+</section>
+<!-- AI Portfolio Health & Asset Breakdown Area -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- AI Health Score -->
+<div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface self-start w-full text-left">AI Health Score</h3>
+<div class="relative w-48 h-48 flex items-center justify-center mt-4">
+<!-- Fake SVG Progress Ring -->
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background ring -->
+<circle cx="50" cy="50" fill="none" r="45" stroke="#edeeef" stroke-width="8"></circle>
+<!-- Progress ring (Gold) -->
+<circle cx="50" cy="50" fill="none" r="45" stroke="#785600" stroke-dasharray="282.7" stroke-dashoffset="28" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="flex flex-col items-center z-10">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary">92</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Excellent</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-[250px]">
+                    Your portfolio allocation is highly optimized according to current neural models.
+                </p>
+<button class="mt-4 px-6 py-2 bg-primary text-on-primary font-body-md text-body-md rounded-full gold-glow hover:bg-surface-tint transition-all">
+                    View AI Insights
+                </button>
+</div>
+<!-- Asset Breakdown -->
+<div class="bg-surface rounded-xl p-6 border border-[#F1F3F5] flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Asset Allocation</h3>
+<div class="flex flex-col gap-4 mt-2">
+<!-- Crypto Row -->
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">currency_bitcoin</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Digital Assets</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">AI Index Funds</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface">65%</span>
+<span class="font-label-sm text-label-sm text-primary">+12.4%</span>
+</div>
+</div>
+<!-- Precious Metals Row -->
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">diamond</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Precious Metals</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Gold / Silver Equities</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface">35%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">+2.1%</span>
+</div>
+</div>
+</div>
+<button class="mt-auto pt-4 flex items-center justify-center gap-2 text-primary font-body-md text-body-md hover:underline">
+                    Detailed Breakdown <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface-container border-t border-outline-variant md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Markets</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="newspaper">newspaper</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">News</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Calculators</span>
+</a>
+<!-- Active Tab (Portfolio mapping to Analytics/Performance intent) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet" data-weight="fill" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Portfolio</span>
+</a>
+</nav>
+<!-- Chart.js Initialization -->
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('roiChart').getContext('2d');
+            
+            // Create a gradient for the line area
+            let gradient = ctx.createLinearGradient(0, 0, 0, 250);
+            gradient.addColorStop(0, 'rgba(184, 134, 11, 0.2)'); // Gold tint
+            gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            
+            const data = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [{
+                    label: 'Cumulative ROI',
+                    data: [5, 8, 12, 10, 15, 18, 22, 24.8],
+                    borderColor: '#785600', // primary color from tailwind config
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: '#785600',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    fill: true,
+                    tension: 0.4 // Smooth curves
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#2e3132',
+                            titleFont: { family: 'Inter', size: 12 },
+                            bodyFont: { family: 'JetBrains Mono', size: 14, weight: 'bold' },
+                            padding: 10,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                font: { family: 'JetBrains Mono', size: 10 },
+                                color: '#817563'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: '#edeeef',
+                                drawBorder: false,
+                                borderDash: [5, 5]
+                            },
+                            ticks: {
+                                font: { family: 'JetBrains Mono', size: 10 },
+                                color: '#817563',
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                }
+            };
+
+            new Chart(ctx, config);
+        });
+    </script>
+</body></html>

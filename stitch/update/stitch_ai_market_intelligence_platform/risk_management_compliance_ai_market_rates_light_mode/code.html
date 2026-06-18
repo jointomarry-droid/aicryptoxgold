@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Risk Management Dashboard - Aureus Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-primary-container": "#fffbff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#e3e2e7",
+                        "surface-bright": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed": "#ffe16d",
+                        "primary": "#785600",
+                        "on-tertiary-fixed": "#1a1b20",
+                        "on-secondary-container": "#6e5c00",
+                        "background": "#f8f9fa",
+                        "secondary-container": "#fcd400",
+                        "on-surface": "#191c1d",
+                        "outline-variant": "#d3c4af",
+                        "inverse-surface": "#2e3132",
+                        "secondary": "#705d00",
+                        "tertiary": "#5b5c60",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "tertiary-container": "#747479",
+                        "primary-fixed-dim": "#f7bd48",
+                        "primary-container": "#986d00",
+                        "on-secondary-fixed": "#221b00",
+                        "on-primary-fixed": "#271900",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-background": "#191c1d",
+                        "surface-variant": "#e1e3e4",
+                        "inverse-primary": "#f7bd48",
+                        "surface-dim": "#d9dadb",
+                        "on-surface-variant": "#4f4535",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "surface-tint": "#7b5800",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-container": "#fefcff",
+                        "surface-container-low": "#f3f4f5",
+                        "error": "#ba1a1a",
+                        "outline": "#817563",
+                        "primary-fixed": "#ffdea6",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "xl": "80px",
+                        "lg": "48px",
+                        "md": "24px",
+                        "margin": "32px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["manrope"],
+                        "display-lg-mobile": ["manrope"],
+                        "body-lg": ["inter"],
+                        "label-sm": ["jetbrainsMono"],
+                        "display-lg": ["manrope"],
+                        "body-md": ["inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid theme('colors.surface-variant');
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(184, 134, 11, 0.15);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row">
+<!-- TopNavBar (Mobile Only) -->
+<nav class="md:hidden w-full sticky top-0 z-50 bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl border-b-[0.5px] border-surface-container-high shadow-sm flex justify-between items-center px-gutter py-xs">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">
+            Aureus Terminal
+        </div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer" data-icon="settings">settings</span>
+<img alt="Chief Risk Officer Profile" class="w-8 h-8 rounded-full border border-surface-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpqYZNjAdHugjRciN-W19feSbxXfyqbs_GJVC82atW5reBy3LL8EHyU2FeMYpH13Q2nWT0ZddnUZ70GJOYup-lTU7mq_JjDdBbuapUZKGT_N87lZygvL87O6mKyK6pZmpmyKdsblubMVkL8xrrWTZcV3wnLQO1YBXZbutYJUiJu91A973BwxvWPso7jkSukqMCv9lkC36YHvNS0YtP1CaN20XNmeWDWsenyAUiqov7t_FSUV7a_XbSwd5WUBAz-M0PXk-JrPcG8dA"/>
+</div>
+</nav>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface border-r border-surface-container-high py-lg px-sm z-40">
+<div class="mb-xl px-sm">
+<h1 class="font-headline-md text-headline-md font-bold text-primary mb-xs">Aureus Terminal</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Global Risk</p>
+</div>
+<ul class="flex flex-col gap-sm flex-grow">
+<li>
+<a class="flex items-center gap-md px-sm py-2 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-sm py-2 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Analytics</span>
+</a>
+</li>
+<li>
+<a aria-current="page" class="flex items-center gap-md px-sm py-2 rounded-md text-primary font-bold bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="rule" style="font-variation-settings: 'FILL' 1;">rule</span>
+<span>Regulatory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-sm py-2 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span>Asset Classes</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-sm py-2 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span>Audit Log</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto">
+<button class="w-full py-2 mb-md bg-primary text-on-primary rounded-DEFAULT font-bold text-center hover:bg-primary-container transition-colors gold-glow">
+                New Analysis
+            </button>
+<ul class="flex flex-col gap-xs pt-md border-t border-surface-container-high">
+<li>
+<a class="flex items-center gap-md px-sm py-2 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Support</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-sm py-2 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Sign Out</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full md:ml-64 max-w-[1200px] mx-auto p-gutter md:p-margin lg:p-xl space-y-xl">
+<!-- Header Actions -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background">Risk &amp; Compliance</h2>
+<p class="text-on-surface-variant mt-xs">Real-time institutional oversight.</p>
+</div>
+<div class="flex gap-sm w-full md:w-auto">
+<button class="flex-1 md:flex-none px-md py-2 border border-outline text-on-surface rounded-DEFAULT hover:bg-surface-container-low transition-colors font-medium">
+                    Adjust Risk Limits
+                </button>
+<button class="flex-1 md:flex-none px-md py-2 border border-outline text-on-surface rounded-DEFAULT hover:bg-surface-container-low transition-colors font-medium">
+                    Settings
+                </button>
+<button class="flex-1 md:flex-none px-md py-2 bg-primary text-on-primary rounded-DEFAULT hover:bg-primary-container transition-colors gold-glow font-bold">
+                    Generate Report
+                </button>
+</div>
+</header>
+<!-- Risk Summary Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Portfolio VaR -->
+<div class="glass-card rounded-xl p-md md:col-span-2 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-xs">Portfolio VaR (95% CI)</h3>
+<div class="flex items-baseline gap-sm">
+<span class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background">$1.24M</span>
+<span class="text-secondary-fixed-dim font-medium flex items-center text-sm">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> 0.8%
+                            </span>
+</div>
+</div>
+<div class="p-xs bg-surface-container rounded-md">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="monitoring">monitoring</span>
+</div>
+</div>
+<!-- Abstract visual placeholder for chart -->
+<div class="h-24 w-full bg-gradient-to-t from-surface-container-high to-transparent rounded-b-lg border-b-2 border-primary-fixed-dim relative overflow-hidden">
+<svg class="absolute bottom-0 w-full h-full text-primary-fixed-dim opacity-50" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0,100 C20,80 40,90 60,40 C80,10 100,50 100,50 L100,100 Z" fill="currentColor"></path>
+</svg>
+</div>
+</div>
+<!-- Systemic Risk Score -->
+<div class="glass-card rounded-xl p-md flex flex-col items-center justify-center text-center">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-md w-full text-left">Systemic Risk</h3>
+<div class="relative w-32 h-32 flex items-center justify-center mb-sm">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-container-high" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary-fixed-dim" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="221" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-background">12</span>
+<span class="text-xs text-on-surface-variant">/100</span>
+</div>
+</div>
+<span class="px-sm py-xs bg-surface-container-high text-on-surface rounded-full text-sm font-medium">Low Risk</span>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-xl">
+<!-- Regulatory Limit Monitoring -->
+<section class="glass-card rounded-xl p-md">
+<h3 class="font-headline-md text-headline-md text-on-background mb-lg">Regulatory Limits</h3>
+<div class="space-y-md">
+<!-- Limit 1 -->
+<div>
+<div class="flex justify-between text-sm mb-xs">
+<span class="font-medium text-on-surface">Single Asset Cap</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">45% / 50%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5">
+<div class="bg-primary-fixed-dim h-1.5 rounded-full" style="width: 90%"></div>
+</div>
+</div>
+<!-- Limit 2 (Warning) -->
+<div>
+<div class="flex justify-between text-sm mb-xs">
+<span class="font-medium text-on-surface flex items-center gap-xs">
+                                Leverage Limit 
+                                <span class="material-symbols-outlined text-[16px] text-secondary-fixed-dim" data-icon="warning">warning</span>
+</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim font-bold">2.8x / 3.0x</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5">
+<div class="bg-secondary-fixed-dim h-1.5 rounded-full" style="width: 93%"></div>
+</div>
+</div>
+<!-- Limit 3 -->
+<div>
+<div class="flex justify-between text-sm mb-xs">
+<span class="font-medium text-on-surface">Sector Concentration</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">15% / 25%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5">
+<div class="bg-primary-container h-1.5 rounded-full opacity-50" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Exposure Heatmap (Simplified) -->
+<section class="glass-card rounded-xl p-md flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-background mb-lg">Exposure Heatmap</h3>
+<div class="grid grid-cols-2 gap-sm flex-grow">
+<div class="bg-primary-fixed-dim/20 p-sm border border-primary-fixed-dim/30 rounded-lg flex flex-col justify-between">
+<span class="text-sm font-medium text-on-surface">BTC</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">45.2%</span>
+</div>
+<div class="bg-surface-container-high p-sm border border-surface-variant rounded-lg flex flex-col justify-between">
+<span class="text-sm font-medium text-on-surface">ETH</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">24.8%</span>
+</div>
+<div class="bg-secondary-fixed-dim/20 p-sm border border-secondary-fixed-dim/30 rounded-lg flex flex-col justify-between">
+<span class="text-sm font-medium text-on-surface">Gold (XAU)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">20.0%</span>
+</div>
+<div class="bg-surface-container p-sm border border-surface-variant rounded-lg flex flex-col justify-between">
+<span class="text-sm font-medium text-on-surface">Silver (XAG)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">10.0%</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Institutional Audit Log -->
+<section class="glass-card rounded-xl p-md overflow-x-auto">
+<h3 class="font-headline-md text-headline-md text-on-background mb-md">Recent Activity</h3>
+<table class="w-full text-left whitespace-nowrap">
+<thead>
+<tr class="border-b border-surface-container-high">
+<th class="py-sm px-4 font-label-sm text-label-sm text-on-surface-variant font-medium">Timestamp</th>
+<th class="py-sm px-4 font-label-sm text-label-sm text-on-surface-variant font-medium">Event Type</th>
+<th class="py-sm px-4 font-label-sm text-label-sm text-on-surface-variant font-medium">Actor</th>
+<th class="py-sm px-4 font-label-sm text-label-sm text-on-surface-variant font-medium">Status</th>
+</tr>
+</thead>
+<tbody class="font-label-sm text-label-sm">
+<tr class="border-b border-surface-container-high hover:bg-surface-container-lowest transition-colors">
+<td class="py-sm px-4 text-on-surface-variant">2024-05-20 14:32:10 UTC</td>
+<td class="py-sm px-4 text-on-surface">Threshold Check - Single Asset</td>
+<td class="py-sm px-4 text-on-surface-variant">System (Auto)</td>
+<td class="py-sm px-4"><span class="px-2 py-1 bg-surface-container text-on-surface rounded-sm">Passed</span></td>
+</tr>
+<tr class="border-b border-surface-container-high hover:bg-surface-container-lowest transition-colors">
+<td class="py-sm px-4 text-on-surface-variant">2024-05-20 12:15:00 UTC</td>
+<td class="py-sm px-4 text-on-surface">Limit Adjustment - Leverage</td>
+<td class="py-sm px-4 text-on-surface-variant">J. Doe (Admin)</td>
+<td class="py-sm px-4"><span class="px-2 py-1 bg-secondary-fixed-dim/20 text-on-secondary-container rounded-sm border border-secondary-fixed-dim/50">Modified</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-sm px-4 text-on-surface-variant">2024-05-20 09:00:05 UTC</td>
+<td class="py-sm px-4 text-on-surface">Manual Override - Trading Block</td>
+<td class="py-sm px-4 text-on-surface-variant">M. Smith (CRO)</td>
+<td class="py-sm px-4"><span class="px-2 py-1 bg-surface-container text-on-surface rounded-sm">Logged</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</main>
+</body></html>

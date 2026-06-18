@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us | Neural Rates AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#f7bd48",
+                        "inverse-surface": "#2e3132",
+                        "surface-dim": "#d9dadb",
+                        "tertiary-container": "#747479",
+                        "primary-fixed-dim": "#f7bd48",
+                        "on-surface": "#191c1d",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-secondary-container": "#6e5c00",
+                        "secondary": "#705d00",
+                        "on-secondary": "#ffffff",
+                        "primary": "#785600",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-bright": "#f8f9fa",
+                        "tertiary-fixed": "#e3e2e7",
+                        "on-tertiary-fixed": "#1a1b20",
+                        "surface-variant": "#e1e3e4",
+                        "primary-container": "#986d00",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#7b5800",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdea6",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-container": "#fefcff",
+                        "on-primary-container": "#fffbff",
+                        "tertiary": "#5b5c60",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "secondary-container": "#fcd400",
+                        "on-surface-variant": "#4f4535",
+                        "outline": "#817563",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container": "#edeeef",
+                        "outline-variant": "#d3c4af",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-error": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "on-primary-fixed": "#271900",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ffe16d",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "margin": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "display-lg-mobile": ["Manrope", "sans-serif"],
+                        "display-lg": ["Manrope", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "label-sm": ["JetBrains Mono", "monospace"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid #B8860B;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #785600 0%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .golden-glow {
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface-container-high border-b border-outline-variant flat no shadows md:px-margin">
+<button aria-label="Menu" class="p-2 text-primary hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 rounded-full">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">NEURAL RATES</div>
+<button aria-label="Search" class="p-2 text-primary hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 rounded-full">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</header>
+<main class="pt-24 px-4 md:px-8 max-w-7xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-xl text-center">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg mb-gutter text-on-surface">Pioneering AI in Market Intelligence</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-lg">We build institutional-grade neural networks that decode complex market dynamics, empowering visionaries to navigate the financial frontier with unparalleled clarity.</p>
+<div class="w-full h-64 rounded-xl overflow-hidden relative mb-lg">
+<img alt="Abstract rendering of data flow" class="w-full h-full object-cover" data-alt="A highly detailed macro photography shot of glowing fiber optic cables representing data streams in a modern financial technology context. The scene is brightly lit with a soft, clean white light, emphasizing the high-contrast corporate luxury aesthetic. The primary colors are pure white, light gray, with subtle, premium golden light reflecting off the fiber cores. The composition feels expensive, precise, and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACh_z1Zux-wjBRlstYOWHvch51Zh9LoMISpjrj5vrv-OAz7rfgz3mWjrPmN8JsZ56A7oWZDFU5_HDx8nA96imKeg6Gv2c8Mly5OjtUSTKv8uKjVHNraT3xf9jv1FuysYHgv9F1fzCD-lqGyvsSlewVksXKuOeg-JvO9YaFiwW--fkerUZbGBgzQQIsDnAiODnNbkSuj3H8J7RteY4JfoYGMuK0TjZXgARadWeNeWuIWg6qPfZIN3lyzJJpD29bEuY-NhLDQGO0-_I"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+</div>
+</section>
+<!-- Technology Stack Bento Grid -->
+<section class="mb-xl">
+<h2 class="font-headline-md text-headline-md mb-gutter text-on-surface">The Intelligence Engine</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Card 1 -->
+<div class="glass-card rounded-xl p-gutter relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 opacity-10 transform group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]" data-icon="memory">memory</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-sm text-primary">Neural Cores</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Proprietary deep learning architectures analyzing millions of data points across global indices in real-time.</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-xl p-gutter relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 opacity-10 transform group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]" data-icon="hub">hub</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-sm text-primary">Predictive Routing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Algorithmic pathways forecasting market volatility with a focus on risk mitigation and alpha generation.</p>
+</div>
+</div>
+</section>
+<!-- Leadership -->
+<section class="mb-xl">
+<h2 class="font-headline-md text-headline-md mb-gutter text-on-surface">Leadership</h2>
+<div class="flex flex-col gap-lg">
+<div class="flex items-center gap-gutter p-sm rounded-lg hover:bg-surface-container-low transition-colors">
+<img alt="CEO Portrait" class="w-20 h-20 rounded-full object-cover grayscale border-2 border-primary-fixed" data-alt="A professional corporate headshot of a middle-aged male executive in a well-tailored dark suit. The lighting is soft and bright, creating a clean, white-based high-end aesthetic. The background is a stark, minimalist white space typical of luxury branding. The mood is authoritative yet approachable, fitting a high-wealth professional context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4qfyW4zaFb23xYonuO5nazrTgBVU1LcApnTSqDa_Rs4z5jc9IXzuOzwKaNylYPZ1bgyzKY1UCLfh_T9WICianZ1Q8qnZVOjYJ7jsXn4Q2whcaOpneC1m7V1fzhmnkgUeF-at195bWSQiPsCVSjOdNS6K2s3XJYaOIS6xP3q56K-sTsQNW7LmIke2F6zuDREcs5kyy7YhNmMHrf9YFzyXlhHyLAAtOEZmX0pknYpvwRyB6xXzr0pyJD5NtPGt-9iiJI73eO7Ph5jU"/>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Elias Thorne</h4>
+<p class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Chief Executive Officer</p>
+</div>
+</div>
+<div class="flex items-center gap-gutter p-sm rounded-lg hover:bg-surface-container-low transition-colors">
+<img alt="CTO Portrait" class="w-20 h-20 rounded-full object-cover grayscale border-2 border-primary-fixed" data-alt="A professional corporate headshot of a female executive in a modern business blazer. The lighting is studio quality, bright and evenly distributed to ensure a pristine, high-end look. The background is a clean, bright white to match a minimalist design system. The expression is confident and visionary, suitable for a tech leadership role in finance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYrHbCm2kO566VUpa2_6poDZtCyEbd8qW3VIubBXDPo3EHzX0fKE5Dfb7__w3QNsIEdauzAhiyuQm4hjed06WSYSkPbFszV9beQAlGyzgl6b4KN_Lz8Hebug44u11neaQkOJpL-3FOAt44bbWoWNFB43irtIj_0JJ4B9OJwjyPxchiqSg83vr4ZQQlPhI3zHgLKIEDrKCbETYGH5B6feJ3ektC5CozhMf_XM_pHkMyXJLuBXQLNEo8a3Uj76cz1cMOjaqBbqXWcHU"/>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Dr. Sarah Lin</h4>
+<p class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Chief Technology Officer</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile py-8 flex flex-col gap-4 bg-surface-dim border-t border-outline-variant flat no shadows md:px-margin">
+<div class="flex flex-wrap gap-4 mb-4">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Legal</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Privacy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Risk</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Status</a>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Neural Rates AI. Regulatory Disclosures: Trading AI indices involves high risk.</p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface-container border-t border-outline-variant flat no shadows">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-label-sm">Markets</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="newspaper">newspaper</span>
+<span class="font-label-sm text-label-sm">News</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="calculate">calculate</span>
+<span class="font-label-sm text-label-sm">Calculators</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Portfolio</span>
+</button>
+</nav>
+</body></html>

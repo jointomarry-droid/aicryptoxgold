@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Market Rates &amp; Intelligence - Aureus AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#edeeef",
+                        "surface-bright": "#f8f9fa",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-surface-variant": "#4f4535",
+                        "on-surface": "#191c1d",
+                        "outline": "#817563",
+                        "secondary-fixed-dim": "#e9c400",
+                        "tertiary-fixed": "#e3e2e7",
+                        "surface-tint": "#7b5800",
+                        "primary-fixed-dim": "#f7bd48",
+                        "on-primary-fixed": "#271900",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-container": "#fefcff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#fcd400",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#6e5c00",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#747479",
+                        "surface-dim": "#d9dadb",
+                        "primary-fixed": "#ffdea6",
+                        "primary-container": "#986d00",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-primary": "#f7bd48",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary-fixed": "#ffe16d",
+                        "inverse-surface": "#2e3132",
+                        "outline-variant": "#d3c4af",
+                        "surface-container-high": "#e7e8e9",
+                        "on-error": "#ffffff",
+                        "on-background": "#191c1d",
+                        "tertiary": "#5b5c60",
+                        "surface": "#f8f9fa",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#221b00",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary": "#705d00",
+                        "primary": "#785600",
+                        "background": "#f8f9fa",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#1a1b20",
+                        "gold": "#B8860B"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin": "32px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["jetbrainsMono", "monospace"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Manrope", "sans-serif"],
+                        "display-lg": ["Manrope", "sans-serif"],
+                        "display-lg-mobile": ["Manrope", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #ffffff; /* Clean white background */
+            color: #191c1d;
+        }
+        
+        /* Subtle Gold Glow for Primary Buttons */
+        .btn-primary {
+            background-color: #B8860B;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.3);
+            background-color: #986d00;
+        }
+        
+        .btn-secondary {
+            border: 1px solid #B8860B;
+            color: #B8860B;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(184, 134, 11, 0.05);
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid #F1F3F5;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border-top: 1px solid #B8860B; /* Subtle gold top border */
+        }
+        
+        .flat-card {
+            background-color: #F8F9FA;
+            border: 1px solid #F1F3F5;
+        }
+
+        /* Trend Colors specific to Aureus Light */
+        .trend-up { color: #B8860B; } /* Gold instead of green for brand alignment */
+        .trend-down { color: #ba1a1a; }
+        
+        /* Thin scrollbar for lists */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8F9FA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e1e3e4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c7c6cb;
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased selection:bg-gold selection:text-white flex flex-col min-h-screen">
+<!-- Ticker Tape (Simulated) -->
+<div class="w-full bg-surface-bright border-b border-surface-variant/30 py-2 overflow-hidden flex whitespace-nowrap text-xs font-label-sm">
+<div class="animate-[marquee_20s_linear_infinite] flex space-x-8 px-4 w-full justify-around min-w-max">
+<span>BTC/USD <span class="trend-up ml-1">64,230.50 (+2.4%)</span></span>
+<span>ETH/USD <span class="trend-up ml-1">3,450.20 (+1.2%)</span></span>
+<span>XAU/USD <span class="trend-down ml-1">2,340.80 (-0.5%)</span></span>
+<span>XAG/USD <span class="trend-up ml-1">28.45 (+0.8%)</span></span>
+<span>AI Index <span class="trend-up ml-1">145.20 (+4.1%)</span></span>
+</div>
+</div>
+<style>
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-surface-variant/30 shadow-sm transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-margin py-base max-w-[1200px] mx-auto">
+<!-- Brand -->
+<div class="font-display-lg text-display-lg font-bold text-primary flex items-center gap-2">
+<span class="text-gold">AUREUS</span>AI
+            </div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center space-x-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Crypto</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Gold</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Silver</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md" href="#">AI Insights</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Calculators</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-all p-2 rounded-full hidden md:block">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-all p-2 rounded-full hidden md:block">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="hidden md:flex items-center space-x-2 border-l border-surface-variant pl-4">
+<button class="font-label-sm uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors px-3 py-2">Login</button>
+<button class="btn-primary font-label-sm uppercase tracking-wider px-4 py-2 rounded">Register</button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-margin py-xl">
+<!-- Header Section -->
+<header class="mb-lg">
+<h1 class="font-display-lg text-display-lg mb-4 text-on-surface">
+                AI <span class="text-gold">Market Rates</span> &amp; Intelligence
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+                Institutional-grade analysis powered by advanced predictive algorithms. Stay ahead of macroeconomic trends across digital and physical assets.
+            </p>
+</header>
+<!-- Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Main News Feed -->
+<div class="lg:col-span-8 flex flex-col gap-lg">
+<!-- Featured Hero Article -->
+<article class="glass-card rounded-xl overflow-hidden group cursor-pointer">
+<div class="relative h-80 w-full overflow-hidden">
+<img alt="Futuristic financial market data visualization with a glowing gold bitcoin symbol and abstract network lines in a bright, modern, high-key lighting environment, conveying advanced algorithmic trading and institutional capital flows." class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700" data-alt="A bright, modern composition showing futuristic financial market data visualization. Glowing gold bitcoin symbols and abstract data network lines overlap on a pristine white and soft gray background. High-key lighting creates a professional, institutional aesthetic, conveying advanced algorithmic trading, capital flows, and macroeconomic trends. The mood is authoritative and technologically sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_ABQNWX0gZlynRmiqScY67T0_rXL-UHxnl9qBvcG8r9qKkS9fkWxx2giv5RsOKhpLjfcuCa6NJl4WT28HhGkNX4TkQ6XT1S_Il8BrlNXFb497EYdh-OGcEMCyw_afaE9dZRJ5o1y4tk1ZBS4NP2PwTtSL_wmJUEYUqrXxSCGyNYj9NUfnsXC35eeuccCEQEWSflxyXAOJTyitBOTaFZNflCTYue3TNgdqVy6IKzIocz_6uVoAldPOUV6xGIGlkR08a-ylIPn1QKo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent"></div>
+<div class="absolute bottom-6 left-6 flex items-center gap-4">
+<span class="bg-gold text-white font-label-sm px-3 py-1 rounded uppercase tracking-wider">Macro Analysis</span>
+<span class="font-label-sm text-on-surface-variant">Oct 24, 2024</span>
+<span class="bg-surface-bright/80 backdrop-blur border border-surface-variant text-gold font-label-sm px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> Strong Bullish
+                            </span>
+</div>
+</div>
+<div class="p-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-gold transition-colors">
+                            Quantum AI Models Predict Institutional Capital Flight into Tier-1 Crypto Assets Amidst Yield Curve Inversion
+                        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+                            Aureus proprietary neural networks have detected significant anomalies in institutional liquidity flows, suggesting a preemptive rotation from traditional fixed income into sovereign-grade digital assets ahead of anticipated central bank rate cuts.
+                        </p>
+</div>
+</article>
+<!-- Grid of Secondary Articles -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Article 1 -->
+<article class="flat-card rounded-lg overflow-hidden flex flex-col group cursor-pointer hover:shadow-sm transition-shadow">
+<div class="h-48 overflow-hidden">
+<img alt="Clean, minimalist trading terminal interface on a bright screen, showing complex candlestick charts and order book data with soft gold and dark gray accents." class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500" data-alt="A pristine, light-mode trading terminal interface displayed on a monitor. The screen shows complex financial charts, candlestick patterns, and order book data. The color palette relies on clean whites, soft grays, and subtle gold accents for data points. The lighting is bright and even, reflecting a modern, high-wealth professional trading desk environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXCVdmEbRUPrkDrp7t9CCSZCycAP-ACtbZuW_uOpqV1f12Bpwa414GDhbiywXbCHwEg1wBJk6ukPn3iv5fzJx8yCHuAbwzq8r9Qwk-RirpqQAu8j_99EMu5M6M8VMXkcRV76xMKmyzBv_L53lxfQRUH2FN2nDCEPad8Aqq0My6wIbrQOr6HXDWde9vDwduvo3syNGqQfGB5Vn-SKlKCpa-lm1EQkzuwdrsnV7ONfKVSRXIGurOdXZTxZ7lKybUEWo9sVakzRUya5g"/>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<span class="text-gold font-label-sm uppercase tracking-wider font-bold">Algorithmic Trading</span>
+<span class="border border-error text-error font-label-sm px-2 py-1 rounded flex items-center gap-1 text-[10px]">
+<span class="material-symbols-outlined text-[12px]">trending_down</span> Bearish
+                                </span>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface mb-3 group-hover:text-gold transition-colors">
+                                High-Frequency Trading Desk Volumes Signal Short-Term Correction in Precious Metals
+                            </h3>
+<p class="font-body-md text-sm text-on-surface-variant mb-6 line-clamp-3 flex-grow">
+                                Sentiment analysis across major liquidity pools indicates algorithmic sell pressure building on XAU/USD technical resistance levels. Look for...
+                            </p>
+<div class="flex items-center text-on-surface-variant/70 font-label-sm mt-auto">
+<span class="material-symbols-outlined text-[14px] mr-1">schedule</span> 4 hours ago
+                            </div>
+</div>
+</article>
+<!-- Article 2 -->
+<article class="flat-card rounded-lg overflow-hidden flex flex-col group cursor-pointer hover:shadow-sm transition-shadow">
+<div class="h-48 bg-surface-container flex items-center justify-center relative overflow-hidden">
+<!-- Subtle patterned background instead of image for variety -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#817563 1px, transparent 1px); background-size: 20px 20px;"></div>
+<span class="material-symbols-outlined text-[64px] text-gold/50 z-10">smart_toy</span>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<span class="text-gold font-label-sm uppercase tracking-wider font-bold">AI Insights</span>
+<span class="border border-gold text-gold font-label-sm px-2 py-1 rounded flex items-center gap-1 text-[10px]">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> Bullish
+                                </span>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface mb-3 group-hover:text-gold transition-colors">
+                                Deep Learning Analysis of Federal Reserve Minutes Uncovers Hidden Dovish Pivot
+                            </h3>
+<p class="font-body-md text-sm text-on-surface-variant mb-6 line-clamp-3 flex-grow">
+                                NLP processing of the latest FOMC transcripts reveals a subtle but statistically significant shift in semantic sentiment, suggesting rate cuts may...
+                            </p>
+<div class="flex items-center text-on-surface-variant/70 font-label-sm mt-auto">
+<span class="material-symbols-outlined text-[14px] mr-1">schedule</span> 8 hours ago
+                            </div>
+</div>
+</article>
+</div>
+<!-- Load More Action -->
+<button class="w-full py-4 btn-secondary rounded flex items-center justify-center gap-2 font-label-sm uppercase tracking-widest mt-4">
+                    Load More Market Data <span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</button>
+</div>
+<!-- Right Column: Sidebars / Widgets -->
+<aside class="lg:col-span-4 flex flex-col gap-md">
+<!-- AI Heatmap Widget -->
+<div class="glass-card rounded-lg p-6">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gold">grid_view</span>
+<h3 class="font-headline-md text-lg text-on-surface">AI Heatmap</h3>
+</div>
+<span class="text-[10px] uppercase font-label-sm bg-surface-container px-2 py-1 rounded animate-pulse">Live</span>
+</div>
+<div class="grid grid-cols-2 gap-2 font-label-sm text-center">
+<div class="bg-surface border border-surface-variant/50 p-4 rounded flex flex-col items-center justify-center hover:border-gold transition-colors cursor-pointer">
+<span class="text-on-surface font-semibold mb-1">BTC</span>
+<span class="trend-up">+2.4%</span>
+</div>
+<div class="bg-error-container/20 border border-error/20 p-4 rounded flex flex-col items-center justify-center cursor-pointer">
+<span class="text-on-surface font-semibold mb-1">XAU</span>
+<span class="trend-down">-0.5%</span>
+</div>
+<div class="bg-surface border border-surface-variant/50 p-4 rounded flex flex-col items-center justify-center hover:border-gold transition-colors cursor-pointer">
+<span class="text-on-surface font-semibold mb-1">ETH</span>
+<span class="trend-up">+3.8%</span>
+</div>
+<div class="bg-surface border border-surface-variant/50 p-4 rounded flex flex-col items-center justify-center cursor-pointer">
+<span class="text-on-surface font-semibold mb-1">USDT</span>
+<span class="text-on-surface-variant">0.0%</span>
+</div>
+<div class="col-span-2 bg-surface-bright border border-surface-variant p-4 rounded mt-2 flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gold/5 w-[60%] border-r border-gold/20"></div> <!-- Mock progress bar -->
+<span class="text-[10px] text-on-surface-variant mb-1 uppercase tracking-wider relative z-10">Aureus Global AI Index</span>
+<span class="trend-up font-bold relative z-10">+1.25%</span>
+</div>
+</div>
+</div>
+<!-- Trending Protocols Widget -->
+<div class="flat-card rounded-lg p-6">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-gold">trending_up</span>
+<h3 class="font-headline-md text-lg text-on-surface">Trending Protocols</h3>
+</div>
+<ul class="space-y-4">
+<li class="group flex items-center justify-between cursor-pointer border-b border-surface-variant/30 pb-3 last:border-0 last:pb-0">
+<div>
+<p class="font-body-md text-sm text-on-surface font-medium group-hover:text-gold transition-colors">Yield Curve Arbitrage</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant mt-1">Mentioned in 42 articles</p>
+</div>
+<span class="material-symbols-outlined text-surface-variant group-hover:text-gold transition-colors">arrow_forward</span>
+</li>
+<li class="group flex items-center justify-between cursor-pointer border-b border-surface-variant/30 pb-3 last:border-0 last:pb-0">
+<div>
+<p class="font-body-md text-sm text-on-surface font-medium group-hover:text-gold transition-colors">Digital Gold Backing</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant mt-1">Mentioned in 38 articles</p>
+</div>
+<span class="material-symbols-outlined text-surface-variant group-hover:text-gold transition-colors">arrow_forward</span>
+</li>
+<li class="group flex items-center justify-between cursor-pointer border-b border-surface-variant/30 pb-3 last:border-0 last:pb-0">
+<div>
+<p class="font-body-md text-sm text-on-surface font-medium group-hover:text-gold transition-colors">CBDC Deployment</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant mt-1">Mentioned in 24 articles</p>
+</div>
+<span class="material-symbols-outlined text-surface-variant group-hover:text-gold transition-colors">arrow_forward</span>
+</li>
+</ul>
+</div>
+<!-- Terminal Briefing Newsletter -->
+<div class="glass-card rounded-lg p-6 relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-10">
+<span class="material-symbols-outlined text-[100px] text-gold">mark_email_unread</span>
+</div>
+<div class="relative z-10 flex flex-col h-full">
+<span class="material-symbols-outlined text-gold mb-4 text-3xl">mark_email_read</span>
+<h3 class="font-headline-md text-xl text-on-surface mb-2">Terminal Briefing</h3>
+<p class="font-body-md text-sm text-on-surface-variant mb-6">
+                            Receive daily AI-curated market intelligence before the European session opens. Institutional grade data.
+                        </p>
+<form class="mt-auto space-y-3">
+<input class="w-full bg-white border border-surface-variant rounded px-4 py-3 font-body-md text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors" placeholder="Corporate Email Address" type="email"/>
+<button class="w-full btn-primary font-label-sm uppercase tracking-wider py-3 rounded font-bold" type="submit">Subscribe</button>
+</form>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg bg-surface-container-lowest border-t border-surface-variant mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md px-margin max-w-[1200px] mx-auto">
+<div>
+<div class="font-headline-md text-headline-md text-primary mb-2">
+<span class="text-gold">AUREUS</span> AI
+                </div>
+<p class="font-label-sm text-[10px] text-on-surface-variant max-w-xs leading-relaxed uppercase">
+                    © 2024 AI Market Rates. All rights reserved. Financial data provided for informational purposes only. Regulatory disclosures apply.
+                </p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 md:justify-end items-center">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface opacity-80 hover:opacity-100 hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface opacity-80 hover:opacity-100 hover:underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface opacity-80 hover:opacity-100 hover:underline transition-all" href="#">Risk Disclosure</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface opacity-80 hover:opacity-100 hover:underline transition-all" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

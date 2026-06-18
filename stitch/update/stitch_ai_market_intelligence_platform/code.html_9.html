@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gold Price &amp; Analysis - AUREUS AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#e9c400",
+                        "on-tertiary-container": "#7c5900",
+                        "on-primary-container": "#705e00",
+                        "tertiary-fixed": "#ffdea6",
+                        "background": "#121317",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#2f3034",
+                        "surface-container-high": "#292a2e",
+                        "on-primary-fixed-variant": "#544600",
+                        "on-surface": "#e3e2e7",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#d0c6ab",
+                        "surface-container-highest": "#343539",
+                        "tertiary": "#fff5ea",
+                        "inverse-surface": "#e3e2e7",
+                        "surface-bright": "#38393d",
+                        "secondary-container": "#474746",
+                        "error-container": "#93000a",
+                        "outline-variant": "#4d4732",
+                        "surface-container": "#1e1f23",
+                        "surface-container-lowest": "#0d0e12",
+                        "surface-container-low": "#1a1b1f",
+                        "on-primary-fixed": "#221b00",
+                        "tertiary-container": "#ffd486",
+                        "on-background": "#e3e2e7",
+                        "inverse-primary": "#705d00",
+                        "secondary": "#c8c6c5",
+                        "on-tertiary": "#412d00",
+                        "on-primary": "#3a3000",
+                        "surface": "#121317",
+                        "primary-fixed": "#ffe16d",
+                        "surface-tint": "#e9c400",
+                        "surface-dim": "#121317",
+                        "primary": "#fff6df",
+                        "on-tertiary-fixed": "#271900",
+                        "on-secondary-container": "#b7b5b4",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-secondary": "#313030",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#f7bd48",
+                        "surface-variant": "#343539",
+                        "primary-container": "#ffd700",
+                        "outline": "#999077",
+                        "on-tertiary-fixed-variant": "#5d4200",
+                        "secondary-fixed": "#e5e2e1",
+                        "emerald-bullish": "#10b981",
+                        "rose-bearish": "#f43f5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "data-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #121317;
+            color: #e3e2e7;
+        }
+        
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            border-left: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFD700 0%, #F5DEB3 50%, #DAA520 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+        }
+
+        .chart-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .bullish-text { color: #10b981; }
+        .bearish-text { color: #f43f5e; }
+        
+        .bullish-glow { text-shadow: 0 0 8px rgba(16, 185, 129, 0.5); }
+        .bearish-glow { text-shadow: 0 0 8px rgba(244, 63, 94, 0.5); }
+
+        /* Custom Scrollbar for inner components if needed */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121317; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #343539; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4d4732; 
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar Component from JSON -->
+<nav class="bg-background/80 backdrop-blur-md fixed top-0 w-full z-50 border-b border-outline-variant/20 shadow-sm flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-6">
+<a class="flex items-center gap-2" href="#">
+<img alt="AUREUS AI Logo" class="h-8 object-contain" src="data:image/png;base64,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"/>
+<span class="font-display-lg text-headline-md tracking-tighter text-primary-fixed-dim hidden md:block">AUREUS AI</span>
+</a>
+<div class="hidden md:flex items-center gap-6 ml-8">
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-300 font-body-md text-body-md" href="#">Crypto</a>
+<a class="text-primary-fixed-dim border-b-2 border-primary-fixed-dim pb-1 font-body-md text-body-md" href="/gold-price">Gold</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-300 font-body-md text-body-md" href="#">Silver</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-300 font-body-md text-body-md" href="#">AI Insights</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-300 font-body-md text-body-md" href="#">Calculators</a>
+<a class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-300 font-body-md text-body-md" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container rounded-full px-3 py-1.5 border border-outline-variant/30">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mr-2">search</span>
+<input class="bg-transparent border-none text-on-surface text-sm focus:ring-0 w-32 placeholder:text-on-surface-variant/50" placeholder="Search markets..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-300 active:scale-95 transition-transform md:hidden">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors duration-300 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="hidden md:flex items-center gap-3 ml-4 border-l border-outline-variant/30 pl-4">
+<button class="text-on-surface hover:text-primary-fixed-dim font-body-md transition-colors duration-300">Login</button>
+<button class="bg-gradient-to-r from-primary-fixed-dim to-[#F5DEB3] text-on-primary-fixed px-4 py-2 rounded-lg font-body-md font-medium hover:opacity-90 active:scale-95 transition-all shadow-[0_0_15px_rgba(255,215,0,0.2)]">Register</button>
+</div>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-24 pb-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<header class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-fixed-dim">analytics</span>
+<span class="font-label-caps text-primary-fixed-dim">LIVE MARKET DATA</span>
+</div>
+<h1 class="font-display-lg md:font-display-lg text-on-surface mb-1">XAU/USD <span class="text-on-surface-variant text-2xl font-normal">Spot Gold</span></h1>
+<p class="text-on-surface-variant font-body-md">Real-time institutional pricing and AI market analysis.</p>
+</div>
+<div class="flex gap-2">
+<button class="glass-panel px-4 py-2 rounded text-sm text-on-surface hover:border-primary-fixed-dim/50 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_alert</span> Set Alert
+                </button>
+<button class="glass-panel px-4 py-2 rounded text-sm text-on-surface hover:border-primary-fixed-dim/50 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">bookmark_add</span> Watchlist
+                </button>
+</div>
+</header>
+<!-- Live Rates Dashboard (Bento Grid) -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-8">
+<!-- Main Rate Card -->
+<div class="md:col-span-4 glass-panel rounded-xl p-6 relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary-fixed-dim/5 rounded-full blur-3xl"></div>
+<div>
+<h3 class="font-label-caps text-on-surface-variant mb-4">PRICE PER OUNCE (USD)</h3>
+<div class="flex items-baseline gap-3 mb-1">
+<span class="font-display-lg-mobile md:font-display-lg text-on-surface data-mono">2,323.64</span>
+<span class="font-data-mono bullish-text bullish-glow text-lg flex items-center">
+<span class="material-symbols-outlined text-[20px]">arrow_upward</span> 15.87 (0.68%)
+                        </span>
+</div>
+<p class="text-xs text-on-surface-variant font-data-mono">Last updated: 10:52:13 UTC</p>
+</div>
+<div class="mt-6 flex justify-between items-end border-t border-outline-variant/20 pt-4">
+<div>
+<p class="text-xs text-on-surface-variant mb-1">24H High</p>
+<p class="font-data-mono text-sm text-on-surface">2,336.10</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant mb-1">24H Low</p>
+<p class="font-data-mono text-sm text-on-surface">2,298.45</p>
+</div>
+</div>
+</div>
+<!-- Secondary Rates -->
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+<div class="glass-panel rounded-xl p-6 flex flex-col justify-center">
+<h3 class="font-label-caps text-on-surface-variant mb-2">PRICE PER GRAM (24K)</h3>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-on-surface data-mono">$74.70</span>
+<span class="font-data-mono bullish-text text-sm">+0.51</span>
+</div>
+<div class="mt-4 w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-bullish h-full w-[68%]"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2 text-right">68% Buy Volume</p>
+</div>
+<div class="glass-panel rounded-xl p-6 flex flex-col justify-center">
+<h3 class="font-label-caps text-on-surface-variant mb-2">PRICE PER TOLA (24K)</h3>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-on-surface data-mono">$871.35</span>
+<span class="font-data-mono bullish-text text-sm">+5.95</span>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="px-2 py-1 bg-surface-container rounded text-xs text-on-surface-variant font-data-mono">22K: $798.73</span>
+<span class="px-2 py-1 bg-surface-container rounded text-xs text-on-surface-variant font-data-mono">18K: $653.51</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Complex Content Area: Chart + Side Panel -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-8">
+<!-- Main Chart Area -->
+<div class="lg:col-span-8 lg:col-span-9 glass-panel rounded-xl flex flex-col overflow-hidden h-[600px]">
+<!-- Chart Toolbar -->
+<div class="h-12 border-b border-outline-variant/20 flex items-center px-4 justify-between bg-surface-container-lowest/50">
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 rounded text-xs font-data-mono text-on-surface-variant hover:bg-surface-container hover:text-on-surface">1M</button>
+<button class="px-2 py-1 rounded text-xs font-data-mono text-on-surface-variant hover:bg-surface-container hover:text-on-surface">5M</button>
+<button class="px-2 py-1 rounded text-xs font-data-mono text-on-surface-variant hover:bg-surface-container hover:text-on-surface">15M</button>
+<button class="px-2 py-1 rounded text-xs font-data-mono bg-surface-container text-primary-fixed-dim border border-primary-fixed-dim/30">1H</button>
+<button class="px-2 py-1 rounded text-xs font-data-mono text-on-surface-variant hover:bg-surface-container hover:text-on-surface">4H</button>
+<button class="px-2 py-1 rounded text-xs font-data-mono text-on-surface-variant hover:bg-surface-container hover:text-on-surface">1D</button>
+<div class="w-px h-4 bg-outline-variant/30 mx-2"></div>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface" title="Indicators">
+<span class="material-symbols-outlined text-[18px]">show_chart</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1 text-xs font-label-caps text-emerald-bullish">
+<span class="w-2 h-2 rounded-full bg-emerald-bullish animate-pulse"></span> AI TREND: BULLISH
+                        </span>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Chart Canvas Area (Placeholder for actual TradingView widget) -->
+<div class="flex-grow relative chart-grid p-4 flex flex-col justify-end">
+<!-- Faux Candlesticks and Lines for visual representation -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 400">
+<!-- Grid lines -->
+<path d="M0,100 L1000,100 M0,200 L1000,200 M0,300 L1000,300" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"></path>
+<!-- EMA Lines -->
+<path d="M0,350 Q200,300 400,250 T800,150 L1000,50" fill="none" opacity="0.6" stroke="#FFD700" stroke-width="1.5"></path>
+<path d="M0,380 Q250,340 450,280 T850,200 L1000,100" fill="none" opacity="0.6" stroke="#10b981" stroke-width="1.5"></path>
+<!-- Decorative Candles -->
+<g transform="translate(800, 100)">
+<line stroke="#10b981" stroke-width="1" x1="10" x2="10" y1="20" y2="80"></line>
+<rect fill="#10b981" height="30" width="6" x="7" y="30"></rect>
+<line stroke="#10b981" stroke-width="1" x1="25" x2="25" y1="10" y2="60"></line>
+<rect fill="#10b981" height="25" width="6" x="22" y="15"></rect>
+<line stroke="#f43f5e" stroke-width="1" x1="40" x2="40" y1="5" y2="40"></line>
+<rect fill="#f43f5e" height="20" width="6" x="37" y="10"></rect>
+</g>
+<!-- AI Indicator Annotation -->
+<g transform="translate(600, 150)">
+<rect fill="rgba(37, 99, 235, 0.2)" height="24" rx="4" stroke="rgba(37, 99, 235, 0.5)" width="120" x="0" y="0"></rect>
+<text fill="#60a5fa" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="60" y="16">AI TREND BREAKOUT</text>
+<line stroke="rgba(37, 99, 235, 0.5)" stroke-dasharray="2,2" stroke-width="1" x1="60" x2="180" y1="24" y2="80"></line>
+</g>
+</svg>
+<!-- Volume Bars -->
+<div class="h-24 w-full border-t border-outline-variant/10 flex items-end justify-between px-2 gap-[1px] opacity-60">
+<div class="w-full bg-rose-bearish/40 h-[30%]"></div>
+<div class="w-full bg-emerald-bullish/40 h-[45%]"></div>
+<div class="w-full bg-emerald-bullish/40 h-[60%]"></div>
+<div class="w-full bg-rose-bearish/40 h-[20%]"></div>
+<div class="w-full bg-emerald-bullish/40 h-[80%]"></div>
+<div class="w-full bg-emerald-bullish/40 h-[95%]"></div>
+<div class="w-full bg-rose-bearish/40 h-[40%]"></div>
+</div>
+</div>
+</div>
+<!-- Side Panel: Order Book / Analysis -->
+<div class="lg:col-span-3 flex flex-col gap-4 h-[600px]">
+<!-- AI Market Analysis -->
+<div class="glass-panel rounded-xl p-5 flex-grow flex flex-col">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/20 pb-3">
+<span class="material-symbols-outlined text-primary-fixed-dim">psychology</span>
+<h3 class="font-headline-md text-base text-on-surface">AI Market Summary</h3>
+</div>
+<div class="overflow-y-auto pr-2 text-sm text-on-surface-variant font-body-md space-y-4">
+<p>Gold (XAU/USD) is currently exhibiting strong bullish momentum, breaking past the key resistance level of $2,300.</p>
+<p>Institutional accumulation models indicate a <span class="text-primary-fixed-dim font-medium">high probability</span> of continued upward movement over the next 48 hours, driven by recent macroeconomic data showing sticky inflation.</p>
+<div class="p-3 bg-surface-container rounded-lg border border-outline-variant/30 mt-2">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-caps text-xs">AI CONFIDENCE SCORE</span>
+<span class="font-data-mono text-primary-fixed-dim">87%</span>
+</div>
+<div class="w-full bg-background h-1 rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full w-[87%] shadow-[0_0_8px_#FFD700]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Depth / Sentiment -->
+<div class="glass-panel rounded-xl p-5 h-[200px]">
+<h3 class="font-label-caps text-on-surface-variant mb-3">MARKET SENTIMENT</h3>
+<div class="flex justify-between font-data-mono text-sm mb-2">
+<span class="text-rose-bearish">SELL 24%</span>
+<span class="text-emerald-bullish">BUY 76%</span>
+</div>
+<div class="w-full h-2 rounded-full overflow-hidden flex">
+<div class="bg-rose-bearish h-full w-[24%]"></div>
+<div class="bg-emerald-bullish h-full w-[76%] shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+<div class="bg-surface-container p-2 rounded">
+<span class="block text-on-surface-variant mb-1">Support</span>
+<span class="font-data-mono text-on-surface">2,310.50</span>
+</div>
+<div class="bg-surface-container p-2 rounded">
+<span class="block text-on-surface-variant mb-1">Resistance</span>
+<span class="font-data-mono text-on-surface">2,345.00</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Lower Section: Calculator & FAQ -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Investment Calculator -->
+<div class="glass-panel rounded-xl p-6 md:p-8">
+<div class="flex items-center gap-3 mb-6">
+<div class="p-2 bg-primary-fixed-dim/10 rounded-lg border border-primary-fixed-dim/20">
+<span class="material-symbols-outlined text-primary-fixed-dim">calculate</span>
+</div>
+<h2 class="font-headline-md text-xl text-on-surface">Gold Value Calculator</h2>
+</div>
+<form class="space-y-5">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-label-caps text-on-surface-variant mb-2">WEIGHT</label>
+<input class="w-full bg-surface-container border-b border-primary-fixed-dim/30 border-t-0 border-l-0 border-r-0 text-on-surface focus:ring-0 focus:border-primary-fixed-dim transition-colors font-data-mono py-2" type="number" value="1"/>
+</div>
+<div>
+<label class="block text-xs font-label-caps text-on-surface-variant mb-2">UNIT</label>
+<select class="w-full bg-surface-container border-b border-primary-fixed-dim/30 border-t-0 border-l-0 border-r-0 text-on-surface focus:ring-0 focus:border-primary-fixed-dim transition-colors py-2 appearance-none">
+<option>Ounces (oz)</option>
+<option>Grams (g)</option>
+<option>Tola</option>
+<option>Kilograms (kg)</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-xs font-label-caps text-on-surface-variant mb-2">PURITY (KARAT)</label>
+<select class="w-full bg-surface-container border-b border-primary-fixed-dim/30 border-t-0 border-l-0 border-r-0 text-on-surface focus:ring-0 focus:border-primary-fixed-dim transition-colors py-2 appearance-none">
+<option value="24">24K (99.9% - Pure)</option>
+<option value="22">22K (91.6%)</option>
+<option value="18">18K (75.0%)</option>
+<option value="14">14K (58.3%)</option>
+</select>
+</div>
+<div class="pt-4 mt-2 border-t border-outline-variant/20">
+<p class="text-xs font-label-caps text-on-surface-variant mb-1">ESTIMATED VALUE</p>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-primary-fixed-dim gold-gradient-text data-mono leading-none">$2,323.64</span>
+<span class="text-sm text-on-surface-variant pb-1">USD</span>
+</div>
+<p class="text-xs text-on-surface-variant/50 mt-2">*Based on live spot price. Excludes premium and dealer fees.</p>
+</div>
+</form>
+</div>
+<!-- FAQ -->
+<div class="glass-panel rounded-xl p-6 md:p-8">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-on-surface-variant">quiz</span>
+<h2 class="font-headline-md text-xl text-on-surface">Frequently Asked Questions</h2>
+</div>
+<div class="space-y-4">
+<details class="group bg-surface-container-low p-4 rounded-lg border border-outline-variant/20 cursor-pointer" open="">
+<summary class="flex justify-between items-center font-body-md text-on-surface font-medium list-none">
+                            What drives the price of gold today?
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="text-sm text-on-surface-variant mt-3 leading-relaxed">
+                            Gold prices are currently influenced by US inflation data, Federal Reserve interest rate policies, and geopolitical tensions. As a safe-haven asset, uncertainty in traditional equities often drives institutional capital into gold.
+                        </p>
+</details>
+<details class="group bg-surface-container-low p-4 rounded-lg border border-outline-variant/20 cursor-pointer">
+<summary class="flex justify-between items-center font-body-md text-on-surface font-medium list-none">
+                            What is the difference between spot price and futures?
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="text-sm text-on-surface-variant mt-3 leading-relaxed">
+                            The spot price (XAU/USD) is the current price for immediate physical delivery. Futures contracts represent an agreement to buy or sell gold at a specific price on a future date, reflecting market expectations.
+                        </p>
+</details>
+<details class="group bg-surface-container-low p-4 rounded-lg border border-outline-variant/20 cursor-pointer">
+<summary class="flex justify-between items-center font-body-md text-on-surface font-medium list-none">
+                            How accurate is the AI Market Analysis?
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="text-sm text-on-surface-variant mt-3 leading-relaxed">
+                            Our AI models aggregate order book depth, historical sentiment, and macroeconomic indicators to generate probabilities. While highly sophisticated, it is an analytical tool and should not be considered guaranteed financial advice.
+                        </p>
+</details>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component from JSON -->
+<footer class="bg-surface-container-lowest w-full py-16 border-t border-outline-variant/10 mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<span class="font-display-lg text-headline-md text-primary-fixed-dim block mb-4">AUREUS AI</span>
+<p class="text-sm text-on-surface-variant font-data-mono">© 2024 AUREUS AI. INSTITUTIONAL GRADE INTELLIGENCE.</p>
+</div>
+<div class="flex flex-col space-y-3 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Market News</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Calculators</a>
+</div>
+<div class="flex flex-col space-y-3 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Blog</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Contact</a>
+</div>
+<div class="flex flex-col space-y-3 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Legal</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</body></html>

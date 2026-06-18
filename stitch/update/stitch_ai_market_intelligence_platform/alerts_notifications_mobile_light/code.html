@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Neural Rates - Alerts &amp; Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline-variant": "#d3c4af",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "on-secondary-container": "#6e5c00",
+                        "secondary-fixed-dim": "#e9c400",
+                        "surface-dim": "#d9dadb",
+                        "background": "#f8f9fa",
+                        "tertiary": "#5b5c60",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-tint": "#7b5800",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#f7bd48",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "tertiary-fixed": "#e3e2e7",
+                        "surface-variant": "#e1e3e4",
+                        "secondary-container": "#fcd400",
+                        "primary-container": "#986d00",
+                        "inverse-surface": "#2e3132",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#f7bd48",
+                        "on-tertiary-container": "#fefcff",
+                        "tertiary-container": "#747479",
+                        "surface-container-low": "#f3f4f5",
+                        "on-secondary-fixed": "#221b00",
+                        "on-tertiary-fixed": "#1a1b20",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-high": "#e7e8e9",
+                        "primary-fixed": "#ffdea6",
+                        "on-surface-variant": "#4f4535",
+                        "on-background": "#191c1d",
+                        "surface": "#f8f9fa",
+                        "on-primary-container": "#fffbff",
+                        "on-primary-fixed": "#271900",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container": "#edeeef",
+                        "outline": "#817563",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "secondary": "#705d00",
+                        "on-error": "#ffffff",
+                        "primary": "#785600",
+                        "on-surface": "#191c1d"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "md": "24px",
+                        "margin": "32px",
+                        "xl": "80px",
+                        "lg": "48px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "sm": "12px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter", "sans-serif"],
+                        "display-lg-mobile": ["Manrope", "sans-serif"],
+                        "label-sm": ["JetBrains Mono", "monospace"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-md": ["Manrope", "sans-serif"],
+                        "display-lg": ["Manrope", "sans-serif"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid theme('colors.outline-variant');
+        }
+
+        .glass-overlay {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Golden Glow Shadow */
+        .shadow-golden {
+            box-shadow: 0 8px 24px -4px rgba(184, 134, 11, 0.15);
+        }
+        
+        /* Subtle swipe interaction hint */
+        .swipe-hint {
+            position: relative;
+            overflow: hidden;
+        }
+        .swipe-hint::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: theme('colors.outline-variant');
+            opacity: 0.5;
+            transition: opacity 0.2s ease;
+        }
+        .swipe-hint:hover::before {
+            opacity: 1;
+        }
+
+        /* Hide scrollbar for horizontal lists */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col pt-16 pb-[88px] relative overflow-x-hidden md:hidden">
+<!-- Ambient Background Effect -->
+<div class="fixed inset-0 z-[-1] bg-gradient-to-br from-surface-container-lowest via-surface-bright to-surface-container opacity-50 pointer-events-none"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-surface-container-high border-b border-outline-variant flat no shadows transition-colors">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 text-on-surface-variant">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tighter text-primary truncate px-2">ALERTS</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 text-on-surface-variant">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col w-full px-4 pt-4 pb-8">
+<!-- Header Section with Actions -->
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-background mb-1">Notifications</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">You have 3 unread alerts.</p>
+</div>
+<button class="text-primary font-label-sm text-label-sm uppercase tracking-widest hover:opacity-80 transition-opacity">Clear All</button>
+</div>
+<!-- Tabbed Interface -->
+<div class="flex border-b border-outline-variant mb-6">
+<button class="flex-1 pb-3 text-center font-headline-md text-headline-md text-primary border-b-2 border-primary relative">
+                Recent
+                <span class="absolute top-0 right-1/4 w-2 h-2 rounded-full bg-error"></span>
+</button>
+<button class="flex-1 pb-3 text-center font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors">
+                Saved
+            </button>
+</div>
+<!-- Filter Chips (Horizontal Scroll) -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-6 -mx-4 px-4 snap-x">
+<button class="shrink-0 snap-start px-4 py-2 rounded-full bg-primary text-on-primary font-label-sm text-label-sm transition-colors shadow-golden border border-primary">
+                All Alerts
+            </button>
+<button class="shrink-0 snap-start px-4 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm border border-outline-variant hover:border-primary transition-colors">
+                Market Movements
+            </button>
+<button class="shrink-0 snap-start px-4 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm border border-outline-variant hover:border-primary transition-colors">
+                AI Indices
+            </button>
+<button class="shrink-0 snap-start px-4 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm border border-outline-variant hover:border-primary transition-colors">
+                System
+            </button>
+</div>
+<!-- Notification List -->
+<div class="flex flex-col gap-4">
+<!-- Unread Notification Card 1 (High Priority) -->
+<div class="glass-card rounded-xl p-5 relative swipe-hint overflow-hidden transition-transform duration-200 active:scale-[0.98]">
+<!-- Unread Indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex gap-4">
+<div class="shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-background truncate pr-2">NRAI-50 Breakout</h3>
+<span class="shrink-0 font-label-sm text-label-sm text-on-surface-variant">2m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-3">
+                            The Neural Rates Top 50 AI Index has breached the upper resistance band. Volume is up 42% across major nodes.
+                        </p>
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Index Alert</span>
+<button class="text-primary font-label-sm text-label-sm hover:underline ml-auto">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Unread Notification Card 2 -->
+<div class="glass-card rounded-xl p-5 relative swipe-hint overflow-hidden transition-transform duration-200 active:scale-[0.98]">
+<!-- Unread Indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex gap-4">
+<div class="shrink-0 w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-background truncate pr-2">Portfolio Rebalance</h3>
+<span class="shrink-0 font-label-sm text-label-sm text-on-surface-variant">1h ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+                            Algorithmic suggestions for Q3 portfolio adjustments are ready for your review based on recent volatility.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Read Notification Card -->
+<div class="glass-card rounded-xl p-5 relative swipe-hint overflow-hidden opacity-80 transition-transform duration-200 active:scale-[0.98]">
+<div class="flex gap-4">
+<div class="shrink-0 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">newspaper</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-background truncate pr-2">Weekly Briefing</h3>
+<span class="shrink-0 font-label-sm text-label-sm text-on-surface-variant">Yesterday</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+                            Macro-economic indicators suggest a cooling period for secondary AI markets. Read the full synthesis.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Read Notification Card -->
+<div class="glass-card rounded-xl p-5 relative swipe-hint overflow-hidden opacity-80 transition-transform duration-200 active:scale-[0.98]">
+<div class="flex gap-4">
+<div class="shrink-0 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">security</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-background truncate pr-2">New Login Detected</h3>
+<span class="shrink-0 font-label-sm text-label-sm text-on-surface-variant">Oct 12</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+                            A login from a new IP address was detected in London, UK. If this was you, no action is needed.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Hidden on md and up) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface-container border-t border-outline-variant flat no shadows md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150 group">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors">analytics</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-[10px]">Markets</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150">
+<div class="relative">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-error border border-primary-container"></span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-[10px]">Alerts</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150 group">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors">calculate</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-[10px]">Calculators</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150 group">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-[10px]">Portfolio</span>
+</button>
+</nav>
+</body></html>

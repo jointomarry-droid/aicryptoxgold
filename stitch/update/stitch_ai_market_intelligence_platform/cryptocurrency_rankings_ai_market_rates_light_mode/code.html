@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cryptocurrency Rankings | AI Market Rates</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#7b5800",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#221b00",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#c7c6cb",
+                      "on-surface-variant": "#4f4535",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-tertiary-fixed": "#1a1b20",
+                      "surface-container-high": "#e7e8e9",
+                      "on-tertiary-container": "#fefcff",
+                      "on-surface": "#191c1d",
+                      "inverse-surface": "#2e3132",
+                      "surface-variant": "#e1e3e4",
+                      "tertiary": "#5b5c60",
+                      "on-secondary-fixed-variant": "#544600",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#f3f4f5",
+                      "primary-container": "#986d00",
+                      "primary-fixed": "#ffdea6",
+                      "secondary-container": "#fcd400",
+                      "secondary-fixed": "#ffe16d",
+                      "primary": "#785600",
+                      "secondary": "#705d00",
+                      "surface-container": "#edeeef",
+                      "surface": "#f8f9fa",
+                      "on-primary-fixed": "#271900",
+                      "on-background": "#191c1d",
+                      "inverse-primary": "#f7bd48",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#5d4200",
+                      "surface-dim": "#d9dadb",
+                      "outline-variant": "#d3c4af",
+                      "on-tertiary-fixed-variant": "#46464b",
+                      "primary-fixed-dim": "#f7bd48",
+                      "outline": "#817563",
+                      "secondary-fixed-dim": "#e9c400",
+                      "on-secondary-container": "#6e5c00",
+                      "surface-bright": "#f8f9fa",
+                      "error": "#ba1a1a",
+                      "surface-container-highest": "#e1e3e4",
+                      "tertiary-fixed": "#e3e2e7",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#747479",
+                      "on-primary-container": "#fffbff",
+                      "background": "#f8f9fa"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "md": "24px",
+                      "xl": "80px",
+                      "gutter": "24px",
+                      "margin": "32px",
+                      "base": "8px",
+                      "sm": "12px",
+                      "lg": "48px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": [
+                              "manrope"
+                      ],
+                      "body-lg": [
+                              "inter"
+                      ],
+                      "label-sm": [
+                              "jetbrainsMono"
+                      ],
+                      "display-lg": [
+                              "manrope"
+                      ],
+                      "headline-md": [
+                              "manrope"
+                      ],
+                      "body-md": [
+                              "inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-white/70 backdrop-blur-md sticky top-0 w-full border-b border-surface-variant/30 shadow-sm z-50 transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-margin py-base max-w-[1200px] mx-auto w-full">
+<div class="flex items-center gap-md">
+<a class="font-display-lg text-display-lg font-bold text-primary tracking-tight" href="#">AI Market Rates</a>
+<div class="hidden md:flex items-center gap-sm ml-lg">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-base py-xs rounded hover:bg-surface-container-low" href="#">Home</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1 px-base py-xs" href="#">Crypto</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-base py-xs rounded hover:bg-surface-container-low" href="#">Gold</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-base py-xs rounded hover:bg-surface-container-low" href="#">Silver</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-base py-xs rounded hover:bg-surface-container-low" href="#">AI Insights</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-base py-xs rounded hover:bg-surface-container-low" href="#">Calculators</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 20px;">search</span>
+<input class="pl-lg pr-sm py-xs bg-surface-container-low border-none rounded-full text-body-md font-body-md focus:ring-2 focus:ring-primary w-64 text-on-surface placeholder:text-on-surface-variant/70" placeholder="Search markets..." type="text"/>
+</div>
+<button class="p-base rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="p-base rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden p-base rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-margin py-xl flex flex-col gap-lg">
+<!-- Header Section -->
+<header class="flex flex-col gap-sm">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-xs text-on-surface-variant font-label-sm text-label-sm">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined" style="font-size: 16px;">chevron_right</span>
+<span class="text-primary font-bold">Crypto</span>
+</nav>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mt-base">Cryptocurrency Rankings</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-xs max-w-2xl">Real-time valuation and market metrics for top digital assets, powered by AI-driven analysis.</p>
+</div>
+<!-- Global Stats Widget -->
+<div class="bg-white/70 backdrop-blur-md border border-outline-variant/30 rounded-xl p-md shadow-sm min-w-[280px]">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Global Market Cap</span>
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">public</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="font-headline-md text-headline-md text-on-surface font-label-sm font-bold">$2.45T</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center bg-primary-container/20 px-xs py-[2px] rounded">
+<span class="material-symbols-outlined" style="font-size: 14px;">arrow_drop_up</span>
+                            1.2%
+                        </span>
+</div>
+</div>
+</div>
+</header>
+<!-- Controls Toolbar -->
+<section class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-md bg-surface-bright rounded-xl p-sm border border-surface-variant/50 shadow-sm sticky top-[80px] z-40">
+<!-- Filters -->
+<div class="flex flex-wrap items-center gap-xs">
+<button class="px-md py-xs bg-primary text-on-primary font-label-sm text-label-sm rounded-full shadow-[0_4px_20px_-4px_rgba(184,134,11,0.15)] transition-all">All</button>
+<button class="px-md py-xs bg-transparent text-on-surface border border-outline-variant hover:border-primary hover:text-primary font-label-sm text-label-sm rounded-full transition-all">DeFi</button>
+<button class="px-md py-xs bg-transparent text-on-surface border border-outline-variant hover:border-primary hover:text-primary font-label-sm text-label-sm rounded-full transition-all">Layer 1</button>
+<button class="px-md py-xs bg-transparent text-on-surface border border-outline-variant hover:border-primary hover:text-primary font-label-sm text-label-sm rounded-full transition-all">AI</button>
+<button class="px-md py-xs bg-transparent text-on-surface border border-outline-variant hover:border-primary hover:text-primary font-label-sm text-label-sm rounded-full transition-all flex items-center gap-xs">
+<span class="material-symbols-outlined" style="font-size: 16px;">tune</span>
+                    More Filters
+                </button>
+</div>
+<!-- Search & Actions -->
+<div class="flex items-center gap-sm w-full lg:w-auto">
+<div class="relative flex-grow lg:flex-grow-0">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 20px;">search</span>
+<input class="w-full lg:w-64 pl-lg pr-sm py-xs bg-surface border border-surface-variant rounded-md text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary text-on-surface placeholder:text-on-surface-variant/70 transition-all bg-white" placeholder="Search asset or ticker..." type="text"/>
+</div>
+</div>
+</section>
+<!-- Data Table Section -->
+<section class="bg-white rounded-xl border border-surface-variant/50 shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="border-b border-surface-variant bg-surface-bright">
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider w-16">#</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Asset</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Price</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">24h Change</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right hidden sm:table-cell">Market Cap</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right hidden md:table-cell">Volume (24h)</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-center w-32 hidden lg:table-cell">7d Trend</th>
+</tr>
+</thead>
+<tbody class="font-label-sm text-on-surface divide-y divide-surface-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="py-md px-md text-on-surface-variant font-medium">1</td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold overflow-hidden">
+<span class="material-symbols-outlined" style="font-size: 20px;">currency_bitcoin</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface font-body-md text-sm">Bitcoin</span>
+<span class="text-on-surface-variant text-xs">BTC</span>
+</div>
+</div>
+</td>
+<td class="py-md px-md text-right font-medium">$64,230.50</td>
+<td class="py-md px-md text-right">
+<span class="inline-flex items-center gap-xs px-xs py-[2px] rounded bg-primary/10 text-primary font-bold">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+                                    2.4%
+                                </span>
+</td>
+<td class="py-md px-md text-right hidden sm:table-cell text-on-surface-variant">$1.26T</td>
+<td class="py-md px-md text-right hidden md:table-cell text-on-surface-variant">$34.2B</td>
+<td class="py-md px-md hidden lg:table-cell align-middle">
+<div 0="" 100="" 2000="" 30\"="" class="h-8 w-24 mx-auto opacity-70 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-primary/20 via-primary/50 to-primary rounded-sm" http:="" preserveaspectratio='\"none\"' style="mask-image: url('data:image/svg+xml;utf8,&lt;svg xmlns=\" svg\"="" viewbox='\"0' www.w3.org=""><path 20,25="" d='\"M0,20' fill='\"black\"/' l0,30="" l100,30="" q10,10="" t100,10="" t40,15="" t60,20="" t80,5="" z\"="">'); -webkit-mask-image: url('data:image/svg+xml;utf8,<svg 0="" 100="" 30\"="" preserveaspectratio='\"none\"' viewbox='\"0' xmlns='\"http://www.w3.org/2000/svg\"'><path 20,25="" d='\"M0,20' fill='\"black\"/' l0,30="" l100,30="" q10,10="" t100,10="" t40,15="" t60,20="" t80,5="" z\"=""></path></svg>'); mask-size: 100% 100%; -webkit-mask-size: 100% 100%;"&gt;</path></div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="py-md px-md text-on-surface-variant font-medium">2</td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-secondary font-bold overflow-hidden">
+<span class="material-symbols-outlined" style="font-size: 20px;">account_balance_wallet</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface font-body-md text-sm">Ethereum</span>
+<span class="text-on-surface-variant text-xs">ETH</span>
+</div>
+</div>
+</td>
+<td class="py-md px-md text-right font-medium">$3,450.20</td>
+<td class="py-md px-md text-right">
+<span class="inline-flex items-center gap-xs px-xs py-[2px] rounded bg-error-container text-error font-bold">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_down</span>
+                                    0.8%
+                                </span>
+</td>
+<td class="py-md px-md text-right hidden sm:table-cell text-on-surface-variant">$415.6B</td>
+<td class="py-md px-md text-right hidden md:table-cell text-on-surface-variant">$15.8B</td>
+<td class="py-md px-md hidden lg:table-cell align-middle">
+<div 0="" 100="" 2000="" 30\"="" class="h-8 w-24 mx-auto opacity-70 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-error/20 via-error/50 to-error rounded-sm" http:="" preserveaspectratio='\"none\"' style="mask-image: url('data:image/svg+xml;utf8,&lt;svg xmlns=\" svg\"="" viewbox='\"0' www.w3.org=""><path 20,5="" d='\"M0,10' fill='\"black\"/' l0,30="" l100,30="" q10,20="" t100,20="" t40,15="" t60,10="" t80,25="" z\"="">'); -webkit-mask-image: url('data:image/svg+xml;utf8,<svg 0="" 100="" 30\"="" preserveaspectratio='\"none\"' viewbox='\"0' xmlns='\"http://www.w3.org/2000/svg\"'><path 20,5="" d='\"M0,10' fill='\"black\"/' l0,30="" l100,30="" q10,20="" t100,20="" t40,15="" t60,10="" t80,25="" z\"=""></path></svg>'); mask-size: 100% 100%; -webkit-mask-size: 100% 100%;"&gt;</path></div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="py-md px-md text-on-surface-variant font-medium">3</td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold overflow-hidden">
+<span class="material-symbols-outlined" style="font-size: 20px;">toll</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface font-body-md text-sm">Tether</span>
+<span class="text-on-surface-variant text-xs">USDT</span>
+</div>
+</div>
+</td>
+<td class="py-md px-md text-right font-medium">$1.00</td>
+<td class="py-md px-md text-right">
+<span class="inline-flex items-center gap-xs px-xs py-[2px] rounded text-on-surface-variant font-medium">
+<span class="material-symbols-outlined" style="font-size: 14px;">horizontal_rule</span>
+                                    0.0%
+                                </span>
+</td>
+<td class="py-md px-md text-right hidden sm:table-cell text-on-surface-variant">$112.4B</td>
+<td class="py-md px-md text-right hidden md:table-cell text-on-surface-variant">$45.2B</td>
+<td class="py-md px-md hidden lg:table-cell align-middle">
+<div class="h-8 w-24 mx-auto opacity-30 bg-surface-variant rounded-sm flex items-center justify-center">
+<div class="w-full border-t border-dashed border-outline"></div>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="py-md px-md text-on-surface-variant font-medium">4</td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold overflow-hidden">
+<span class="material-symbols-outlined" style="font-size: 20px;">memory</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface font-body-md text-sm">Solana</span>
+<span class="text-on-surface-variant text-xs">SOL</span>
+</div>
+</div>
+</td>
+<td class="py-md px-md text-right font-medium">$145.80</td>
+<td class="py-md px-md text-right">
+<span class="inline-flex items-center gap-xs px-xs py-[2px] rounded bg-primary/10 text-primary font-bold">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+                                    5.2%
+                                </span>
+</td>
+<td class="py-md px-md text-right hidden sm:table-cell text-on-surface-variant">$65.2B</td>
+<td class="py-md px-md text-right hidden md:table-cell text-on-surface-variant">$4.1B</td>
+<td class="py-md px-md hidden lg:table-cell align-middle">
+<div 0="" 100="" 2000="" 30\"="" class="h-8 w-24 mx-auto opacity-70 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-primary/20 via-primary/50 to-primary rounded-sm" http:="" preserveaspectratio='\"none\"' style="mask-image: url('data:image/svg+xml;utf8,&lt;svg xmlns=\" svg\"="" viewbox='\"0' www.w3.org=""><path 25,28="" d='\"M0,25' fill='\"black\"/' l0,30="" l100,30="" q15,20="" t100,0="" t50,15="" t75,5="" z\"="">'); -webkit-mask-image: url('data:image/svg+xml;utf8,<svg 0="" 100="" 30\"="" preserveaspectratio='\"none\"' viewbox='\"0' xmlns='\"http://www.w3.org/2000/svg\"'><path 25,28="" d='\"M0,25' fill='\"black\"/' l0,30="" l100,30="" q15,20="" t100,0="" t50,15="" t75,5="" z\"=""></path></svg>'); mask-size: 100% 100%; -webkit-mask-size: 100% 100%;"&gt;</path></div>
+</td>
+</tr>
+<!-- Row 5 (AI Category example) -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer bg-primary-container/5">
+<td class="py-md px-md text-on-surface-variant font-medium">28</td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold overflow-hidden border border-primary/20">
+<span class="material-symbols-outlined" style="font-size: 20px;">psychology</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface font-body-md text-sm">Fetch.ai</span>
+<div class="flex items-center gap-xs">
+<span class="text-on-surface-variant text-xs">FET</span>
+<span class="bg-surface-variant text-on-surface-variant text-[10px] px-1 rounded uppercase">AI</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-md px-md text-right font-medium">$1.82</td>
+<td class="py-md px-md text-right">
+<span class="inline-flex items-center gap-xs px-xs py-[2px] rounded bg-primary/10 text-primary font-bold">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+                                    12.4%
+                                </span>
+</td>
+<td class="py-md px-md text-right hidden sm:table-cell text-on-surface-variant">$4.6B</td>
+<td class="py-md px-md text-right hidden md:table-cell text-on-surface-variant">$850M</td>
+<td class="py-md px-md hidden lg:table-cell align-middle">
+<div 0="" 100="" 2000="" 30\"="" class="h-8 w-24 mx-auto opacity-70 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-primary/20 via-primary/50 to-primary rounded-sm" http:="" preserveaspectratio='\"none\"' style="mask-image: url('data:image/svg+xml;utf8,&lt;svg xmlns=\" svg\"="" viewbox='\"0' www.w3.org=""><path 30,15="" d='\"M0,28' fill='\"black\"/' l0,30="" l100,30="" q20,25="" t100,2="" t60,20="" t80,5="" z\"="">'); -webkit-mask-image: url('data:image/svg+xml;utf8,<svg 0="" 100="" 30\"="" preserveaspectratio='\"none\"' viewbox='\"0' xmlns='\"http://www.w3.org/2000/svg\"'><path 30,15="" d='\"M0,28' fill='\"black\"/' l0,30="" l100,30="" q20,25="" t100,2="" t60,20="" t80,5="" z\"=""></path></svg>'); mask-size: 100% 100%; -webkit-mask-size: 100% 100%;"&gt;</path></div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-md py-sm bg-surface-bright border-t border-surface-variant flex items-center justify-between">
+<span class="text-sm text-on-surface-variant font-label-sm">Showing 1-50 of 10,000+ assets</span>
+<div class="flex items-center gap-xs">
+<button class="p-xs text-on-surface-variant hover:text-primary disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-sm flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-full text-on-surface-variant hover:bg-surface-variant font-label-sm flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded-full text-on-surface-variant hover:bg-surface-variant font-label-sm flex items-center justify-center">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="p-xs text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-lg border-t border-surface-variant mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md px-margin max-w-[1200px] mx-auto">
+<div class="flex flex-col gap-sm">
+<span class="font-headline-md text-headline-md text-primary">AI Market Rates</span>
+<p class="font-label-sm text-label-sm text-on-surface opacity-80 hover:opacity-100 max-w-sm">
+                    © 2024 AI Market Rates. All rights reserved. Financial data provided for informational purposes only. Regulatory disclosures apply.
+                </p>
+</div>
+<div class="flex flex-col md:items-end justify-center gap-sm">
+<div class="flex gap-md font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-on-surface hover:underline transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:underline transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:underline transition-colors" href="#">Risk Disclosure</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:underline transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

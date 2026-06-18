@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aureus Terminal - API Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#474746",
+                        "on-primary-container": "#776300",
+                        "primary-container": "#ffe16d",
+                        "primary-fixed": "#ffe16d",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "surface-variant": "#343439",
+                        "surface-dim": "#121317",
+                        "on-secondary-container": "#b6b5b4",
+                        "surface-tint": "#e9c400",
+                        "on-tertiary-container": "#6a635b",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container": "#1e1f23",
+                        "surface-bright": "#38393d",
+                        "primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-primary": "#3a3000",
+                        "on-background": "#e3e2e7",
+                        "on-surface-variant": "#ccc6bb",
+                        "tertiary": "#ffffff",
+                        "outline": "#999077",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-primary-fixed-variant": "#544600",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#121317",
+                        "inverse-surface": "#e3e2e7",
+                        "tertiary-container": "#ebe1d6",
+                        "on-primary-fixed": "#221b00",
+                        "error": "#ffb4ab",
+                        "on-surface": "#e3e2e7",
+                        "on-tertiary": "#353029",
+                        "surface-container-low": "#1a1b20",
+                        "on-error": "#690005",
+                        "secondary": "#c8c6c5",
+                        "surface-container-lowest": "#0d0e12",
+                        "surface-container-highest": "#343439",
+                        "outline-variant": "#4a473e",
+                        "surface-container-high": "#292a2e",
+                        "inverse-primary": "#705d00",
+                        "background": "#121317",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#ebe1d6",
+                        "inverse-on-surface": "#2f3035",
+                        "tertiary-fixed-dim": "#cec5bb",
+                        "primary-fixed-dim": "#e9c400",
+                        "on-secondary": "#303030",
+                        "on-tertiary-fixed": "#1f1b15"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "base-unit": "4px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "unit": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "data-mono": ["JetBrains Mono"],
+                        "headline-md": ["Manrope"],
+                        "display-lg-mobile": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { background: rgba(30, 31, 35, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(153, 144, 119, 0.2); }
+        .glass-code { background: rgba(13, 14, 18, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(153, 144, 119, 0.3); }
+        /* Scrollbar customization */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #121317; }
+        ::-webkit-scrollbar-thumb { background: #474746; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #999077; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Mobile Top App Bar (Only visible on small screens) -->
+<header class="md:hidden flex justify-between items-center px-margin-mobile w-full h-16 border-b border-outline-variant/30 bg-surface/80 backdrop-blur-md z-50">
+<div class="font-display-lg-mobile text-display-lg-mobile tracking-tighter text-primary-fixed">AUREUS</div>
+<button class="text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full py-gutter px-4 bg-surface-container-low border-r border-outline-variant/20 w-64 flex-shrink-0 sticky top-0">
+<div class="mb-8">
+<h1 class="font-display-lg text-display-lg text-primary-fixed text-2xl mb-1">Aureus Terminal</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Institutional Grade</p>
+</div>
+<div class="flex-1 overflow-y-auto pr-2">
+<!-- Documentation Sections -->
+<ul class="space-y-6">
+<li>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2">Getting Started</h3>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">description</span>
+<span>Introduction</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">key</span>
+<span>Authentication</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">speed</span>
+<span>Rate Limits</span>
+</a>
+</li>
+</ul>
+</li>
+<li>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2">Core API (Active)</h3>
+<ul class="space-y-1">
+<!-- Active State Applied Here to API tab -->
+<li>
+<a class="flex items-center space-x-3 px-3 py-2 text-primary-fixed bg-surface-variant rounded-lg font-bold translate-x-1 transition-transform font-body-md text-body-md shadow-[0_0_10px_rgba(255,225,109,0.1)]" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-size: 20px;">code</span>
+<span>API</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">show_chart</span>
+<span>Market Data</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">pie_chart</span>
+<span>Portfolio</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">swap_horiz</span>
+<span>Orders</span>
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/20">
+<button class="w-full bg-primary-container text-on-primary-container font-label-caps text-label-caps py-3 rounded hover:opacity-90 transition-opacity">
+                New Analysis
+            </button>
+<div class="flex justify-between mt-4">
+<a class="flex items-center text-on-surface-variant hover:text-primary-fixed font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined mr-1" style="font-size: 16px;">help</span> Support
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Content Layout -->
+<main class="flex-1 flex flex-col lg:flex-row h-full overflow-hidden relative">
+<!-- Background Accent -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-primary-fixed/5 to-transparent pointer-events-none -z-10"></div>
+<!-- Documentation Canvas -->
+<div class="flex-1 overflow-y-auto px-margin-mobile md:px-margin-desktop py-8 lg:py-12 pb-24">
+<!-- Page Header -->
+<div class="max-w-3xl mb-12">
+<h2 class="font-display-lg text-display-lg text-primary mb-4 lg:text-[48px]">API Documentation</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    The Aureus Institutional API provides low-latency access to global market data, advanced AI execution protocols, and real-time portfolio analytics. Designed for high-frequency trading and quantitative research.
+                </p>
+</div>
+<!-- Endpoint Section -->
+<section class="max-w-3xl mb-16">
+<div class="flex items-center space-x-3 mb-6">
+<span class="bg-primary-container/20 text-primary-fixed font-data-mono text-data-mono px-2 py-1 rounded border border-primary-fixed/30">GET</span>
+<h3 class="font-headline-md text-headline-md text-primary">/v1/market/prices</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                    Retrieves real-time bid/ask prices for a specified asset class or individual ticker symbol. Recommended polling frequency for institutional tier is 50ms.
+                </p>
+<!-- Parameters Table -->
+<h4 class="font-label-caps text-label-caps text-on-surface mb-4">Query Parameters</h4>
+<div class="glass-panel rounded-xl overflow-hidden mb-8">
+<div class="grid grid-cols-12 gap-4 px-6 py-3 bg-surface-container-high/50 border-b border-outline-variant/30 font-label-caps text-label-caps text-on-surface-variant">
+<div class="col-span-3">Name</div>
+<div class="col-span-2">Type</div>
+<div class="col-span-2">Status</div>
+<div class="col-span-5">Description</div>
+</div>
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-outline-variant/10 hover:bg-surface-container-high/30 transition-colors">
+<div class="col-span-3 font-data-mono text-data-mono text-primary-fixed">symbol</div>
+<div class="col-span-2 font-data-mono text-data-mono text-on-surface">string</div>
+<div class="col-span-2 font-label-caps text-label-caps text-error">Required</div>
+<div class="col-span-5 font-body-md text-body-md text-on-surface-variant text-sm">The ticker symbol (e.g., BTC-USD).</div>
+</div>
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-outline-variant/10 hover:bg-surface-container-high/30 transition-colors">
+<div class="col-span-3 font-data-mono text-data-mono text-primary-fixed">depth</div>
+<div class="col-span-2 font-data-mono text-data-mono text-on-surface">integer</div>
+<div class="col-span-2 font-label-caps text-label-caps text-on-surface-variant">Optional</div>
+<div class="col-span-5 font-body-md text-body-md text-on-surface-variant text-sm">Order book depth. Default is 10. Max is 1000.</div>
+</div>
+</div>
+<!-- Another Endpoint -->
+<div class="flex items-center space-x-3 mb-6 mt-16">
+<span class="bg-surface-bright text-on-surface font-data-mono text-data-mono px-2 py-1 rounded border border-outline-variant/50">POST</span>
+<h3 class="font-headline-md text-headline-md text-primary">/v1/orders/execute</h3>
+</div>
+</section>
+</div>
+<!-- Right Code Snippet Sidebar -->
+<aside class="w-full lg:w-[500px] h-full flex-shrink-0 bg-surface-container-lowest border-l border-outline-variant/30 p-6 overflow-y-auto">
+<div class="sticky top-0 pb-6 bg-surface-container-lowest z-10 flex items-center justify-between">
+<div class="flex space-x-2">
+<button class="px-3 py-1 bg-surface-container-high text-primary-fixed font-data-mono text-data-mono text-xs rounded border border-outline-variant/50">cURL</button>
+<button class="px-3 py-1 bg-transparent text-on-surface-variant hover:text-on-surface font-data-mono text-data-mono text-xs rounded border border-transparent">Python</button>
+</div>
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">content_copy</span>
+</button>
+</div>
+<!-- Request Block -->
+<div class="mb-6">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Example Request</span>
+<div class="glass-code rounded-lg p-4 font-data-mono text-data-mono text-sm leading-relaxed overflow-x-auto shadow-inner">
+<pre class="text-on-surface"><span class="text-primary-fixed">curl</span> -X GET \
+  <span class="text-secondary">"https://api.aureus.terminal/v1/market/prices?symbol=BTC-USD&amp;depth=5"</span> \
+  -H <span class="text-secondary">"Authorization: Bearer YOUR_API_KEY"</span> \
+  -H <span class="text-secondary">"X-Aureus-Client: v2.1.0"</span></pre>
+</div>
+</div>
+<!-- Response Block -->
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Example Response (200 OK)</span>
+<div class="glass-code rounded-lg p-4 font-data-mono text-data-mono text-sm leading-relaxed overflow-x-auto shadow-inner">
+<pre class="text-on-surface">{
+  <span class="text-primary-fixed">"status"</span>: <span class="text-secondary">"success"</span>,
+  <span class="text-primary-fixed">"timestamp"</span>: 1715428911000,
+  <span class="text-primary-fixed">"data"</span>: {
+    <span class="text-primary-fixed">"symbol"</span>: <span class="text-secondary">"BTC-USD"</span>,
+    <span class="text-primary-fixed">"bids"</span>: [
+      [<span class="text-secondary">"64201.50"</span>, <span class="text-secondary">"1.25"</span>],
+      [<span class="text-secondary">"64200.00"</span>, <span class="text-secondary">"5.40"</span>]
+    ],
+    <span class="text-primary-fixed">"asks"</span>: [
+      [<span class="text-secondary">"64202.10"</span>, <span class="text-secondary">"0.85"</span>],
+      [<span class="text-secondary">"64205.00"</span>, <span class="text-secondary">"3.10"</span>]
+    ]
+  }
+}</pre>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Institutional Team Management - Aureus Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#d0c6ab",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-primary": "#3a3000",
+                      "surface": "#121317",
+                      "primary": "#ffffff",
+                      "secondary-container": "#474746",
+                      "surface-tint": "#e9c400",
+                      "outline": "#999077",
+                      "secondary-fixed": "#e4e2e1",
+                      "on-error": "#690005",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#776300",
+                      "surface-bright": "#38393d",
+                      "surface-container-highest": "#343439",
+                      "primary-fixed-dim": "#e9c400",
+                      "tertiary-fixed-dim": "#cec5bb",
+                      "on-tertiary-fixed": "#1f1b15",
+                      "on-background": "#e3e2e7",
+                      "tertiary-fixed": "#ebe1d6",
+                      "inverse-surface": "#e3e2e7",
+                      "error-container": "#93000a",
+                      "secondary": "#c8c6c5",
+                      "on-surface": "#e3e2e7",
+                      "on-secondary-fixed": "#1b1c1b",
+                      "on-secondary": "#303030",
+                      "on-tertiary": "#353029",
+                      "surface-container": "#1e1f24",
+                      "on-primary-fixed": "#221b00",
+                      "on-tertiary-fixed-variant": "#4b463e",
+                      "outline-variant": "#4a473e",
+                      "primary-fixed": "#ffe16d",
+                      "background": "#121317",
+                      "inverse-on-surface": "#2f3035",
+                      "primary-container": "#ffe16d",
+                      "surface-variant": "#343439",
+                      "surface-container-lowest": "#0d0e12",
+                      "on-tertiary-container": "#6a635b",
+                      "surface-container-high": "#292a2e",
+                      "tertiary-container": "#ebe1d6",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary-container": "#b6b5b4",
+                      "surface-dim": "#121317",
+                      "inverse-primary": "#705d00",
+                      "on-secondary-fixed-variant": "#474746",
+                      "on-primary-fixed-variant": "#544600",
+                      "tertiary": "#ffffff",
+                      "surface-container-low": "#1a1b20"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "unit": "4px",
+                      "gutter": "24px",
+                      "container-max": "1440px",
+                      "margin-mobile": "16px",
+                      "base-unit": "4px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full w-64 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant/20 py-gutter px-4 flex-shrink-0 relative z-20">
+<!-- Brand/Header -->
+<div class="mb-8 px-2 flex items-center space-x-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]" data-icon="terminal">terminal</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary-fixed leading-tight">AUREUS</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">Institutional Grade</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary-container text-on-primary-container font-label-caps text-label-caps py-3 rounded-DEFAULT mb-8 hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+<span>New Analysis</span>
+</button>
+<!-- Navigation Links -->
+<div class="flex-grow space-y-2">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Overview</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps">AI Insights</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps">Asset Classes</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="history">history</span>
+<span class="font-label-caps text-label-caps">History</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-primary-fixed bg-surface-variant font-bold translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-caps text-label-caps">Vault</span>
+</a>
+</div>
+<!-- Footer Links -->
+<div class="mt-auto space-y-2 pt-4 border-t border-outline-variant/20">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="code">code</span>
+<span class="font-label-caps text-label-caps">API</span>
+</a>
+<div class="flex items-center space-x-3 px-3 py-3 mt-2 bg-surface-container-highest rounded-lg">
+<img alt="Executive User" class="w-8 h-8 rounded object-cover grayscale opacity-80 mix-blend-screen" data-alt="A professional corporate headshot of a mature male executive wearing a tailored dark suit. High contrast lighting, dark background, serious and focused expression. The image should convey authority and trust, fitting for an institutional financial platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz_cSaPuuETLVyFuTzLGWmT8M2f4mfQrzihhg7XXTX_5CNicpGCnOKFm7WRq9NBLCAASEUJrZDCfpknvoqV2QqwZ7ZUoi_svwdzhgULNXrg6L3Jx8-_KL1e2VonND3CEqH-nwRPm_r4Y1WsyJsearS6qvbJK6A0mXkF0tIX-2RFDiHFsjLT5H1n2C4YOpDsq6IdirHty6qEhMCGW-Aw69zYQA8E5rBAGNGafOkDav_-B7cvh_ksQJGNiFBxeMrLDUq9HD6KBUprZg"/>
+<div class="overflow-hidden">
+<p class="font-label-caps text-label-caps text-on-surface truncate">Admin User</p>
+<p class="font-data-mono text-[10px] text-on-surface-variant truncate">ID: 492-X</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full relative overflow-y-auto bg-surface-container-lowest">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-margin-desktop w-full h-20 bg-surface/80 backdrop-blur-md dark:bg-surface/80 border-b border-outline-variant/30 sticky top-0 z-10">
+<div class="flex items-center space-x-8">
+<!-- Mobile Menu Trigger (Hidden on Desktop) -->
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined text-[24px]" data-icon="menu">menu</span>
+</button>
+<!-- Search Bar -->
+<div class="relative hidden sm:block w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]" data-icon="search">search</span>
+<input class="w-full bg-surface-container border border-outline-variant/50 rounded text-on-surface font-body-md text-[14px] pl-10 pr-3 py-2 focus:outline-none focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed transition-colors" placeholder="Search team members..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center space-x-6">
+<div class="flex space-x-4 text-on-surface-variant">
+<button class="hover:text-primary-fixed transition-colors duration-200">
+<span class="material-symbols-outlined text-[24px]" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:text-primary-fixed transition-colors duration-200">
+<span class="material-symbols-outlined text-[24px]" data-icon="settings">settings</span>
+</button>
+</div>
+<button class="bg-outline text-surface-lowest px-4 py-1.5 rounded font-label-caps text-label-caps hover:bg-primary-fixed transition-colors">Trade</button>
+<img alt="Investor profile avatar" class="w-8 h-8 rounded object-cover border border-outline-variant/50" data-alt="A professional corporate headshot of a mature male executive wearing a tailored dark suit. High contrast lighting, dark background, serious and focused expression. The image should convey authority and trust, fitting for an institutional financial platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDjg03JelARomMdIjj1sgF7KIYAZNp89HOR2cAuOfpiS0698inZOvd_NzNFhiEhxFWru_yHy09nc0mrMWZtpUj7CXntDaMUTNavms-IypCn5--AKtEhgb14dfsGSZWtDG493x8mhJejaJUfsU-RvD4QluPLd0lc3ykDC3nxp7voVR0FJiL_A8swNf5ASaFZeuZicaUYD4Vt8fO4X1DIXVtNLmyUbHfugqsP6_bg4_zwl7x7aIXt8vktsjwf-_hv7nGsqsXoC7Qcws"/>
+</div>
+</header>
+<!-- Canvas -->
+<div class="p-margin-desktop w-full max-w-container-max mx-auto space-y-gutter">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-display-lg text-display-lg tracking-tighter text-on-surface">Team Management</h2>
+<p class="font-body-md text-on-surface-variant mt-2 max-w-2xl">Manage institutional access, review session activity, and control platform permissions across your organizational unit.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded font-label-caps text-label-caps flex items-center space-x-2 hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(255,225,109,0.15)]">
+<span class="material-symbols-outlined text-[18px]" data-icon="person_add">person_add</span>
+<span>Invite Member</span>
+</button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Metrics Bar (Top Full Width) -->
+<div class="col-span-1 lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Metric 1 -->
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-fixed/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Total Seats Allocated</span>
+<span class="material-symbols-outlined text-primary-fixed opacity-80" data-icon="group">group</span>
+</div>
+<div class="flex items-baseline space-x-2 relative z-10">
+<span class="font-data-mono text-[32px] text-on-surface leading-none">08</span>
+<span class="font-data-mono text-[16px] text-outline">/ 12</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 mt-4 rounded-full overflow-hidden relative z-10">
+<div class="bg-primary-fixed h-full rounded-full" style="width: 66%"></div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary-fixed/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Active Sessions</span>
+<span class="material-symbols-outlined text-secondary-fixed opacity-80" data-icon="sensors">sensors</span>
+</div>
+<div class="flex items-baseline space-x-2 relative z-10">
+<span class="font-data-mono text-[32px] text-on-surface leading-none">03</span>
+<span class="font-label-caps text-[10px] text-outline bg-surface-container px-2 py-0.5 rounded">LIVE</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-tint/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Pending Invites</span>
+<span class="material-symbols-outlined text-surface-tint opacity-80" data-icon="mail">mail</span>
+</div>
+<div class="flex items-baseline space-x-2 relative z-10">
+<span class="font-data-mono text-[32px] text-on-surface leading-none">02</span>
+<span class="font-body-md text-[12px] text-on-surface-variant">Awaiting action</span>
+</div>
+</div>
+</div>
+<!-- Main Directory Table (Left Side) -->
+<div class="col-span-1 lg:col-span-8 bg-surface-container-low border border-outline-variant/30 rounded-xl flex flex-col overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant/20 flex justify-between items-center bg-surface-container-lowest/50">
+<h3 class="font-headline-md text-[18px] text-on-surface">Member Directory</h3>
+<div class="flex space-x-2">
+<button class="p-1.5 rounded bg-surface-container text-on-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest/20 font-label-caps text-label-caps text-on-surface-variant">
+<th class="px-6 py-3 font-normal border-b border-outline-variant/20">Identity</th>
+<th class="px-6 py-3 font-normal border-b border-outline-variant/20">Role / Access</th>
+<th class="px-6 py-3 font-normal border-b border-outline-variant/20">Status</th>
+<th class="px-6 py-3 font-normal border-b border-outline-variant/20">Last Activity</th>
+<th class="px-6 py-3 font-normal border-b border-outline-variant/20 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-[14px]">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant/10 hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center space-x-3">
+<img alt="User Avatar" class="w-8 h-8 rounded object-cover border border-outline-variant/50 grayscale mix-blend-screen" data-alt="A professional corporate headshot of a mature male executive wearing a tailored dark suit. High contrast lighting, dark background, serious and focused expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvsC0AUtI5Eq-WEuLQTWvf3PrRMK1Qy-ZLn2sSh1p1vucweFyWPQqDPjZoMKkcAgGsiAj77fA_VA9FDjEQDJzQN92xRfCpQWxW32c55551WS_FL55KsrAHgKyFhpal_wiX2DLvH-CClk_AXjpb5C7oDcBYnZc2CkzR0EpVlisO9eSdt2KQrDnLA9N0ZyY6LpEDWqd1xC_s9dZwgNLEsxLJhyiT7epsc59FDW47FQ74dfuiMlyGcGQDcWVfoi_dLg88acljZTIkWAk"/>
+<div>
+<p class="text-on-surface font-medium">Arthur Pendelton</p>
+<p class="text-on-surface-variant text-[12px]">a.pendelton@aureus.inst</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-container/50 text-secondary-fixed text-[11px] font-label-caps border border-outline-variant/30">Owner</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-fixed shadow-[0_0_5px_rgba(255,225,109,0.5)]"></div>
+<span class="text-on-surface-variant text-[12px]">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 font-data-mono text-outline text-[13px]">12:44:02 UTC</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant/10 hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded bg-surface-container-highest border border-outline-variant/50 flex items-center justify-center text-on-surface-variant font-label-caps">JS</div>
+<div>
+<p class="text-on-surface font-medium">James Sterling</p>
+<p class="text-on-surface-variant text-[12px]">j.sterling@aureus.inst</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-surface-container text-on-surface text-[11px] font-label-caps border border-outline-variant/30">Admin</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-fixed shadow-[0_0_5px_rgba(255,225,109,0.5)]"></div>
+<span class="text-on-surface-variant text-[12px]">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 font-data-mono text-outline text-[13px]">09:12:45 UTC</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant/10 hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded bg-surface-container-highest border border-outline-variant/50 flex items-center justify-center text-on-surface-variant font-label-caps">EC</div>
+<div>
+<p class="text-on-surface font-medium">Elena Rostova</p>
+<p class="text-on-surface-variant text-[12px]">e.rostova@aureus.inst</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-surface-container text-on-surface text-[11px] font-label-caps border border-outline-variant/30">Analyst</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+<span class="text-outline text-[12px]">Offline</span>
+</div>
+</td>
+<td class="px-6 py-4 font-data-mono text-outline text-[13px]">Yesterday</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Activity Feed & Invites (Right Side) -->
+<div class="col-span-1 lg:col-span-4 space-y-gutter">
+<!-- Activity Log -->
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-xl flex flex-col h-[400px]">
+<div class="px-6 py-4 border-b border-outline-variant/20 bg-surface-container-lowest/50">
+<h3 class="font-headline-md text-[16px] text-on-surface">Recent Team Activity</h3>
+</div>
+<div class="p-6 overflow-y-auto flex-1 space-y-6 relative">
+<!-- Line -->
+<div class="absolute left-[35px] top-6 bottom-6 w-px bg-outline-variant/20"></div>
+<!-- Feed Item -->
+<div class="relative flex items-start space-x-4">
+<div class="w-6 h-6 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center relative z-10 mt-1">
+<span class="material-symbols-outlined text-[12px] text-primary-fixed" data-icon="vpn_key">vpn_key</span>
+</div>
+<div class="flex-1">
+<p class="text-[13px] text-on-surface"><span class="font-medium">James Sterling</span> updated API permissions for Prod_01</p>
+<p class="font-data-mono text-[11px] text-outline mt-1">10m ago</p>
+</div>
+</div>
+<!-- Feed Item -->
+<div class="relative flex items-start space-x-4">
+<div class="w-6 h-6 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center relative z-10 mt-1">
+<span class="material-symbols-outlined text-[12px] text-secondary-fixed" data-icon="person_add">person_add</span>
+</div>
+<div class="flex-1">
+<p class="text-[13px] text-on-surface"><span class="font-medium">Arthur Pendelton</span> sent invitation to m.chen@aureus.inst</p>
+<p class="font-data-mono text-[11px] text-outline mt-1">2h ago</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Small Promotional/Info Card -->
+<div class="bg-gradient-to-br from-surface-container to-surface-container-lowest border border-outline-variant/30 rounded-xl p-6 relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[120px]" data-icon="shield">shield</span>
+</div>
+<h4 class="font-headline-md text-[14px] text-primary-fixed mb-2 flex items-center space-x-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified_user">verified_user</span>
+<span>Enterprise Security</span>
+</h4>
+<p class="text-[12px] text-on-surface-variant leading-relaxed">Ensure all new members complete 2FA setup within 24 hours of joining. Review role access levels monthly.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

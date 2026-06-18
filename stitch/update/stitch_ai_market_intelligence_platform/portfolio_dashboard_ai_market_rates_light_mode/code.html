@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aureus Terminal - Portfolio Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#1a1b20",
+                        "error": "#ba1a1a",
+                        "tertiary": "#5b5c60",
+                        "surface-container-high": "#e7e8e9",
+                        "on-error": "#ffffff",
+                        "on-background": "#191c1d",
+                        "secondary": "#705d00",
+                        "primary": "#785600",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#221b00",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface": "#f8f9fa",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-primary": "#f7bd48",
+                        "outline-variant": "#d3c4af",
+                        "secondary-fixed": "#ffe16d",
+                        "inverse-surface": "#2e3132",
+                        "primary-fixed": "#ffdea6",
+                        "primary-container": "#986d00",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "surface-dim": "#d9dadb",
+                        "tertiary-container": "#747479",
+                        "secondary-container": "#fcd400",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-container": "#6e5c00",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#e9c400",
+                        "outline": "#817563",
+                        "on-tertiary-container": "#fefcff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#e3e2e7",
+                        "surface-tint": "#7b5800",
+                        "primary-fixed-dim": "#f7bd48",
+                        "on-primary-fixed": "#271900",
+                        "on-primary-container": "#fffbff",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container": "#edeeef",
+                        "on-surface-variant": "#4f4535",
+                        "on-surface": "#191c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "48px",
+                        "base": "8px",
+                        "margin": "32px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "sm": "12px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["manrope"],
+                        "body-lg": ["inter"],
+                        "headline-md": ["manrope"],
+                        "display-lg": ["manrope"],
+                        "label-sm": ["jetbrainsMono"],
+                        "body-md": ["inter"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #191c1d; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(184, 134, 11, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-flat {
+            background: #F8F9FA;
+            border: 1px solid #F1F3F5;
+        }
+
+        .golden-glow {
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e1e3e4; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d3c4af; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden bg-background">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-gutter px-4 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant/20 docked left-0 h-full w-64 shrink-0 z-20">
+<!-- Brand / Header -->
+<div class="flex items-center gap-sm mb-lg px-2">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h1 class="font-display-lg text-[20px] font-bold text-primary-fixed leading-tight tracking-tight">Aureus Terminal</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Institutional Grade</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 space-y-sm">
+<a class="flex items-center gap-md px-4 py-3 text-primary-fixed bg-surface-variant rounded-lg font-bold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Overview</span>
+</a>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps">AI Insights</span>
+</a>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps">Asset Classes</span>
+</a>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-caps text-label-caps">History</span>
+</a>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+<span class="font-label-caps text-label-caps">Vault</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="mt-auto mb-md">
+<button class="w-full py-3 bg-[#B8860B] text-white rounded-lg font-body-md font-semibold golden-glow hover:bg-primary transition-colors flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                New Analysis
+            </button>
+</div>
+<!-- Footer Links -->
+<div class="border-t border-outline-variant/20 pt-md space-y-xs">
+<a class="flex items-center gap-md px-4 py-2 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="flex items-center gap-md px-4 py-2 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+<span class="font-label-caps text-label-caps">API</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto relative">
+<!-- TopNavBar (Mobile Only) -->
+<nav class="md:hidden flex justify-between items-center px-4 py-3 bg-surface/80 backdrop-blur-md sticky top-0 z-30 border-b border-outline-variant/30">
+<div class="font-display-lg text-[24px] font-bold text-primary-fixed tracking-tighter">AUREUS</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="notifications">notifications</span>
+<img alt="Investor profile avatar" class="w-8 h-8 rounded-full" data-alt="A professional headshot of a financial executive used as a profile avatar. The lighting is soft and studio-quality. The background is a clean, neutral white to match a bright, premium UI. The individual appears confident and authoritative, suitable for an institutional wealth management platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE3aWk8Ql9iCzFwA8vjLYImBX-5M4382YUYeWTEj97IfuhTZlbIAEXbEU5Oy1oKaCUrCuZVjXKyK2FSwdW8FYrDZB1buVGKR3lKV1s1flL2crYqCj0g94-Qp7b2jnS0LqNddCINwGGfBNm2mNCtbduzpO90hmKdhNU0u_ZrUZIAjy-J1tkX-uGgmf20F2v0pxJDHBInbUoradfN5YIrqRqEnWwQiocenAiaUoTci26vn7nHwNJl9_kGkoWxyDaxqMy3Zw61d910uI"/>
+</div>
+</nav>
+<!-- Canvas -->
+<div class="px-margin py-lg max-w-[1200px] mx-auto w-full space-y-xl">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
+<div>
+<h2 class="font-body-lg text-body-lg text-on-surface-variant mb-xs">Total Net Worth</h2>
+<div class="flex items-baseline gap-4">
+<h1 class="font-display-lg text-display-lg text-on-background">$12,450,890.00</h1>
+<span class="flex items-center text-[#B8860B] font-jetbrains text-label-sm font-semibold bg-surface-container-low px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span>
+                            +2.45%
+                        </span>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="px-6 py-2 border border-[#B8860B] text-[#B8860B] rounded-lg font-body-md hover:bg-surface-container-low transition-colors">Export Report</button>
+<button class="px-6 py-2 bg-[#B8860B] text-white rounded-lg font-body-md font-semibold golden-glow hover:bg-primary transition-colors">Trade</button>
+</div>
+</header>
+<!-- Main Grid layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Performance Chart -->
+<div class="lg:col-span-8 glass-panel rounded-xl p-md relative overflow-hidden flex flex-col min-h-[400px]">
+<div class="flex justify-between items-center mb-md z-10">
+<h3 class="font-headline-md text-headline-md text-on-background">Performance</h3>
+<div class="flex gap-2 bg-surface-container-low p-1 rounded-lg">
+<button class="px-3 py-1 text-label-sm font-jetbrains text-on-surface-variant rounded hover:bg-surface-variant">1D</button>
+<button class="px-3 py-1 text-label-sm font-jetbrains bg-white text-primary shadow-sm rounded">7D</button>
+<button class="px-3 py-1 text-label-sm font-jetbrains text-on-surface-variant rounded hover:bg-surface-variant">1M</button>
+<button class="px-3 py-1 text-label-sm font-jetbrains text-on-surface-variant rounded hover:bg-surface-variant">1Y</button>
+</div>
+</div>
+<!-- Faux Chart Area -->
+<div class="flex-1 relative w-full h-full border-b border-l border-outline-variant/30 flex items-end p-4">
+<!-- Y-Axis Labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-label-sm font-jetbrains text-on-surface-variant -ml-12 pb-8">
+<span>$12.5M</span>
+<span>$12.4M</span>
+<span>$12.3M</span>
+<span>$12.2M</span>
+</div>
+<!-- SVG Line Chart Mockup -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 50">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#B8860B" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#B8860B" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,40 Q10,35 20,45 T40,30 T60,20 T80,25 T100,10 L100,50 L0,50 Z" fill="url(#chartGradient)"></path>
+<path d="M0,40 Q10,35 20,45 T40,30 T60,20 T80,25 T100,10" fill="none" stroke="#B8860B" stroke-width="0.5"></path>
+<!-- Data Point -->
+<circle cx="100" cy="10" fill="#B8860B" r="1.5"></circle>
+<circle class="animate-ping" cx="100" cy="10" fill="none" r="3" stroke="#B8860B" stroke-width="0.5"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-0 left-0 w-full flex justify-between text-label-sm font-jetbrains text-on-surface-variant -mb-6 px-4">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</div>
+</div>
+<!-- Asset Allocation -->
+<div class="lg:col-span-4 card-flat rounded-xl p-md flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-background mb-lg">Allocation</h3>
+<div class="flex-1 flex flex-col justify-center items-center relative">
+<!-- Faux Donut Chart -->
+<div class="w-48 h-48 rounded-full border-[16px] border-surface-container-high relative flex items-center justify-center" style="background: conic-gradient(#1a1b20 0% 45%, #747479 45% 70%, #B8860B 70% 90%, #d3c4af 90% 100%); border-radius: 50%; box-sizing: border-box;">
+<div class="w-32 h-32 bg-background rounded-full flex flex-col items-center justify-center">
+<span class="text-label-sm font-jetbrains text-on-surface-variant">Top Asset</span>
+<span class="text-body-lg font-bold text-on-background">BTC</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="mt-lg w-full space-y-3">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#1a1b20]"></span><span class="font-body-md text-on-background">Bitcoin</span></div>
+<span class="font-jetbrains font-medium">45%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#747479]"></span><span class="font-body-md text-on-background">Ethereum</span></div>
+<span class="font-jetbrains font-medium">25%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#B8860B]"></span><span class="font-body-md text-on-background">Gold</span></div>
+<span class="font-jetbrains font-medium">20%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#d3c4af]"></span><span class="font-body-md text-on-background">Silver</span></div>
+<span class="font-jetbrains font-medium">10%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Current Holdings Table -->
+<div class="glass-panel rounded-xl p-md overflow-x-auto">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-background">Current Holdings</h3>
+<button class="text-[#B8860B] text-sm font-semibold hover:underline flex items-center">View All <span class="material-symbols-outlined text-[18px] ml-1">arrow_forward</span></button>
+</div>
+<table class="w-full text-left border-collapse min-w-[700px]">
+<thead>
+<tr class="border-b border-outline-variant/30 text-on-surface-variant text-label-sm font-jetbrains uppercase tracking-wider">
+<th class="py-3 px-4 font-normal">Asset</th>
+<th class="py-3 px-4 font-normal text-right">Price</th>
+<th class="py-3 px-4 font-normal text-right">Balance</th>
+<th class="py-3 px-4 font-normal text-right">Value (USD)</th>
+<th class="py-3 px-4 font-normal text-right">24h Change</th>
+</tr>
+</thead>
+<tbody class="font-body-md">
+<tr class="border-b border-outline-variant/10 hover:bg-surface/50 transition-colors">
+<td class="py-4 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-xs">BTC</div>
+<div>
+<div class="font-semibold text-on-background">Bitcoin</div>
+<div class="text-xs text-on-surface-variant">Digital Gold</div>
+</div>
+</td>
+<td class="py-4 px-4 text-right font-jetbrains text-on-background">$64,230.00</td>
+<td class="py-4 px-4 text-right font-jetbrains text-on-background">87.24 BTC</td>
+<td class="py-4 px-4 text-right font-jetbrains font-semibold text-on-background">$5,602,825.20</td>
+<td class="py-4 px-4 text-right font-jetbrains text-[#B8860B]">+3.2%</td>
+</tr>
+<tr class="border-b border-outline-variant/10 hover:bg-surface/50 transition-colors">
+<td class="py-4 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-xs">ETH</div>
+<div>
+<div class="font-semibold text-on-background">Ethereum</div>
+<div class="text-xs text-on-surface-variant">Smart Contracts</div>
+</div>
+</td>
+<td class="py-4 px-4 text-right font-jetbrains text-on-background">$3,450.50</td>
+<td class="py-4 px-4 text-right font-jetbrains text-on-background">902.10 ETH</td>
+<td class="py-4 px-4 text-right font-jetbrains font-semibold text-on-background">$3,112,696.05</td>
+<td class="py-4 px-4 text-right font-jetbrains text-[#B8860B]">+1.8%</td>
+</tr>
+<tr class="border-b border-outline-variant/10 hover:bg-surface/50 transition-colors">
+<td class="py-4 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-xs">GLD</div>
+<div>
+<div class="font-semibold text-on-background">Physical Gold</div>
+<div class="text-xs text-on-surface-variant">Vaulted</div>
+</div>
+</td>
+<td class="py-4 px-4 text-right font-jetbrains text-on-background">$2,340.10</td>
+<td class="py-4 px-4 text-right font-jetbrains text-on-background">1,064 oz</td>
+<td class="py-4 px-4 text-right font-jetbrains font-semibold text-on-background">$2,490,178.40</td>
+<td class="py-4 px-4 text-right font-jetbrains text-tertiary">-0.4%</td>
+</tr>
+<tr class="hover:bg-surface/50 transition-colors">
+<td class="py-4 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-xs">SLV</div>
+<div>
+<div class="font-semibold text-on-background">Physical Silver</div>
+<div class="text-xs text-on-surface-variant">Vaulted</div>
+</div>
+</td>
+<td class="py-4 px-4 text-right font-jetbrains text-on-background">$28.45</td>
+<td class="py-4 px-4 text-right font-jetbrains text-on-background">43,767 oz</td>
+<td class="py-4 px-4 text-right font-jetbrains font-semibold text-on-background">$1,245,190.35</td>
+<td class="py-4 px-4 text-right font-jetbrains text-[#B8860B]">+0.9%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body></html>

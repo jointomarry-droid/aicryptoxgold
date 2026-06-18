@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Market Alerts Management - Axon Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface-dim": "#121317",
+                            "surface-tint": "#e9c400",
+                            "tertiary-fixed-dim": "#cec5bb",
+                            "surface-bright": "#38393d",
+                            "on-primary": "#3a3000",
+                            "on-primary-container": "#776300",
+                            "on-error": "#690005",
+                            "secondary": "#c8c6c5",
+                            "on-tertiary-container": "#6a635b",
+                            "surface-container-highest": "#343439",
+                            "surface-container-lowest": "#0d0e12",
+                            "primary": "#ffffff",
+                            "on-surface-variant": "#ccc6bb",
+                            "surface-container": "#1e1f24",
+                            "surface-variant": "#343439",
+                            "error-container": "#93000a",
+                            "error": "#ffb4ab",
+                            "on-tertiary-fixed-variant": "#4b463e",
+                            "on-surface": "#e3e2e7",
+                            "inverse-on-surface": "#2f3035",
+                            "outline-variant": "#4a473e",
+                            "outline": "#999077",
+                            "surface-container-high": "#292a2e",
+                            "primary-fixed": "#ffe16d",
+                            "surface": "#121317",
+                            "on-background": "#e3e2e7",
+                            "inverse-primary": "#705d00",
+                            "secondary-fixed-dim": "#c8c6c5",
+                            "background": "#121317",
+                            "on-primary-fixed": "#221b00",
+                            "inverse-surface": "#e3e2e7",
+                            "on-secondary-fixed": "#1b1c1b",
+                            "tertiary-container": "#ebe1d6",
+                            "on-tertiary": "#353029",
+                            "tertiary-fixed": "#ebe1d6",
+                            "on-primary-fixed-variant": "#544600",
+                            "primary-container": "#ffe16d",
+                            "tertiary": "#ffffff",
+                            "on-error-container": "#ffdad6",
+                            "on-secondary-container": "#b6b5b4",
+                            "on-secondary-fixed-variant": "#474746",
+                            "secondary-container": "#474746",
+                            "on-tertiary-fixed": "#1f1b15",
+                            "secondary-fixed": "#e4e2e1",
+                            "on-secondary": "#303030",
+                            "primary-fixed-dim": "#e9c400",
+                            "surface-container-low": "#1a1b20"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "margin-mobile": "16px",
+                            "container-max": "1440px",
+                            "base-unit": "4px",
+                            "unit": "4px",
+                            "margin-desktop": "40px",
+                            "gutter": "24px"
+                    },
+                    "fontFamily": {
+                            "label-caps": [
+                                    "Inter"
+                            ],
+                            "headline-md": [
+                                    "Manrope"
+                            ],
+                            "display-lg": [
+                                    "Manrope"
+                            ],
+                            "display-lg-mobile": [
+                                    "Manrope"
+                            ],
+                            "data-mono": [
+                                    "JetBrains Mono"
+                            ],
+                            "body-lg": [
+                                    "Inter"
+                            ],
+                            "body-md": [
+                                    "Inter"
+                            ]
+                    },
+                    "fontSize": {
+                            "label-caps": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "letterSpacing": "0.1em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "display-lg": [
+                                    "48px",
+                                    {
+                                            "lineHeight": "56px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "display-lg-mobile": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "40px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "data-mono": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "letterSpacing": "0.02em",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "28px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "body-md": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "fontWeight": "400"
+                                    }
+                            ]
+                    }
+            },
+                },
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000; /* Absolute black as requested */
+            color: #e3e2e7;
+        }
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        .glass-panel {
+            background: rgba(30, 31, 36, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #4a473e; /* outline-variant */
+        }
+        .gold-hairline {
+            border: 1px solid #e9c400; /* surface-tint */
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #e9c400 0%, #776300 100%);
+        }
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #ffe16d 0%, #e9c400 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased flex flex-col min-h-screen pt-16 pb-20">
+<!-- TopAppBar from JSON -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest fixed top-0 w-full z-50 border-b border-outline-variant flex justify-between items-center px-margin-mobile h-16 w-full">
+<button class="text-primary dark:text-primary hover:bg-surface-bright transition-colors active:opacity-80 transition-opacity p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-display-lg-mobile text-display-lg-mobile tracking-tighter text-surface-tint">
+            AXON TERMINAL
+        </div>
+<button class="text-primary dark:text-primary hover:bg-surface-bright transition-colors active:opacity-80 transition-opacity p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-6 flex flex-col gap-6">
+<!-- Header -->
+<div class="flex flex-col gap-1">
+<h1 class="font-headline-md text-headline-md text-primary">Market Alerts</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Configure high-priority triggers and deploy monitors.</p>
+</div>
+<!-- Alert Creation Module -->
+<section class="glass-panel rounded-xl p-4 flex flex-col gap-5">
+<div class="flex justify-between items-center border-b border-outline-variant pb-3">
+<h2 class="font-label-caps text-label-caps text-surface-tint">DEPLOY NEW MONITOR</h2>
+<span class="material-symbols-outlined text-surface-tint" style="font-variation-settings: 'FILL' 1;">add_alert</span>
+</div>
+<!-- Target Asset -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-secondary">TARGET ASSET</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg py-3 pl-10 pr-4 text-primary font-data-mono text-data-mono focus:border-surface-tint focus:ring-1 focus:ring-surface-tint transition-colors placeholder-on-surface-variant/50" placeholder="e.g. BTC/USD, ETH, AAPL" type="text"/>
+</div>
+</div>
+<!-- Trigger Condition -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-secondary">TRIGGER CONDITION</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="bg-surface-container-high border gold-hairline rounded-lg py-2 flex flex-col items-center justify-center gap-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-surface-tint text-sm">attach_money</span>
+<span class="font-label-caps text-label-caps text-surface-tint">PRICE</span>
+</button>
+<button class="bg-surface-container border border-outline-variant rounded-lg py-2 flex flex-col items-center justify-center gap-1 hover:border-outline transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">show_chart</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">VOLATILITY</span>
+</button>
+<button class="bg-surface-container border border-outline-variant rounded-lg py-2 flex flex-col items-center justify-center gap-1 hover:border-outline transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">smart_toy</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">AI TREND</span>
+</button>
+</div>
+</div>
+<!-- Threshold Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-secondary">THRESHOLD PARAMETERS</label>
+<div class="flex gap-2">
+<select class="bg-surface-container-low border border-outline-variant rounded-lg py-3 px-4 text-primary font-data-mono text-data-mono focus:border-surface-tint w-1/3">
+<option>CROSSES ABOVE</option>
+<option>CROSSES BELOW</option>
+<option>EQUALS</option>
+</select>
+<input class="w-2/3 bg-surface-container-low border border-outline-variant rounded-lg py-3 px-4 text-primary font-data-mono text-data-mono focus:border-surface-tint focus:ring-1 focus:ring-surface-tint transition-colors" placeholder="Value..." type="text"/>
+</div>
+</div>
+<!-- CTA -->
+<button class="gold-gradient-bg text-on-primary-container font-label-caps text-label-caps py-4 rounded-lg mt-2 active:scale-[0.98] transition-transform shadow-[0_0_15px_rgba(233,196,0,0.2)]">
+                DEPLOY ALERT
+            </button>
+</section>
+<!-- Active Monitors List -->
+<section class="flex flex-col gap-3 mt-4">
+<h2 class="font-label-caps text-label-caps text-secondary pl-1">ACTIVE MONITORS</h2>
+<!-- Alert Card 1 -->
+<div class="glass-panel rounded-xl p-4 flex flex-col gap-3 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-surface-tint"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-[18px] font-bold text-primary">BTC/USD</span>
+<span class="bg-surface-tint/10 text-surface-tint font-label-caps text-[10px] px-2 py-0.5 rounded border border-surface-tint/30">PRICE</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-highest px-2 py-1 rounded-full border border-outline-variant">
+<div class="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse"></div>
+<span class="font-label-caps text-[10px] text-on-surface">ACTIVE</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-1 border-t border-outline-variant/50 pt-3">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-secondary">CURRENT</span>
+<span class="font-data-mono text-data-mono text-primary">$64,231.50</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-secondary">TARGET (&gt; ABOVE)</span>
+<span class="font-data-mono text-data-mono text-surface-tint">$65,000.00</span>
+</div>
+</div>
+<div class="text-right mt-1">
+<span class="font-data-mono text-[10px] text-on-surface-variant">Created: 10:42:01 UTC</span>
+</div>
+</div>
+<!-- Alert Card 2 -->
+<div class="glass-panel rounded-xl p-4 flex flex-col gap-3 relative overflow-hidden group border-surface-tint/30">
+<div class="absolute inset-0 bg-surface-tint/5 opacity-50"></div>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#ef4444]"></div>
+<div class="flex justify-between items-start relative z-10">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-[18px] font-bold text-primary">XAU/USD</span>
+<span class="bg-surface-variant text-on-surface font-label-caps text-[10px] px-2 py-0.5 rounded border border-outline-variant">VOLATILITY</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-highest px-2 py-1 rounded-full border border-surface-tint">
+<span class="material-symbols-outlined text-surface-tint text-[12px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-caps text-[10px] text-surface-tint">TRIGGERED</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-1 border-t border-outline-variant/50 pt-3 relative z-10">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-secondary">CURRENT SPREAD</span>
+<span class="font-data-mono text-data-mono text-primary">4.2%</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-secondary">TARGET (&gt; ABOVE)</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant">3.5%</span>
+</div>
+</div>
+<div class="text-right mt-1 relative z-10">
+<span class="font-data-mono text-[10px] text-surface-tint">Triggered: 14:12:55 UTC</span>
+</div>
+</div>
+<!-- Alert Card 3 -->
+<div class="glass-panel rounded-xl p-4 flex flex-col gap-3 relative overflow-hidden group opacity-70">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-outline"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-[18px] font-bold text-primary">ETH/USD</span>
+<span class="bg-surface-variant text-on-surface font-label-caps text-[10px] px-2 py-0.5 rounded border border-outline-variant">AI TREND</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-lowest px-2 py-1 rounded-full border border-outline-variant">
+<span class="font-label-caps text-[10px] text-on-surface-variant">PAUSED</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-1 border-t border-outline-variant/50 pt-3">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-secondary">CURRENT SCORE</span>
+<span class="font-data-mono text-data-mono text-primary">0.68</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-secondary">TARGET (&lt; BELOW)</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant">0.45</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar from JSON (Mobile Only) -->
+<nav class="md:hidden bg-surface-container-lowest dark:bg-surface-container-lowest fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base-unit py-2 border-t border-outline-variant">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined mb-1">leaderboard</span>
+<span class="font-label-caps text-[10px]">Markets</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined mb-1">newspaper</span>
+<span class="font-label-caps text-[10px]">News</span>
+</button>
+<!-- Active State for Tools -->
+<button class="flex flex-col items-center justify-center text-surface-tint bg-surface-container-high rounded-xl p-2 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">construction</span>
+<span class="font-label-caps text-[10px]">Tools</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined mb-1">pie_chart</span>
+<span class="font-label-caps text-[10px]">Portfolio</span>
+</button>
+</nav>
+</body></html>

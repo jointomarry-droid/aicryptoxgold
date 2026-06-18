@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Support Center - Neural Rates</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Manrope:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "outline": "#817563",
+                        "primary": "#785600",
+                        "on-surface": "#191c1d",
+                        "secondary": "#705d00",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "on-primary-fixed": "#271900",
+                        "on-primary-container": "#fffbff",
+                        "surface-container": "#edeeef",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container-high": "#e7e8e9",
+                        "primary-fixed": "#ffdea6",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface": "#f8f9fa",
+                        "on-surface-variant": "#4f4535",
+                        "on-background": "#191c1d",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#1a1b20",
+                        "tertiary-container": "#747479",
+                        "surface-container-low": "#f3f4f5",
+                        "on-secondary-fixed": "#221b00",
+                        "on-tertiary-container": "#fefcff",
+                        "inverse-primary": "#f7bd48",
+                        "tertiary-fixed": "#e3e2e7",
+                        "primary-fixed-dim": "#f7bd48",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#fcd400",
+                        "primary-container": "#986d00",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "tertiary": "#5b5c60",
+                        "surface-tint": "#7b5800",
+                        "on-secondary-fixed-variant": "#544600",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-secondary-container": "#6e5c00",
+                        "background": "#f8f9fa",
+                        "surface-dim": "#d9dadb",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#d3c4af",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9fa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "xl": "80px",
+                        "lg": "48px",
+                        "base": "8px",
+                        "margin": "32px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Manrope"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #f8f9fa; color: #191c1d; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid #F1F3F5;
+        }
+        .golden-glow {
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md antialiased md:hidden pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-[16px] h-16 bg-surface-container-high border-b border-outline-variant">
+<button class="text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">NEURAL RATES</h1>
+<button class="text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-[16px] flex flex-col gap-8">
+<!-- Hero Search -->
+<section class="flex flex-col gap-4">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">How can we help?</h2>
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50" placeholder="Search documentation, articles, or keywords..." type="text"/>
+</div>
+</section>
+<!-- Categories Bento -->
+<section class="flex flex-col gap-4">
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">Categories</h3>
+<div class="grid grid-cols-2 gap-4">
+<a class="glass-panel p-4 rounded-xl flex flex-col gap-3 hover:border-primary transition-colors group" href="#">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+</div>
+<div>
+<h4 class="font-body-md font-semibold text-on-surface">Getting Started</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Platform basics</p>
+</div>
+</a>
+<a class="glass-panel p-4 rounded-xl flex flex-col gap-3 hover:border-primary transition-colors group" href="#">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary">api</span>
+</div>
+<div>
+<h4 class="font-body-md font-semibold text-on-surface">Technical API</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Endpoints &amp; docs</p>
+</div>
+</a>
+<a class="glass-panel p-4 rounded-xl flex flex-col gap-3 hover:border-primary transition-colors group" href="#">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary">manage_accounts</span>
+</div>
+<div>
+<h4 class="font-body-md font-semibold text-on-surface">Account &amp; Billing</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Manage subs</p>
+</div>
+</a>
+<a class="glass-panel p-4 rounded-xl flex flex-col gap-3 hover:border-primary transition-colors group" href="#">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary">candlestick_chart</span>
+</div>
+<div>
+<h4 class="font-body-md font-semibold text-on-surface">Market Data</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Feeds &amp; latency</p>
+</div>
+</a>
+</div>
+</section>
+<!-- Popular FAQs -->
+<section class="flex flex-col gap-4">
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">Popular Questions</h3>
+<div class="flex flex-col bg-surface border border-outline-variant rounded-xl overflow-hidden">
+<details class="group border-b border-outline-variant last:border-b-0">
+<summary class="flex justify-between items-center font-body-md text-on-surface p-4 cursor-pointer list-none">
+<span>How to generate API keys?</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-4 pb-4 font-body-md text-on-surface-variant text-[14px]">
+                        Navigate to Settings &gt; Developer &gt; API Keys. Click 'Generate New Key', assign permissions, and securely store your secret.
+                    </div>
+</details>
+<details class="group border-b border-outline-variant last:border-b-0">
+<summary class="flex justify-between items-center font-body-md text-on-surface p-4 cursor-pointer list-none">
+<span>What is the index calculation methodology?</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-4 pb-4 font-body-md text-on-surface-variant text-[14px]">
+                        Our indices use a volume-weighted average price (VWAP) sourced from tier-1 exchanges, calculated in real-time. Review full documentation in the Technical section.
+                    </div>
+</details>
+<details class="group border-b border-outline-variant last:border-b-0">
+<summary class="flex justify-between items-center font-body-md text-on-surface p-4 cursor-pointer list-none">
+<span>Upgrade institutional tier</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-4 pb-4 font-body-md text-on-surface-variant text-[14px]">
+                        Institutional upgrades require a dedicated account manager. Please contact support to initiate the KYC and SLA process.
+                    </div>
+</details>
+</div>
+</section>
+<!-- Prominent Contact Action -->
+<section class="mt-4 mb-8">
+<div class="glass-panel p-6 rounded-xl flex flex-col items-center text-center gap-4 border-t-[3px] border-t-primary">
+<span class="material-symbols-outlined text-[32px] text-primary">support_agent</span>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">Need more help?</h3>
+<p class="font-body-md text-[14px] text-on-surface-variant">Our institutional support team is available 24/7 for dedicated client assistance.</p>
+</div>
+<button class="w-full bg-[#B8860B] text-white font-body-md font-semibold py-3 px-6 rounded-lg golden-glow active:scale-95 transition-all mt-2">
+                    Contact Institutional Support
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface-container border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">analytics</span>
+<span class="font-label-caps text-label-sm">Markets</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">newspaper</span>
+<span class="font-label-caps text-label-sm">News</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">calculate</span>
+<span class="font-label-caps text-label-sm">Calculators</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">account_balance_wallet</span>
+<span class="font-label-caps text-label-sm">Portfolio</span>
+</a>
+</nav>
+</body></html>

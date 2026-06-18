@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Market Rates - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#4a473e",
+                        "on-tertiary": "#353029",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container-highest": "#343439",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#e9c400",
+                        "secondary-container": "#474746",
+                        "tertiary": "#ffffff",
+                        "on-secondary": "#303030",
+                        "surface-container": "#1e1f24",
+                        "primary": "#ffffff",
+                        "on-secondary-container": "#b6b5b4",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "surface-variant": "#343439",
+                        "surface-bright": "#38393d",
+                        "inverse-primary": "#705d00",
+                        "surface-dim": "#121317",
+                        "background": "#121317",
+                        "primary-fixed-dim": "#e9c400",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#cec5bb",
+                        "surface-container-low": "#1a1b20",
+                        "outline": "#999077",
+                        "on-background": "#e3e2e7",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-primary": "#3a3000",
+                        "surface": "#121317",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "on-primary-fixed": "#221b00",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffe16d",
+                        "inverse-on-surface": "#2f3035",
+                        "on-tertiary-container": "#6a635b",
+                        "on-primary-container": "#776300",
+                        "primary-container": "#ffe16d",
+                        "surface-container-lowest": "#0d0e12",
+                        "on-surface-variant": "#ccc6bb",
+                        "surface-container-high": "#292a2e",
+                        "on-primary-fixed-variant": "#544600",
+                        "error": "#ffb4ab",
+                        "secondary": "#c8c6c5",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "tertiary-fixed": "#ebe1d6",
+                        "inverse-surface": "#e3e2e7",
+                        "on-surface": "#e3e2e7",
+                        "tertiary-container": "#ebe1d6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin-desktop": "40px",
+                        "base-unit": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        /* Ticker Animation */
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-track {
+            animation: ticker 20s linear infinite;
+        }
+        .ticker-container:hover .ticker-track {
+            animation-play-state: paused;
+        }
+
+        /* Gauge Needle Animation */
+        @keyframes needleSweep {
+            0% { transform: rotate(-90deg); }
+            100% { transform: rotate(45deg); }
+        }
+        .gauge-needle {
+            transform-origin: bottom center;
+            animation: needleSweep 2s ease-out forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col bg-background">
+<!-- TopNavBar (Shared Component) -->
+<nav class="sticky top-0 w-full z-50 bg-surface-container dark:bg-surface-container-high bg-surface-container/80 backdrop-blur-md shadow-md h-16">
+<div class="flex items-center justify-between px-margin-mobile h-full">
+<div class="font-headline-md text-headline-md font-bold text-primary-fixed-dim dark:text-primary-fixed flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="terminal" data-weight="fill" style="font-variation-settings: 'FILL' 1;">terminal</span>
+                AI Market Rates
+            </div>
+<!-- Mobile Menu Toggle (Visible only on mobile) -->
+<button class="md:hidden text-primary-fixed-dim p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<!-- Desktop Nav Links (Hidden on mobile) -->
+<div class="hidden md:flex gap-gutter h-full items-center">
+<!-- Home is Active -->
+<a class="font-body-md text-body-md h-full flex items-center text-primary-fixed-dim border-b-2 border-primary-fixed-dim pb-1 cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200" href="#">Home</a>
+<a class="font-body-md text-body-md h-full flex items-center text-on-surface-variant cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200" href="#">Crypto</a>
+<a class="font-body-md text-body-md h-full flex items-center text-on-surface-variant cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200" href="#">Gold</a>
+<a class="font-body-md text-body-md h-full flex items-center text-on-surface-variant cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200" href="#">Silver</a>
+<a class="font-body-md text-body-md h-full flex items-center text-on-surface-variant cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200" href="#">AI Insights</a>
+<a class="font-body-md text-body-md h-full flex items-center text-on-surface-variant cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200" href="#">Calculators</a>
+</div>
+<!-- Trailing Icons -->
+<div class="hidden md:flex items-center gap-4 text-primary-fixed-dim">
+<button class="cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200 p-2">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="cursor-pointer active:scale-95 hover:text-primary-fixed-dim transition-colors duration-200 p-2">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow flex flex-col">
+<!-- Hero Section (Mobile Condensed) -->
+<section class="relative bg-surface-container-low border-b border-outline-variant pt-8 pb-12 px-margin-mobile overflow-hidden flex-shrink-0">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0 opacity-20">
+<img alt="Terminal Background" class="w-full h-full object-cover" data-alt="A highly detailed macro shot of a complex financial server rack illuminated by stark gold and deep charcoal lighting. The atmosphere is tense, technological, and premium. Sharp focus on glowing fiber optic cables and brushed dark metal server chassis. The overall aesthetic perfectly matches a developer-centric, high-performance dark mode UI with Midnight Gold accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGxB3Eh1zvV6hDeA-rpfZ-NGABm4vsi9UU3I4tAfIieDhikavbRGi-Jv-jrFfqBuvK1Ij43gpjoHWY71nnYdse67XLeLiO9kgEy2R-8UvZOnqRJLp5Y49kiTwwNs1iN2GS7OVW1u1mD3GWEBNO6BPoSfRdA5ZFNRCZEYzj9Gf7ciBMc38bj8VXhhYCmPFhmYThiJ30ejUjhuDsyLHVETOHtLtN35cvT0AivwSZqN4udBSPVVWB5v4cvaf0V1Zr9hFfvMWDcwG7wfE"/>
+</div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="inline-flex items-center gap-2 bg-secondary-container px-3 py-1 rounded-full w-fit">
+<div class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-on-surface">LIVE INTELLIGENCE</span>
+</div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">
+                    Real-time<br/>
+<span class="text-primary-fixed-dim">Market Data</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
+                    AI-driven insights for global commodities and crypto.
+                </p>
+</div>
+</section>
+<!-- Live Price Ticker -->
+<div class="bg-surface-container-highest border-b border-outline-variant py-3 overflow-hidden flex-shrink-0 ticker-container">
+<div class="flex ticker-track w-[200%]">
+<!-- First Set -->
+<div class="flex w-1/2 justify-around items-center px-4">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">BTC</span>
+<span class="font-data-mono text-data-mono text-on-surface">$64,230.50</span>
+<span class="font-data-mono text-data-mono text-[#4ade80]">+2.4%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">ETH</span>
+<span class="font-data-mono text-data-mono text-on-surface">$3,450.12</span>
+<span class="font-data-mono text-data-mono text-[#4ade80]">+1.8%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">XAU</span>
+<span class="font-data-mono text-data-mono text-on-surface">$2,340.80</span>
+<span class="font-data-mono text-data-mono text-[#f87171]">-0.5%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">XAG</span>
+<span class="font-data-mono text-data-mono text-on-surface">$28.45</span>
+<span class="font-data-mono text-data-mono text-[#4ade80]">+0.2%</span>
+</div>
+</div>
+<!-- Duplicate Set for smooth loop -->
+<div class="flex w-1/2 justify-around items-center px-4">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">BTC</span>
+<span class="font-data-mono text-data-mono text-on-surface">$64,230.50</span>
+<span class="font-data-mono text-data-mono text-[#4ade80]">+2.4%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">ETH</span>
+<span class="font-data-mono text-data-mono text-on-surface">$3,450.12</span>
+<span class="font-data-mono text-data-mono text-[#4ade80]">+1.8%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">XAU</span>
+<span class="font-data-mono text-data-mono text-on-surface">$2,340.80</span>
+<span class="font-data-mono text-data-mono text-[#f87171]">-0.5%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">XAG</span>
+<span class="font-data-mono text-data-mono text-on-surface">$28.45</span>
+<span class="font-data-mono text-data-mono text-[#4ade80]">+0.2%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="px-margin-mobile py-8 flex flex-col gap-6 flex-grow">
+<!-- Market Sentiment Card -->
+<section class="bg-surface-container rounded-xl p-6 border border-outline-variant shadow-lg">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="monitoring">monitoring</span>
+                        Market Sentiment
+                    </h2>
+<span class="font-label-caps text-label-caps text-primary-fixed-dim bg-primary-container/10 px-2 py-1 rounded">BULLISH</span>
+</div>
+<!-- Simplified Gauge -->
+<div class="relative w-full h-32 flex items-end justify-center mb-4 overflow-hidden">
+<!-- Gauge Arc -->
+<div class="absolute bottom-0 w-64 h-32 rounded-t-full border-t-[16px] border-l-[16px] border-r-[16px] border-surface-container-high box-border"></div>
+<!-- Color Stops (CSS Hack for gradients on arc) -->
+<div class="absolute bottom-0 w-64 h-32 rounded-t-full border-t-[16px] border-l-[16px] border-r-[16px] box-border" style="border-color: transparent; border-top-color: theme('colors.primary-fixed-dim'); opacity: 0.5;"></div>
+<!-- Needle -->
+<div class="absolute bottom-0 w-1 h-24 bg-on-surface rounded-full gauge-needle z-10" style="transform: rotate(45deg);"></div>
+<div class="absolute bottom-[-6px] w-4 h-4 bg-primary-container rounded-full z-20 shadow-[0_0_10px_rgba(233,196,0,0.5)]"></div>
+<!-- Labels -->
+<div class="absolute bottom-2 left-4 font-label-caps text-label-caps text-on-surface-variant">FEAR</div>
+<div class="absolute bottom-2 right-4 font-label-caps text-label-caps text-primary-fixed-dim">GREED</div>
+</div>
+<div class="flex justify-between items-center border-t border-outline-variant pt-4">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant">AI CONFIDENCE SCORE</span>
+<span class="font-data-mono text-data-mono text-on-surface text-lg">78.4 / 100</span>
+</div>
+<button class="p-2 bg-surface-container-high rounded-full border border-outline-variant text-on-surface hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Terminal Briefing Newsletter -->
+<section class="bg-surface-container-high rounded-xl p-6 border border-outline-variant relative overflow-hidden">
+<!-- Abstract Accent Graphic -->
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary-fixed-dim/10 rounded-full blur-2xl"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Terminal Briefing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Get AI-curated market intel delivered to your inbox daily.</p>
+<form class="flex flex-col gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="mail">mail</span>
+<input class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md focus:border-primary-fixed-dim focus:ring-1 focus:ring-primary-fixed-dim transition-all outline-none placeholder:text-on-surface-variant/50" placeholder="Enter your email" type="email"/>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-label-caps text-label-caps py-3 rounded-lg hover:bg-primary-fixed transition-colors flex justify-center items-center gap-2" type="submit">
+                        SUBSCRIBE <span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+</button>
+</form>
+</section>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full mt-auto bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant py-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile max-w-container-max mx-auto">
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-on-surface">© 2024 AI Market Rates. Institutional Intelligence. All rights reserved.</span>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Regulatory Disclosure</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

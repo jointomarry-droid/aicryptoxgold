@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aureus Terminal - Team Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#4f4535",
+                      "primary-fixed": "#ffdea6",
+                      "background": "#f8f9fa",
+                      "inverse-on-surface": "#f0f1f2",
+                      "secondary-fixed-dim": "#e9c400",
+                      "primary-container": "#986d00",
+                      "surface-container": "#edeeef",
+                      "on-primary": "#ffffff",
+                      "surface": "#f8f9fa",
+                      "primary": "#785600",
+                      "secondary-container": "#fcd400",
+                      "surface-tint": "#7b5800",
+                      "surface-variant": "#e1e3e4",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#817563",
+                      "secondary-fixed": "#ffe16d",
+                      "on-tertiary-container": "#fefcff",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e7e8e9",
+                      "error": "#ba1a1a",
+                      "tertiary-container": "#747479",
+                      "on-primary-container": "#fffbff",
+                      "surface-bright": "#f8f9fa",
+                      "on-error-container": "#93000a",
+                      "surface-container-highest": "#e1e3e4",
+                      "primary-fixed-dim": "#f7bd48",
+                      "tertiary-fixed-dim": "#c7c6cb",
+                      "on-secondary-container": "#6e5c00",
+                      "on-tertiary-fixed": "#1a1b20",
+                      "surface-dim": "#d9dadb",
+                      "on-background": "#191c1d",
+                      "tertiary-fixed": "#e3e2e7",
+                      "inverse-surface": "#2e3132",
+                      "inverse-primary": "#f7bd48",
+                      "error-container": "#ffdad6",
+                      "secondary": "#705d00",
+                      "on-secondary-fixed-variant": "#544600",
+                      "on-surface": "#191c1d",
+                      "on-secondary-fixed": "#221b00",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#5d4200",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#271900",
+                      "on-tertiary-fixed-variant": "#46464b",
+                      "tertiary": "#5b5c60",
+                      "outline-variant": "#d3c4af",
+                      "surface-container-low": "#f3f4f5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "md": "24px",
+                      "lg": "48px",
+                      "margin": "32px",
+                      "xs": "4px",
+                      "gutter": "24px",
+                      "sm": "12px",
+                      "xl": "80px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Manrope", "sans-serif"],
+                      "body-lg": ["Inter", "sans-serif"],
+                      "headline-md": ["Manrope", "sans-serif"],
+                      "body-md": ["Inter", "sans-serif"],
+                      "label-sm": ["JetBrains Mono", "monospace"],
+                      "display-lg-mobile": ["Manrope", "sans-serif"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f9fa;
+            color: #191c1d;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid #F1F3F5;
+            border-top: 1px solid #B8860B;
+        }
+        .gold-glow {
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
+        }
+        /* Custom scrollbar for data tables */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8f9fa; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d3c4af; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8860B; 
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden md:flex flex-col h-full py-gutter px-4 bg-surface-container-low border-r border-outline-variant/20 w-64 flex-shrink-0">
+<div class="mb-lg">
+<h1 class="font-display-lg text-[28px] tracking-tighter text-on-surface">Aureus</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Terminal</p>
+</div>
+<div class="flex-1 space-y-2">
+<a class="flex items-center px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-DEFAULT transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<a class="flex items-center px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-DEFAULT transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">psychology</span>
+<span class="font-body-md text-body-md">AI Insights</span>
+</a>
+<a class="flex items-center px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-DEFAULT transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Asset Classes</span>
+</a>
+<a class="flex items-center px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-DEFAULT transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">history</span>
+<span class="font-body-md text-body-md">History</span>
+</a>
+<a class="flex items-center px-3 py-2 bg-surface-variant text-on-surface font-semibold rounded-lg transition-transform translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-body-md text-body-md">Team</span>
+</a>
+<a class="flex items-center px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-DEFAULT transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">lock</span>
+<span class="font-body-md text-body-md">Vault</span>
+</a>
+</div>
+<div class="mt-auto space-y-2 pt-6 border-t border-outline-variant/20">
+<button class="w-full py-2 bg-[#B8860B] text-on-primary font-body-md text-body-md rounded-DEFAULT gold-glow hover:opacity-90 transition-opacity">
+                New Analysis
+            </button>
+<a class="flex items-center px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-DEFAULT transition-colors duration-200 mt-4" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">help</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-DEFAULT transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">code</span>
+<span class="font-body-md text-body-md">API</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- TopNavBar (from JSON - Modified for specific view context) -->
+<header class="flex justify-between items-center px-margin h-20 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex-shrink-0 z-10">
+<div class="flex items-center gap-6">
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-headline-md text-headline-md text-on-surface hidden md:block">Institutional Management</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant/30 overflow-hidden ml-2 cursor-pointer">
+<img alt="Executive User profile avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged male executive with short greying hair, wearing a dark navy bespoke suit and a crisp white shirt. The background is a slightly blurred, bright modern corporate office with high-key lighting. The overall mood is authoritative, reliable, and premium, fitting a luxury financial institutional context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsgBNLd6T8QXIhKFff7hGNR1QaxVcosSgHer010gUZkbwmmHZ_pMhv4dOAeM1lfJf1h69ilNNgBPT9NOy9Yl-hhz000HOSnUCw-FuIkiBqm0qOtG139iN_aAR-GzSClI4IChB1v6crXlkYTwieK687FKDWLsvTZIFg_3Qt_tARqOxvefP-CCfG0u5DkFYCxe5o0eDFIMJ77CGD4T99McK64LD849aUqGRXnHhLU1NAvXjZd3mhICMFdM2W3d0Rok9H5uAXZKha22k"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-margin">
+<div class="max-w-[1200px] mx-auto space-y-lg">
+<!-- Page Header & Key Metrics -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div>
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface mb-2">Team Overview</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage institutional access, roles, and deployment metrics.</p>
+</div>
+<button class="flex items-center gap-2 px-6 py-3 bg-[#B8860B] text-white font-body-md text-body-md rounded-DEFAULT gold-glow hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                        Invite New Member
+                    </button>
+</section>
+<!-- Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Metric Card 1 -->
+<div class="glass-card rounded-lg p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-outline">group</span>
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant font-label-sm text-label-sm rounded-sm">USAGE</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface-variant mb-1">Total Seats</h3>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-[32px] text-on-surface">8</span>
+<span class="font-label-sm text-label-sm text-outline">/ 12 used</span>
+</div>
+<div class="w-full bg-surface-variant h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-[#B8860B] h-full" style="width: 66%;"></div>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="glass-card rounded-lg p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-outline">bolt</span>
+<span class="px-2 py-1 bg-surface-container-high text-[#B8860B] font-label-sm text-label-sm rounded-sm flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span> LIVE</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface-variant mb-1">Active Sessions</h3>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-[32px] text-on-surface">3</span>
+</div>
+<p class="font-label-sm text-label-sm text-outline mt-4">Across US and EMEA nodes</p>
+</div>
+<!-- Metric Card 3 -->
+<div class="glass-card rounded-lg p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-outline">mark_email_unread</span>
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant font-label-sm text-label-sm rounded-sm">PENDING</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface-variant mb-1">Pending Invitations</h3>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-[32px] text-on-surface">2</span>
+</div>
+<p class="font-label-sm text-label-sm text-outline mt-4">Expiring in 48 hours</p>
+</div>
+</section>
+<!-- Directory Table Section -->
+<section class="glass-card rounded-lg border border-[#F1F3F5] overflow-hidden">
+<div class="p-6 border-b border-[#F1F3F5] flex justify-between items-center bg-surface">
+<h2 class="font-headline-md text-[20px] text-on-surface">Member Directory</h2>
+<div class="flex gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="pl-9 pr-4 py-2 border border-[#F1F3F5] rounded-DEFAULT bg-white text-on-surface font-body-md text-body-md focus:outline-none focus:border-[#B8860B] transition-colors w-64" placeholder="Search members..." type="text"/>
+</div>
+<button class="px-4 py-2 border border-[#F1F3F5] rounded-DEFAULT text-on-surface font-body-md text-body-md hover:border-[#B8860B] transition-colors flex items-center gap-2 bg-white">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-[#F1F3F5] bg-[#F8F9FA]">
+<th class="px-6 py-4 font-label-sm text-label-sm text-outline uppercase tracking-wider font-medium">Member</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-outline uppercase tracking-wider font-medium">Role</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-outline uppercase tracking-wider font-medium">Status</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-outline uppercase tracking-wider font-medium">Last Activity</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-outline uppercase tracking-wider font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<!-- Row 1 -->
+<tr class="border-b border-[#F1F3F5] hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-[#F1F3F5]">
+<img alt="Member Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a confident female executive in her 40s. She is wearing a tailored grey blazer and looking directly at the camera. The background is a clean, minimalist white office setting with soft, diffused natural light. The aesthetic is premium corporate, clear, and high-contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQJu58y1TkLODmLvZPp8SyaISniiqd278P224uTINV5LYHY1d8t5X5rrRRFNxCDJj2Au4SiW5m0qRrauiikzOwdWqvTBFbr5DCNKzo0PbjhzAgiJ-4zffPrA-jZoVL3wQ0iV7S1isbT-zVg1_B3NQJMsl-SEEQUNzi5D-2nq8C10HGVAj25R6MpjEalwGt_rG0hwlyxnoYPZ9U_L5Mu48NgHrz7DEEZy9dSDTGoFAfUyElNtCVvLfJDHvUF5s4buadYj7Gce0MzvE"/>
+</div>
+<div>
+<div class="text-on-surface font-medium">Sarah Jenkins</div>
+<div class="font-label-sm text-[11px] text-outline">s.jenkins@aureus.inst</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4"><span class="text-on-surface">Owner</span></td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-sm bg-surface-container-high text-[#B8860B] font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span> ACTIVE
+                                        </span>
+</td>
+<td class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant">Just now</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-on-surface transition-colors p-1"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-[#F1F3F5] hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-[#F1F3F5]">
+<img alt="Member Avatar" class="w-full h-full object-cover" data-alt="A high-quality portrait of a young male professional wearing glasses and a light blue collared shirt. He has a subtle, focused expression. The lighting is bright and clean, typical of a modern tech or finance office in daylight. The visual style is crisp, high-resolution, and perfectly suited for a luxury business dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9A275-gsurFNZkU21qpPpmi0uz8Tx--O-QJVfAF6KsaEvTaEpj57iW2XfNMk4LCECnOfLjYv8JKNJNrfS5KejeEU06JkCQhaPQk29MmsjiUSt2qqbZ2t8uA_h3Suoh6DaPyyn_AAjXvt2yS__hyfm8UMHVjD3QgotqJr8m6t2JTE5GfpHYGZtuugOLgMEugQxTVpEVkVQrZdvgWYTnGmsJE7YPimKDvDo9MVbrJCzsW1E_axcEsIgjl4ZjNow1i7tqYQyT2Kil-E"/>
+</div>
+<div>
+<div class="text-on-surface font-medium">David Chen</div>
+<div class="font-label-sm text-[11px] text-outline">d.chen@aureus.inst</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4"><span class="text-on-surface-variant">Admin</span></td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-sm bg-surface-container-high text-[#B8860B] font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span> ACTIVE
+                                        </span>
+</td>
+<td class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant">2 hours ago</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-on-surface transition-colors p-1"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-[#F1F3F5] hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-outline font-label-sm">
+                                                ER
+                                            </div>
+<div>
+<div class="text-on-surface font-medium">Elena Rodriguez</div>
+<div class="font-label-sm text-[11px] text-outline">e.rodriguez@aureus.inst</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4"><span class="text-on-surface-variant">Analyst</span></td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-sm bg-surface-variant text-outline font-label-sm text-[11px]">
+<span class="material-symbols-outlined text-[12px]">schedule</span> INVITED
+                                        </span>
+</td>
+<td class="px-6 py-4 font-label-sm text-label-sm text-outline">-</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-on-surface transition-colors p-1"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Bottom Layout: Activity & Permissions -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter pb-xl">
+<!-- Recent Activity -->
+<section class="glass-card rounded-lg p-6 flex flex-col h-[400px]">
+<h2 class="font-headline-md text-[20px] text-on-surface mb-6">Recent Team Activity</h2>
+<div class="flex-1 overflow-y-auto pr-2 space-y-6">
+<!-- Activity Item 1 -->
+<div class="flex gap-4 relative">
+<div class="w-px h-full bg-[#F1F3F5] absolute left-[15px] top-6"></div>
+<div class="w-8 h-8 rounded-full bg-surface border border-[#F1F3F5] flex items-center justify-center z-10 flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-[#B8860B]">login</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface"><span class="font-medium">David Chen</span> logged into Terminal</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">Today, 08:42 AM • IP: 192.168.1.1</p>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="flex gap-4 relative">
+<div class="w-px h-full bg-[#F1F3F5] absolute left-[15px] top-6"></div>
+<div class="w-8 h-8 rounded-full bg-surface border border-[#F1F3F5] flex items-center justify-center z-10 flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-outline">description</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface"><span class="font-medium">Sarah Jenkins</span> exported <span class="text-[#B8860B]">Q3 Yield Report</span></p>
+<p class="font-label-sm text-label-sm text-outline mt-1">Yesterday, 14:15 PM</p>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="flex gap-4 relative">
+<div class="w-8 h-8 rounded-full bg-surface border border-[#F1F3F5] flex items-center justify-center z-10 flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-outline">person_add</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface"><span class="font-medium">Sarah Jenkins</span> invited <span class="font-medium">Elena Rodriguez</span></p>
+<p class="font-label-sm text-label-sm text-outline mt-1">Oct 24, 09:00 AM</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Role Permissions Summary -->
+<section class="glass-card rounded-lg p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-[20px] text-on-surface">Role Permissions</h2>
+<button class="text-[#B8860B] font-label-sm text-label-sm hover:underline">Manage Roles</button>
+</div>
+<div class="space-y-4">
+<div class="p-4 border border-[#F1F3F5] rounded-DEFAULT bg-surface hover:border-[#d3c4af] transition-colors cursor-pointer">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-body-md text-body-md font-medium text-on-surface">Owner</h3>
+<span class="material-symbols-outlined text-outline text-[18px]">admin_panel_settings</span>
+</div>
+<p class="font-body-md text-[14px] text-on-surface-variant">Full system access, billing management, and team administration.</p>
+</div>
+<div class="p-4 border border-[#F1F3F5] rounded-DEFAULT bg-surface hover:border-[#d3c4af] transition-colors cursor-pointer">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-body-md text-body-md font-medium text-on-surface">Admin</h3>
+<span class="material-symbols-outlined text-outline text-[18px]">manage_accounts</span>
+</div>
+<p class="font-body-md text-[14px] text-on-surface-variant">Manage users, view all reports, and configure integration settings.</p>
+</div>
+<div class="p-4 border border-[#F1F3F5] rounded-DEFAULT bg-surface hover:border-[#d3c4af] transition-colors cursor-pointer">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-body-md text-body-md font-medium text-on-surface">Analyst</h3>
+<span class="material-symbols-outlined text-outline text-[18px]">insights</span>
+</div>
+<p class="font-body-md text-[14px] text-on-surface-variant">Read-only access to analytics, reports, and AI insights.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</body></html>
