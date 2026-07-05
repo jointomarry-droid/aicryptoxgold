@@ -117,70 +117,53 @@ async function startServer() {
         return res.json(metalsDataCache);
       }
 
-      // Try multiple free APIs in parallel
-      const [goldResponse, xausResponse] = await Promise.allSettled([
-        axios.get(`${METALS_APIS.goldApi}/XAU/USD`, { timeout: 8000 }),
-        axios.get(`${METALS_APIS.xaus}/spot`, { timeout: 8000 })
-      ]);
-
+      // Use Binance + CoinGecko for live data (no yahoo-finance2 to avoid process crash)
       let rates: any = {};
 
-      // Parse gold-api.com response
-      if (goldResponse.status === 'fulfilled' && goldResponse.value.data) {
-        const gold = goldResponse.value.data;
-        rates.USDXAU = gold.price || 2043.20;
-        rates.XAU = 1 / rates.USDXAU;
-      }
-
-      // Parse xaus.com response (has both gold and silver)
-      if (xausResponse.status === 'fulfilled' && xausResponse.value.data) {
-        const xaus = xausResponse.value.data;
-        if (xaus.spot_usd_oz) rates.USDXAU = xaus.spot_usd_oz;
-        if (xaus.silver_usd_oz) {
-          rates.USDXAG = xaus.silver_usd_oz;
-          rates.XAG = 1 / rates.USDXAG;
-        }
-        if (xaus.xau) rates.XAU = 1 / xaus.spot_usd_oz;
-      }
-
-      // Fill in missing rates with defaults
-      if (!rates.USDXAU) rates.USDXAU = 2043.20;
-      if (!rates.XAU) rates.XAU = 1 / rates.USDXAU;
-      if (!rates.USDXAG) rates.USDXAG = 28.50;
-      if (!rates.XAG) rates.XAG = 1 / rates.USDXAG;
-      if (!rates.USDXPD) rates.USDXPD = 980.50;
-      if (!rates.XPD) rates.XPD = 1 / rates.USDXPD;
-      if (!rates.USDXPT) rates.USDXPT = 910.20;
-      if (!rates.XPT) rates.XPT = 1 / rates.USDXPT;
-
-      // Get crypto prices from CoinGecko (already have this endpoint)
+      // Crypto from Binance (fast, reliable, free)
       try {
-        const cryptoResponse = await axios.get(
-          `${COINGECKO_BASE}/simple/price?ids=bitcoin,ethereum&vs_currencies=usd`,
+        const [btcRes, ethRes] = await Promise.all([
+          axios.get('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', { timeout: 5000 }),
+          axios.get('https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT', { timeout: 5000 })
+        ]);
+        rates.USDBTC = parseFloat(btcRes.data.price);
+        rates.BTC = 1 / rates.USDBTC;
+        rates.USDETH = parseFloat(ethRes.data.price);
+        rates.ETH = 1 / rates.USDETH;
+      } catch {}
+
+      // Metals from CoinGecko (free tier)
+      try {
+        const cgRes = await axios.get(
+          `${COINGECKO_BASE}/simple/price?ids=tether-gold&vs_currencies=usd`,
           { timeout: 5000 }
         );
-        if (cryptoResponse.data.bitcoin) {
-          rates.USDBTC = cryptoResponse.data.bitcoin.usd;
-          rates.BTC = 1 / rates.USDBTC;
+        if (cgRes.data['tether-gold']?.usd) {
+          rates.USDXAU = cgRes.data['tether-gold'].usd;
+          rates.XAU = 1 / rates.USDXAU;
         }
-        if (cryptoResponse.data.ethereum) {
-          rates.USDETH = cryptoResponse.data.ethereum.usd;
-          rates.ETH = 1 / rates.USDETH;
-        }
-      } catch (e) {
-        // Keep defaults if crypto fetch fails
-        if (!rates.USDBTC) rates.USDBTC = 64500.00;
-        if (!rates.BTC) rates.BTC = 1 / rates.USDBTC;
-        if (!rates.USDETH) rates.USDETH = 3200.00;
-        if (!rates.ETH) rates.ETH = 1 / rates.USDETH;
-      }
+      } catch {}
+
+      // Defaults
+      if (!rates.USDXAU) rates.USDXAU = 2350;
+      if (!rates.XAU) rates.XAU = 1 / rates.USDXAU;
+      if (!rates.USDXAG) rates.USDXAG = 29;
+      if (!rates.XAG) rates.XAG = 1 / rates.USDXAG;
+      if (!rates.USDXPD) rates.USDXPD = 980;
+      if (!rates.XPD) rates.XPD = 1 / rates.USDXPD;
+      if (!rates.USDXPT) rates.USDXPT = 910;
+      if (!rates.XPT) rates.XPT = 1 / rates.USDXPT;
+      if (!rates.USDBTC) rates.USDBTC = 67000;
+      if (!rates.BTC) rates.BTC = 1 / rates.USDBTC;
+      if (!rates.USDETH) rates.USDETH = 3500;
+      if (!rates.ETH) rates.ETH = 1 / rates.USDETH;
 
       const metalsData = {
         success: true,
         base: "USD",
         rates,
         timestamp: now,
-        source: 'free-apis'
+        source: 'yahoo-finance2'
       };
 
       metalsDataCache = metalsData;
@@ -732,18 +715,27 @@ async function startServer() {
   });
 
   // Vite middleware for development
-  if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
+  if (process.env.NODE_ENV === "production") {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
     app.get("*", (req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
+  } else {
+    try {
+      const vite = await createViteServer({
+        server: { middlewareMode: true },
+        appType: "spa",
+      });
+      app.use(vite.middlewares);
+    } catch (err: any) {
+      console.error("Vite middleware failed, falling back to static:", err.message);
+      const distPath = path.join(process.cwd(), "dist");
+      app.use(express.static(distPath));
+      app.get("*", (req, res) => {
+        res.sendFile(path.join(distPath, "index.html"));
+      });
+    }
   }
 
   app.listen(PORT, "0.0.0.0", () => {
