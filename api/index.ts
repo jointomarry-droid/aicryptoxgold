@@ -118,10 +118,13 @@ app.get("/api/metals", async (req, res) => {
 });
 
 const distPath = path.join(process.cwd(), "dist");
-app.use(express.static(distPath));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
-});
+// Only serve static files in non-Vercel environments (local dev)
+if (!process.env.VERCEL) {
+  app.use(express.static(distPath));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+}
 
 export default app;
