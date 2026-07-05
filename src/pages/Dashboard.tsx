@@ -4,6 +4,10 @@ import { PriceChart } from '../components/PriceChart';
 import { MetalPrices } from '../components/MetalPrices';
 import { CryptoRankings } from '../components/CryptoRankings';
 import { AiInsights } from '../components/AiInsights';
+import { AiRecommendations } from '../components/AiRecommendations';
+import { FearGreedGauge } from '../components/FearGreedGauge';
+import { TrendingCoins } from '../components/TrendingCoins';
+import { CoinNews } from '../components/CoinNews';
 import { PortfolioTracker } from '../components/PortfolioTracker';
 import { MarketSentiment } from '../components/MarketSentiment';
 import { Hero } from '../components/Hero';
@@ -32,7 +36,11 @@ export function Dashboard() {
           </div>
 
           <div className="flex-none">
-            <AiInsights />
+            <FearGreedGauge />
+          </div>
+
+          <div className="flex-none">
+            <TrendingCoins />
           </div>
         </div>
 
@@ -47,6 +55,14 @@ export function Dashboard() {
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             <CryptoRankings />
             <MetalPrices />
+          </div>
+
+          {/* AI Trade Signals - Full Width */}
+          <AiRecommendations />
+
+          {/* Coin News - Full Width */}
+          <div className="h-[500px]">
+            <CoinNews />
           </div>
         </div>
       </div>
