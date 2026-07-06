@@ -5,6 +5,11 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Dashboard } from './pages/Dashboard';
+import { CryptoPage } from './pages/CryptoPage';
+import { GoldPage } from './pages/GoldPage';
+import { SilverPage } from './pages/SilverPage';
+import { AiInsightsPage } from './pages/AiInsightsPage';
+import { FinancialCalculatorsPage } from './pages/FinancialCalculatorsPage';
 import { GenericPage } from './pages/GenericPage';
 import { BlogPage } from './pages/BlogPage';
 import { BlogPostFutureOfAI } from './pages/BlogPostFutureOfAI';
@@ -25,12 +30,12 @@ export default function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/crypto" element={<GenericPage title="Crypto Markets" />} />
-        <Route path="/gold" element={<GenericPage title="Gold Prices" />} />
-        <Route path="/silver" element={<GenericPage title="Silver Prices" />} />
+        <Route path="/crypto" element={<CryptoPage />} />
+        <Route path="/gold" element={<GoldPage />} />
+        <Route path="/silver" element={<SilverPage />} />
         <Route path="/news" element={<NewsPage />} />
-        <Route path="/insights" element={<GenericPage title="AI Insights" />} />
-        <Route path="/calculators" element={<GenericPage title="Financial Calculators" />} />
+        <Route path="/insights" element={<AiInsightsPage />} />
+        <Route path="/calculators" element={<FinancialCalculatorsPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/future-of-ai-in-market-prediction" element={<BlogPostFutureOfAI />} />
         <Route path="/blog/gold-vs-bitcoin-inflation-hedge" element={<BlogPostGoldVsBitcoin />} />

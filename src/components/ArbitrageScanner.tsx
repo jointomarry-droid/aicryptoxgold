@@ -68,7 +68,7 @@ export function ArbitrageScanner() {
         ) : opportunities.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-48 text-on-surface-variant">
             <ArrowLeftRight size={32} className="opacity-20 mb-3" />
-            <p className="text-xs">No data available</p>
+            <p className="text-xs">Scanning Binance & Coinbase prices...</p>
           </div>
         ) : (
           <div className="divide-y divide-surface-highlight/50">

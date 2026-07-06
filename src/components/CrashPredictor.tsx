@@ -120,7 +120,7 @@ export function CrashPredictor() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-on-surface-variant">BTC Dom:</span>
-                  <span className="font-mono text-on-background">{data.indicators.btcDominance.toFixed(1)}%</span>
+                  <span className="font-mono text-on-background">{data.indicators?.btcDominance?.toFixed(1) ?? '—'}%</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-on-surface-variant">7d Change:</span>
@@ -130,7 +130,7 @@ export function CrashPredictor() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-on-surface-variant">From ATH:</span>
-                  <span className="font-mono text-on-background">{data.indicators.ATHDistance.toFixed(1)}%</span>
+                  <span className="font-mono text-on-background">{data.indicators?.ATHDistance?.toFixed(1) ?? '—'}%</span>
                 </div>
               </div>
               <div className="mt-3 space-y-1">

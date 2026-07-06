@@ -168,7 +168,7 @@ export function AiRecommendations() {
       </div>
 
       {/* Recommendations List */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar">
+      <div className="flex-1 overflow-y-auto custom-scrollbar min-h-[200px]">
         {data.recommendations.map((rec) => (
           <div key={rec.coinId} className="border-b border-surface-highlight/50 last:border-0">
             {/* Main Row */}
